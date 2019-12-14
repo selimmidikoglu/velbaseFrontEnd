@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@bit/joshk.react-spinners-css.facebook": "^1.1.7",
     "bootstrap": "^4.4.1",
     "pretty-checkbox": "^3.0.3",
     "react": "^16.12.0",
