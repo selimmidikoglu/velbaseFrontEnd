@@ -28,11 +28,13 @@ class Categories extends Component {
     }
     handleKeyEnterCategories = (e) => {
       if (e.key === 'Enter' && this.props.searchKeyCategories !== "" && this.props.searchKeyCategories.length > 2) {
+        this.props.setSpinner()
         this.props.getMatchedCategories(apiUrl + "getMatchCategories", this.props.searchKeyCategories)
       }
     }
     
     render() {
+        console.log(this.props.matchedCategories)
         let categories = null
         if (typeof this.props.defaultCategories !== 'undefined' && this.props.matchedCategories.length === 0) {
             categories = (
@@ -56,7 +58,7 @@ class Categories extends Component {
 
         }
         else if (typeof this.props.defaultCategories !== 'undefined' && this.props.searchKeyCategories !== "" && typeof this.props.matchedCategories !== 'undefined') {
-            console.log(this.props.matchedCategories.categories)
+            console.log(this.props.matchedCategories)
             categories = (
                 <div>
                     {this.props.matchedCategories.map((category, index) => {

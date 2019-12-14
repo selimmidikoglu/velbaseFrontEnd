@@ -52,6 +52,10 @@ export const getMatchedCategories = (url,searchKeyCategories) => {
             dispatch({
                 type: FETCH_MATCHED_CATEGORIES,
                 payload: {
+                    conditionForSpinner : {
+                        divPointerEvents : 'all',
+                        runSpinner: false
+                    },
                     matchedCategories: matchedCategories.categories,
                 },
             });
@@ -255,7 +259,7 @@ export const getTotalData = (mainObject,url) => {
             bodyData[mainKeys[i]] = element
         }
         else{
-            //categories
+            //categoriesupdate_other_filter
             if(mainKeys[i] == "categories"){
                 console.log("kategori var",element)
                 let categoryKeys = Object.keys(element);

@@ -250,6 +250,24 @@ class OtherFilters extends Component {
                         }} /></div></Col>
                 </Row>
                 <hr/>
+                <Row><h5 style={{color:'green',fontWeight:'bold'}}>BBB-ACCREDITED</h5></Row>
+                <Row>
+                    <Col md="8" style={{ textAlign: 'left' }}><label style={{ color: 'white' }}>Bbb Accredited</label></Col>
+                    <Col md="4" ><div><input type="checkbox"  className="option-input checkbox" checked={this.props.totalFilters.bbb_accredited}
+                        onClick={(event) => {
+                            this.props.update_other_filter(true,'bbb_accredited',1)
+                            /*this.props.insertChoosenZipCodes(event, "zipCodes", index, zipCode.zipCode)*/
+                        }} /></div></Col>
+                </Row>
+                <Row><h5 style={{color:'green',fontWeight:'bold'}}>BIZ-CHAINED</h5></Row>
+                <Row>
+                    <Col md="8" style={{ textAlign: 'left' }}><label style={{ color: 'white' }}>Biz Chained</label></Col>
+                    <Col md="4" ><div><input type="checkbox"  className="option-input checkbox" checked={this.props.totalFilters.biz_chained}
+                        onClick={(event) => {
+                            this.props.update_other_filter(true,'biz_chained',1)
+                            /*this.props.insertChoosenZipCodes(event, "zipCodes", index, zipCode.zipCode)*/
+                        }} /></div></Col>
+                </Row>
             </Container>
         );
     }

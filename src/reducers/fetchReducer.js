@@ -75,8 +75,8 @@ let initialState = {
             hasOwner: false,
             hasFax : false,
             bbb_rating : 0,
-            bbb_accredited : 0,
-            biz_chained :0,
+            bbb_accredited : false,
+            biz_chained :false,
             hasFacebook: false,
             hasTwitter: false,
             isAdvertised: false,
@@ -292,6 +292,24 @@ export const fetchReducer = (state = initialState,action) => {
                     totalFilters: {
                         ...state.totalFilters,
                         hasReviews: !state.totalFilters.hasReviews
+                    }
+                }
+            }
+            else if(type === 'biz_chained'){
+                return {
+                    ...state,
+                    totalFilters: {
+                        ...state.totalFilters,
+                        biz_chained: !state.totalFilters.biz_chained
+                    }
+                }
+            }
+            else if(type === 'bbb_accredited'){
+                return {
+                    ...state,
+                    totalFilters: {
+                        ...state.totalFilters,
+                        bbb_accredited: !state.totalFilters.bbb_accredited
                     }
                 }
             }
