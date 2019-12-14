@@ -24,10 +24,10 @@ class StatesFilter extends Component {
                 {Object.keys(this.props.totalFilters.states).map((state,index) => {
                     return (
                         <Row style={{height:'auto'}}> 
-                            <Col xs="auto" xl="2"style={{display:'flex',justifyContent:'left',alignItems:'left'}}>
+                            <Col sm={8} style={{display:'flex',justifyContent:'left',alignItems:'left'}}>
                                 <div><label style = {{fontWeight:'bold',color:'#000',fontSize:'10px',}}>{state}</label></div>
                             </Col>
-                            <Col xs="auto" xl="10" style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+                            <Col sm={4} style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                 <div>
                                     <button  className="close-button pull-right " onClick={(event) => {
                                         this.props.setSpinner()

@@ -13,7 +13,9 @@ import { INSERT_CHOOSEN_ZIPCODES } from '../actions/fetchActions'
 
 import { UPDATE_OTHER_FILTER } from '../actions/fetchActions'
 import { SET_SEARCH_CITY_KEY} from '../actions/fetchActions'
+import { SET_SEARCH_ZIPCODE_KEY } from '../actions/fetchActions'
 import { SEARCH_CITIES_IN_LIST } from '../actions/fetchActions'
+import { SEARCH_ZIPCODES_IN_LIST } from '../actions/fetchActions'
 import { SET_SPINNER } from '../actions/fetchActions'
 
 const removeProperty = (obj, property) => {
@@ -29,6 +31,7 @@ let initialState = {
         searchKeyCategories: '',
         searchKeyState: '',
         searchKeyCities: '',
+        searchKeyZipCodes: '',
         defaultCategories: [],
         defaultStates: [],
         defaultCities: [],
@@ -315,6 +318,8 @@ export const fetchReducer = (state = initialState,action) => {
             }
         case SET_SEARCH_CITY_KEY:
             return {...state,...action.payload}
+        case SET_SEARCH_ZIPCODE_KEY:
+            return {...state,...action.payload}
         case SEARCH_CITIES_IN_LIST:
             let bla = []
             console.log(action.payload)
@@ -329,6 +334,24 @@ export const fetchReducer = (state = initialState,action) => {
             }
             else{
                 return {...state, matchedCities: state.defaultCities}
+            }
+        case SEARCH_ZIPCODES_IN_LIST:
+            console.log("zipCodes", action.payload.searchKeyZipCodes)
+            let bla1 = []
+            if ( action.payload.searchKeyZipCodes !== '' && action.payload.searchKeyZipCodes.length > 0){
+                
+                bla1 = action.payload.list.filter(element => {
+                    console.log(element.zipCode.toString().startsWith(action.payload.searchKeyZipCodes))
+                     return element.zipCode.toString().startsWith(action.payload.searchKeyZipCodes)
+                })
+                console.log(bla1)
+                return {
+                    ...state,
+                    matchedZipCodes:bla1
+                }
+            }
+            else{
+                return {...state, matchedZipCodes: state.defaultZipCodes}
             }
         case FETCH_TOTAL_DATA:
                 return {...state,...action.payload}

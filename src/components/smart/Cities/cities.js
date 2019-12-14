@@ -24,7 +24,7 @@ class Cities extends Component {
                                 <Col md="4" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.cities[city.city]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
-                                        this.props.insertChoosenCities(event, "cities", index, city.city)
+                                        this.props.insertChoosenCities(event, "cities", city.state, city.city)
                                         this.props.getZipCodesInCities(apiUrl, "cities", this.props.totalFilters.cities)
                                     }} /></div></Col>
                             </Row>

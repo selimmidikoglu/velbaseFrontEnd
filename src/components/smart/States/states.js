@@ -6,9 +6,9 @@ import Container from 'react-bootstrap/Container';
 //redux connect
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getCitiesInState, insertChoosenStates,setSpinner } from '../../../actions/fetchActions'
+import { getCitiesInState, insertChoosenStates,setSpinner,getTotalData } from '../../../actions/fetchActions'
 
-const apiUrl = "http://139.99.68.189:3000/"
+import {apiUrl} from '../../../consts/consts'
 
 class States extends Component {
     
@@ -36,6 +36,7 @@ class States extends Component {
                                         this.props.insertChoosenStates(event, "states", index, state)
                                         console.log("lanet gelsin",this.props.totalFilters.states)
                                         this.props.getCitiesInState(apiUrl, "states", this.props.totalFilters.states)
+                                        //this.props.getTotalData(this.props.totalFilters,apiUrl)
                                     }} /></div></Col>
                             </Row>
                         </Container>
@@ -56,7 +57,7 @@ function mapDispatchToProps(dispatch) {
         setSpinner: bindActionCreators(setSpinner,dispatch),
         insertChoosenStates: bindActionCreators(insertChoosenStates, dispatch),
         getCitiesInState: bindActionCreators(getCitiesInState, dispatch),
-
+        getTotalData: bindActionCreators(getTotalData,dispatch)
     }
 
 }

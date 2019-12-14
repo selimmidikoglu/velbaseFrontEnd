@@ -11,7 +11,9 @@ export const INSERT_CHOOSEN_CITIES = 'INSERT_CHOOSEN_CITIES'
 export const INSERT_CHOOSEN_ZIPCODES = 'INSERT_CHOOSEN_ZIPCODES'
 export const UPDATE_OTHER_FILTER = 'UPDATE_OTHER_FILTER'
 export const SEARCH_CITIES_IN_LIST = 'SEARCH_CITIES_IN_LIST'
+export const SEARCH_ZIPCODES_IN_LIST = 'SEARCH_ZIPCODES_IN_LIST'
 export const SET_SEARCH_CITY_KEY = 'SET_SEARCH_CITY_KEY'
+export const SET_SEARCH_ZIPCODE_KEY = 'SET_SEARCH_ZIPCODE_KEY'
 
 //conditional action for UI like run spinner
 export const SET_SPINNER = 'SET_SPINNER'
@@ -146,13 +148,13 @@ export const getCitiesInState = (url,type,states) => {
             }
     }
 }
-export const insertChoosenCities = (event,type,id,city) => {
+export const insertChoosenCities = (event,type,state,city) => {
     return {
         type: INSERT_CHOOSEN_CITIES,
         payload: {
             checked: event.target.checked,
             type:type,
-            id:id,
+            state:state,
             city: city
         }
     }
@@ -166,6 +168,7 @@ export const getZipCodesInCities = (url,type,cities) => {
                     type: FETCH_ZIPCODES_IN_CITY,
                     payload:{
                         matchedZipCodes: [],
+                        defaultZipCodes : [],
                         conditionForSpinner : {
                             divPointerEvents : 'all',
                             runSpinner: false
@@ -174,7 +177,10 @@ export const getZipCodesInCities = (url,type,cities) => {
                 })
             }
         }
-            let bodyCities = Object.keys(cities)
+            let bodyCities = Object.keys(cities).map((element,index) => {
+                return [element,Object.values(cities)[index].state]
+            })
+            
             console.log(bodyCities)
             return dispatch => {
                 fetch(url + 'getZipCodesInCities',{
@@ -196,6 +202,7 @@ export const getZipCodesInCities = (url,type,cities) => {
                         type: FETCH_ZIPCODES_IN_CITY,
                         payload:{
                             matchedZipCodes: temp,
+                            defaultZipCodes : temp,
                             conditionForSpinner : {
                                 divPointerEvents : 'all',
                                 runSpinner: false
@@ -233,6 +240,25 @@ export const setCitySearchKey =(event) => {
         type: SET_SEARCH_CITY_KEY,
         payload: {
             searchKeyCities: event.target.value
+        }
+    }
+}
+export const setZipCodeSearchKey =(event) => {
+    console.log(event.target.value)
+    return {
+        type: SET_SEARCH_ZIPCODE_KEY,
+        payload: {
+            searchKeyZipCodes: event.target.value
+        }
+    }
+}
+export const searchZipCodesInList = (event,list) => {
+    console.log("giriyor")
+    return {
+        type: SEARCH_ZIPCODES_IN_LIST,
+        payload: {
+            list: list,
+            searchKeyZipCodes:event.target.value
         }
     }
 }

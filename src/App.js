@@ -17,7 +17,7 @@ import Container from 'react-bootstrap/Container';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 //actions
-import { getDefaultCategoriesAndStates, setSearchKeyCategories, getMatchedCategories, changeStateColumn, searchCitiesInList, setCitySearchKey } from './actions/fetchActions'
+import { getDefaultCategoriesAndStates, setSearchKeyCategories, getMatchedCategories, changeStateColumn, searchCitiesInList, setCitySearchKey, setZipCodeSearchKey, searchZipCodesInList } from './actions/fetchActions'
 
 const apiUrl = "http://139.99.68.189:3000/"
 class App extends Component {
@@ -39,7 +39,12 @@ class App extends Component {
   //get 20 random categories and 62 states
 
   //setting category searchKey
-  
+  changeZipCodes(event){
+    if (event.key === 'Enter' && this.props.searchKeyZipCodes !== "" && this.props.searchKeyZipCodes.length > 2) {
+      this.props.setZipCodeSearchKey(event)
+      this.props.searchZipCodesInList(event,this.props.defaulZipCodes)
+    }
+  }  
 
   render() {
     return (
@@ -99,8 +104,16 @@ class App extends Component {
               <h1 style={{ color: 'white', padding: '20px' }}>ZipCodes</h1>
               <div className="wrap">
                 <div className="search">
-                  <input type="text" className="searchTerm" placeholder="Search cities" value={this.props.searchKeyCities} onKeyDown={(event) => this.props.changeStateColumn(event)} onChange={(event) => this.props.changeStateColumn(event)} />
-                  <button type="button" onClick={this.getMatchCategories} className="searchButton">
+                  <input type="text" className="searchTerm" placeholder="Search zipCodes" value={this.props.searchKeyZipCodes} onKeyDown={(event) => this.changeZipCodes(event)} 
+                  onChange={(event) => {
+                    this.props.setZipCodeSearchKey(event)
+                    this.props.searchZipCodesInList(event,this.props.defaultZipCodes)
+                  }} />
+                  <button type="button" value={this.props.searchKeyZipCodes}
+                  onClick={(event) => {
+                    this.props.setZipCodeSearchKey(event)
+                    this.props.searchZipCodesInList(event,this.props.defaultZipCodes)
+                  }} className="searchButton">
                     <i className="fa fa-search"></i>
                   </button>
                 </div>
@@ -147,6 +160,8 @@ function mapDispatchToProps(dispatch) {
     changeStateColumn: bindActionCreators(changeStateColumn, dispatch),
     searchCitiesInList: bindActionCreators(searchCitiesInList, dispatch),
     setCitySearchKey: bindActionCreators(setCitySearchKey, dispatch),
+    setZipCodeSearchKey: bindActionCreators(setZipCodeSearchKey,dispatch),
+    searchZipCodesInList: bindActionCreators(searchZipCodesInList,dispatch)
   }
 
 }

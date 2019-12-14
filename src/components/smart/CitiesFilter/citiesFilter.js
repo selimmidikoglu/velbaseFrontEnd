@@ -16,7 +16,7 @@ class CitiesFilter extends Component {
     
     render() {
         let cities = null
-        console.log(Object.keys(this.props.totalFilters.cities))
+        console.log(Object.keys(this.props.totalFilters.cities))  
         if(Object.keys(this.props.totalFilters.cities).length !== 0){
             cities = 
             <Container style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#416268',width:'100%'}}>
@@ -27,7 +27,7 @@ class CitiesFilter extends Component {
                             <Col sm={8} style={{display:'flex',justifyContent:'left',alignItems:'left'}}>
                                 <div><label style = {{fontWeight:'bold',color:'#000',fontSize:'10px',}}>{city}</label></div>
                             </Col>
-                            <Col sm={2} style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+                            <Col sm={4} style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                 <div>
                                     <button  className="close-button pull-right " onClick={(event) => {
                                         this.props.setSpinner()

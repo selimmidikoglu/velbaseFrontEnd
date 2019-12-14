@@ -25,7 +25,7 @@ class ZipCodesFilter extends Component {
                             <Col sm={8} style={{display:'flex',justifyContent:'left',alignItems:'left'}}>
                                 <div><label style = {{fontWeight:'bold',color:'#000',fontSize:'10px',}}>{zipCode}</label></div>
                             </Col>
-                            <Col sm={2} style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+                            <Col sm={4} style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                 <div>
                                     <button  className="close-button" href="/"  onClick={(event) => {
                                         this.props.insertChoosenZipCodes(event, "zipCodes", index, zipCode)
