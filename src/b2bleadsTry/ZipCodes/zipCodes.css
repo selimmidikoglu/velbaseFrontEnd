@@ -1,0 +1,9 @@
+.zipCode-text{
+    color:white;
+    font-family: 'Chivo', sans-serif;
+    font-size: 13px;
+    margin-left: 5px;
+    display: list-item;          /* This has to be "list-item"                                               */
+    list-style-type: square;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
+    list-style-position: outside;
+}

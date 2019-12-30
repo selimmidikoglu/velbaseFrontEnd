@@ -14,10 +14,16 @@ import { INSERT_CHOOSEN_ZIPCODES } from '../actions/fetchActions'
 import { UPDATE_OTHER_FILTER } from '../actions/fetchActions'
 import { SET_SEARCH_CITY_KEY} from '../actions/fetchActions'
 import { SET_SEARCH_ZIPCODE_KEY } from '../actions/fetchActions'
+import { SET_SEARCH_KEY_LOCATIONS } from '../actions/fetchActions' 
 import { SEARCH_CITIES_IN_LIST } from '../actions/fetchActions'
 import { SEARCH_ZIPCODES_IN_LIST } from '../actions/fetchActions'
 import { SET_SPINNER } from '../actions/fetchActions'
-
+import { FETCH_LOCATIONS } from '../actions/fetchActions'
+import { SET_CUSTOMER_INFO } from '../actions/fetchActions'
+import { SEND_TEMP_EMAIL } from '../actions/fetchActions'
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 const removeProperty = (obj, property) => {
     return  Object.keys(obj).reduce((acc, key) => {
       if (key !== property) {
@@ -28,10 +34,18 @@ const removeProperty = (obj, property) => {
   }
 let initialState = {
         totalCount:0,
+        countFacebook: 0,
+        countTwitter: 0,
+        countBBB: 0,
+        countFax: 0,
+        countReviews: 0,
+        countEmail: 0,
+        countWebsites: 0,
         searchKeyCategories: '',
         searchKeyState: '',
         searchKeyCities: '',
         searchKeyZipCodes: '',
+        searchKeyLocations: '',
         defaultCategories: [],
         defaultStates: [],
         defaultCities: [],
@@ -40,7 +54,20 @@ let initialState = {
         matchedStates : [],
         matchedCities: [],
         matchedZipCodes : [],
+        matchedLocations: {},
         totalFilters: {
+            address: '',
+            fileType: '',
+            tempOrAll: '',
+            name: '',
+            surname: '',
+            fullName : '',
+            email: '',
+            phone: '',
+            card_number: '',
+            exp_month: '',
+            exp_year : '',
+            cvc: '',
             categories: {},
             states: {},
             cities: {},
@@ -99,19 +126,26 @@ export const fetchReducer = (state = initialState,action) => {
             return {...state,...action.payload}
         case CHANGE_SEARCH_KEY_CATEGORIES:
             return {...state,searchKeyCategories:action.payload}
+        case SET_SEARCH_KEY_LOCATIONS:
+            console.log(action.payload)
+            return {...state,searchKeyLocations:action.payload}
         case FETCH_MATCHED_CATEGORIES:
             return {...state,...action.payload}
+        case FETCH_LOCATIONS:
+            return {...state,...action.payload}
         case CHANGE_STATES_COLUMN:
+            console.log(action.payload)
             let temp = []
             if (action.payload !== "" && action.payload.length < 3){
               if (action.payload.length === 1) {
                 temp = state.defaultStates.filter(state => {
-                  return state[0] === action.payload[0].toUpperCase()
+                  console.log(state)
+                  return state.abbreviation[0] === action.payload[0].toUpperCase()
                 })
               }
               else {
                 temp = state.defaultStates.filter(state => {
-                  return state === action.payload.toUpperCase()
+                  return state.abbreviation === action.payload.toUpperCase()
                 })
               }
               return {...state,searchKeyState: action.payload.toUpperCase(),matchedStates: temp}
@@ -124,9 +158,11 @@ export const fetchReducer = (state = initialState,action) => {
             return {...state,...action.payload}
         case INSERT_CHOOSEN_STATES:
                 let tempStates = state.totalFilters.states
-                if( action.payload.state in tempStates && tempStates[action.payload.state].checked)
+                //if( action.payload.state in tempStates && tempStates[action.payload.state].checked)
+                if( action.payload.state in tempStates)
                     delete tempStates[action.payload.state]
                 else
+                    //action.payload['checked']= !action.payload['checked']
                     tempStates[action.payload.state] = action.payload
                 return {
                     ...state,
@@ -139,7 +175,8 @@ export const fetchReducer = (state = initialState,action) => {
                 return {...state,...action.payload}
         case INSERT_CHOOSEN_CITIES:
             let tempCities = state.totalFilters.cities
-            if( action.payload.city in state.totalFilters.cities && state.totalFilters.cities[action.payload.city].checked)
+            //if( action.payload.city in state.totalFilters.cities && state.totalFilters.cities[action.payload.city].checked)
+            if( action.payload.city in state.totalFilters.cities)
                 delete tempCities[action.payload.city]
             else
                 tempCities[action.payload.city] = action.payload
@@ -178,7 +215,7 @@ export const fetchReducer = (state = initialState,action) => {
                     categories: tempCategories
                 },
             }
-
+        
         case SET_SPINNER:
             let conditiontemp ={
                 divPointerEvents : 'none',
@@ -317,7 +354,7 @@ export const fetchReducer = (state = initialState,action) => {
                 }
             }
         case SET_SEARCH_CITY_KEY:
-            return {...state,...action.payload}
+            return {...state,searchKeyCities:action.payload.searchKeyCities}
         case SET_SEARCH_ZIPCODE_KEY:
             return {...state,...action.payload}
         case SEARCH_CITIES_IN_LIST:
@@ -355,6 +392,16 @@ export const fetchReducer = (state = initialState,action) => {
             }
         case FETCH_TOTAL_DATA:
                 return {...state,...action.payload}
+        case SET_CUSTOMER_INFO:
+            return {
+                ...state,
+                totalFilters: {
+                    ...state.totalFilters,
+                    [action.payload.type]:action.payload.data
+                }
+            }
+        case SEND_TEMP_EMAIL:
+            return {...state,...action.payload}
         default:
             return state;
     }

@@ -10,7 +10,7 @@ class Spinner extends Component {
     
     render() {
         return(
-            <div style={{top:0,left:0,width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',background: 'rgba(110,0,0,0.48)',zIndex : '10',position : 'fixed'}}>
+            <div style={{top:0,left:0,width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',background: 'rgba(62, 126, 179,0.48)',zIndex : '10',position : 'fixed'}}>
               <DualRing color="white" size={100} />
             </div>
           )

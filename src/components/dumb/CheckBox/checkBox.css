@@ -41,7 +41,7 @@
   z-index: 1000;
 }
 .option-input:hover {
-  background: #9faab7;
+  background: white;
 }
 .option-input:checked {
   background: #40e0d0;
@@ -56,7 +56,7 @@
   text-align: center;
   line-height: 15px;
 }
-.option-input:checked::after {
+//.option-input:checked::after {
   -webkit-animation: click-wave 0.65s;
   -moz-animation: click-wave 0.65s;
   animation: click-wave 0.65s;

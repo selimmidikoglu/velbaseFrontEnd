@@ -1,0 +1,9 @@
+.category-name {
+    color:white;
+    font-family: 'Chivo', sans-serif;
+    font-size: 13px;
+    font-optical-sizing: 13px;
+    display: list-item;          /* This has to be "list-item"                                               */
+    list-style-type: disc;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
+    list-style-position: inside;
+}

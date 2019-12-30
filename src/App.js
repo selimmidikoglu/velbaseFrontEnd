@@ -64,7 +64,7 @@ class App extends Component {
               <div className="wrap">
                 <div className="search">
                   <input type="text" className="searchTerm" placeholder="Search" value={this.props.searchKeyState} onKeyDown={(event) => this.props.changeStateColumn(event)} onChange={(event) => this.props.changeStateColumn(event)} />
-                  <button type="button" onClick={this.getMatchCategories} className="searchButton">
+                  <button type="button" onClick={(event) => this.props.changeStateColumn(event)} className="searchButton">
                     <i className="fa fa-search"></i>
                   </button>
                 </div>
@@ -88,7 +88,12 @@ class App extends Component {
                       this.props.setCitySearchKey(event)
                       this.props.searchCitiesInList(event, this.props.defaultCities)
                     }} />
-                  <button type="button" onClick={this.getMatchCategories} className="searchButton">
+                  <button type="button" 
+                  onClick={(event) => {
+                    this.props.setCitySearchKey(event)
+                    this.props.searchCitiesInList(event, this.props.defaultCities)
+                  }} 
+                  className="searchButton">
                     <i className="fa fa-search"></i>
                   </button>
                 </div>
@@ -117,6 +122,7 @@ class App extends Component {
                     <i className="fa fa-search"></i>
                   </button>
                 </div>
+                <h6 style={{ fontSize: '12px', color: 'white', marginTop: '5px' }}>Select city first, type key zipCode, click Enter or search button!</h6>
               </div>
               <ZipCodes />
             </Col>

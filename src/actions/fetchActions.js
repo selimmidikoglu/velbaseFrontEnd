@@ -14,6 +14,10 @@ export const SEARCH_CITIES_IN_LIST = 'SEARCH_CITIES_IN_LIST'
 export const SEARCH_ZIPCODES_IN_LIST = 'SEARCH_ZIPCODES_IN_LIST'
 export const SET_SEARCH_CITY_KEY = 'SET_SEARCH_CITY_KEY'
 export const SET_SEARCH_ZIPCODE_KEY = 'SET_SEARCH_ZIPCODE_KEY'
+export const SET_SEARCH_KEY_LOCATIONS = 'SET_SEARCH_KEY_LOCATIONS'
+export const FETCH_LOCATIONS = 'FETCH_LOCATIONS'
+export const SET_CUSTOMER_INFO = 'SET_CUSTOMER_INFO'
+export const SEND_TEMP_EMAIL = 'SEND_TEMP_EMAIL'
 
 //conditional action for UI like run spinner
 export const SET_SPINNER = 'SET_SPINNER'
@@ -23,7 +27,7 @@ export const getDefaultCategoriesAndStates = url => {
         fetch(url).then(data => data.json()).then(data => {
             let temp = [];
             for (let i = 0; i < data.states.length; i++) {
-                const element = data.states[i].state;
+                const element = data.states[i];
                 temp.push(element);
             }
             dispatch({
@@ -37,12 +41,159 @@ export const getDefaultCategoriesAndStates = url => {
         });
     };
 };
+export const send_temp_email = (mainObject,url,totalCount) => {
+    let bodyData = {}
+    let mainKeys = Object.keys(mainObject)
+    let mainValues = Object.keys(mainObject)
+    bodyData['name'] = mainObject.name;
+    bodyData['surname'] = mainObject.surname;
+    bodyData['email'] = mainObject.email;
+    bodyData['address'] = mainObject.address;
+    bodyData['phone'] = mainObject.phone;
+    bodyData['card_number'] = mainObject.card_number;
+    bodyData['exp_month'] = mainObject.exp_month;
+    bodyData['exp_year'] = mainObject.exp_year;
+    bodyData['cvc'] = mainObject.cvc;
+    bodyData['totalPrice'] = totalCount * 6 
+    for (let i = 0; i < mainKeys.length; i++) {
+        const element = mainObject[mainKeys[i]];
+        if(typeof element == "boolean"){
+            bodyData[mainKeys[i]] = element
+        }
+        else if(Number.isInteger(element)){
+            bodyData[mainKeys[i]] = element
+        }
+        else{
+            //categoriesupdate_other_filter
+            if(mainKeys[i] == "categories"){
+                console.log("kategori var",element)
+                let categoryKeys = Object.keys(element);
+                bodyData[mainKeys[i]] = categoryKeys
+            }
+            else if(mainKeys[i] == "states"){
+                let statesKeys = Object.keys(element);
+                bodyData[mainKeys[i]] = statesKeys
+            }
+            else if(mainKeys[i] == "cities"){
+                let citiesHolder = []
+                let citiesKeys = Object.keys(element);
+                for (let i = 0; i < citiesKeys.length; i++) {
+                    citiesHolder.push({city:citiesKeys[i],state:element[citiesKeys[i]].state})
+                    
+                }
+                bodyData[mainKeys[i]] = citiesHolder
+            }
+            else if(mainKeys[i] == "zipCodes"){
+                let zipCodesHolder = []
+                let zipCodesKeys = Object.keys(element);
+                for (let i = 0; i < zipCodesKeys.length; i++) {
+                    zipCodesHolder.push({zipCode:zipCodesKeys[i],city:element[zipCodesKeys[i]].city});
+                    
+                }
+                bodyData[mainKeys[i]] = zipCodesHolder
+            }
+            else if(mainKeys[i] == "scaleAnnualRevenue"){
+                let scaleAnnualRevenue = []
+                for(var j=1;j<mainObject[mainKeys[i]].length;j++){
+                    if(mainObject[mainKeys[i]][j] === true){
+                        scaleAnnualRevenue.push(j)
+                    }
+                }
+                bodyData['scaleAnnualRevenue'] = scaleAnnualRevenue
+            }
+            else if(mainKeys[i] == "scaleEmployeeCount"){
+                let employeeCountArr = mainObject['scaleEmployeeCount']
+                let scaleEmployeeCount = []
+                for(var j=1;j<employeeCountArr.length;j++){
+                    if(employeeCountArr[j]=== true){
+                        scaleEmployeeCount.push(j)
+                        console.log("scaleEmployee",scaleEmployeeCount)
+                    }
+                }
+                bodyData['scaleEmployeeCount'] = scaleEmployeeCount
+            }
+        }
+        
+        
+    }
+    return dispatch => {
+        fetch(url + 'getDataAndSend',{
+            method:"POST",
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(bodyData)
+        })
+        .then(data => data.json())
+        .then(data => {
+            console.log(data)
+            dispatch({
+                type: SEND_TEMP_EMAIL,
+                payload:{
+                   message: 'Done'
+                }
+            })
+        })    
+    }
+}
+
 // SET CATEGORY SEARCH KEY
 export const setSearchKeyCategories = event => {
    return {
        type: CHANGE_SEARCH_KEY_CATEGORIES,
        payload: event.target.value
    }
+}
+// SET LOCATIONS SEARCH KEY
+export const setSearchKeyLocations = event => {
+    console.log(event.target.value)
+    return {
+        type: SET_SEARCH_KEY_LOCATIONS,
+        payload: event.target.value
+    }
+}
+export const fetchLocations = (url,searchKeyLocations) => {
+    if(searchKeyLocations < 2 || url === 'empty'){ 
+        console.log('buraya girerler')
+        return dispatch => {
+            dispatch ({
+                type: FETCH_CITIES_IN_STATE,
+                payload:{
+                    matchedLocations: {},
+                }
+            })
+        }
+    }
+    return dispatch => {
+        fetch(url + "getLocationSearch?searchKey=" + searchKeyLocations)
+        .then(data => data.json())
+        .then(locations => {
+            console.log(locations)
+            let locationsObj = {
+                cities:[],
+                states:[]
+                
+            }
+            for(var i=0;i<locations.length;i++){
+                if(locations[i].stateFullName.toLowerCase().startsWith(searchKeyLocations.toLowerCase()) || locations[i].state.toLowerCase().startsWith(searchKeyLocations.toLowerCase())){
+                    console.log("girdi")
+                    locationsObj.states.push({stateFullName:locations[i].stateFullName,state:locations[i].state})
+                }
+                else if(locations[i].city.toLowerCase().startsWith(searchKeyLocations.toLowerCase())){
+                    locationsObj.cities.push({city:locations[i].city,state:locations[i].state})
+                }
+
+            }
+            console.log(locationsObj)
+            dispatch({
+                type: FETCH_LOCATIONS,
+                payload: {
+                    matchedLocations: locationsObj,
+                },
+            });
+        });
+    }
 }
 // FETCH NEW CATEGORIES WITH THE SEARCH KEY WORD
 export const getMatchedCategories = (url,searchKeyCategories) => {
@@ -100,17 +251,18 @@ export const insertChoosenCategories = (event,type,id,category) => {
 export const getCitiesInState = (url,type,states) => {
     if(type === 'states'){
         if(Object.keys(states).length === 0){ 
-            console.log('buraya girerler')
             return dispatch => {
                 dispatch ({
                     type: FETCH_CITIES_IN_STATE,
                     payload:{
                         matchedCities: [],
                         defaultCities : [],
-                        conditionForSpinner : {
+                        matchedZipCodes: [],
+                        defaultZipCodes : [],
+                        /*conditionForSpinner : {
                             divPointerEvents : 'all',
                             runSpinner: false
-                        }
+                        }*/
                     }
                 })
             }
@@ -214,14 +366,15 @@ export const getZipCodesInCities = (url,type,cities) => {
             }
     }
 }
-export const insertChoosenZipCodes = (event,type,id,zipCode) => {
+export const insertChoosenZipCodes = (event,type,id,zipCode,city) => {
     return {
         type: INSERT_CHOOSEN_ZIPCODES,
         payload: {
             checked: event.target.checked,
             type:type,
             id:id,
-            zipCode: zipCode
+            zipCode: zipCode,
+            city:city
         }
     }
 } 
@@ -296,12 +449,22 @@ export const getTotalData = (mainObject,url) => {
                 bodyData[mainKeys[i]] = statesKeys
             }
             else if(mainKeys[i] == "cities"){
+                let citiesHolder = []
                 let citiesKeys = Object.keys(element);
-                bodyData[mainKeys[i]] = citiesKeys
+                for (let i = 0; i < citiesKeys.length; i++) {
+                    citiesHolder.push({city:citiesKeys[i],state:element[citiesKeys[i]].state})
+                    
+                }
+                bodyData[mainKeys[i]] = citiesHolder
             }
             else if(mainKeys[i] == "zipCodes"){
+                let zipCodesHolder = []
                 let zipCodesKeys = Object.keys(element);
-                bodyData[mainKeys[i]] = zipCodesKeys
+                for (let i = 0; i < zipCodesKeys.length; i++) {
+                    zipCodesHolder.push({zipCode:zipCodesKeys[i],city:element[zipCodesKeys[i]].city});
+                    
+                }
+                bodyData[mainKeys[i]] = zipCodesHolder
             }
             else if(mainKeys[i] == "scaleAnnualRevenue"){
                 let scaleAnnualRevenue = []
@@ -344,6 +507,13 @@ export const getTotalData = (mainObject,url) => {
                 type: FETCH_TOTAL_DATA,
                 payload:{
                     totalCount: data.totalCount,
+                    countFacebook: data.countFacebook,
+                    countTwitter: data.countTwitter,
+                    countBBB: data.countBBB,
+                    countFax: data.countFax,
+                    countReviews: data.countReviews,
+                    countEmail: data.countEmail,
+                    countWebsite: data.countWebsite,
                     conditionForSpinner : {
                         divPointerEvents : 'all',
                         runSpinner: false
@@ -352,6 +522,15 @@ export const getTotalData = (mainObject,url) => {
                 }
             })
         })    
+    }
+}
+export const set_customer_info = (data,type) => {
+    return {
+        type:SET_CUSTOMER_INFO,
+        payload: {
+            type: type,
+            data : data
+        }
     }
 }
 export const setSpinner = () => {

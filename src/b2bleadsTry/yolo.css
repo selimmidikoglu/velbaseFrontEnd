@@ -1,0 +1,110 @@
+
+@import url('https://fonts.googleapis.com/css?family=Chivo|Jaldi&display=swap');
+
+
+.additional-info-container{
+    background-color: red;
+}
+.search-box-container{
+    margin-top: 5px;
+    height:3rem;
+}
+.results-container {
+    border-radius: 5px;
+    height: 100%;
+;
+
+    
+}
+//comment
+.navbar-container{
+    height:5rem;
+    background-color: aquamarine;
+    
+}
+.bottom-part{
+    -webkit-box-shadow: 1px 1px 12px 4px rgba(0,0,0,0.31);
+    -moz-box-shadow: 1px 1px 12px 4px rgba(0,0,0,0.31);
+    box-shadow: 1px 1px 12px 4px rgba(0,0,0,0.31);
+
+
+}
+.categories-locations-container{
+    {/*overflow-y: hidden;*/}
+    position: relative;
+    height:780px;
+}
+.category-nav-button{
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    text-align: center;
+}
+.location-nav-button{
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;
+}
+.header-categories{
+
+    padding-top: 5px;
+    color:#708065;
+    vertical-align: middle;
+    font-family: 'Chivo', sans-serif;
+}
+.header-location{
+    padding-top: 5px;
+    color:#708065;
+    font-family: 'Chivo', sans-serif;
+}
+.main-row{ 
+    border: 0.5rem solid #2B57D9;
+    background-color: #2B57D9;
+    border-radius: 10px;
+    height: auto;
+}
+
+.category-nav-container{
+    padding:5px;
+    background-color: #17224D;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #fff;
+}
+
+body{
+    background-color: #F2F2F2;
+    overflow-y: hidden;
+}
+
+.container {
+    margin-top: 5rem;
+    background-color: rgb(62, 126, 179);  
+}
+
+
+.categories-locations-container::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.categories-locations-container::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.categories-locations-container::-webkit-scrollbar-thumb
+{
+	background-color: #2B57D9;
+	border: 1px solid white;
+}
+
+@media (min-width: 1240px){
+.container {
+    max-width: 1400px !important;
+}}
+  

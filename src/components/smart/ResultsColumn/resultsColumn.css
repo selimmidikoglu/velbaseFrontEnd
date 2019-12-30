@@ -1,8 +1,9 @@
 .close-button {
     width: 20px;
     height: 20px;
+    border-width: 1px;
     border-radius: 5px;
-    background-color: #CA3433;
+    background-color: rgb(49, 63, 55);
     align-self:'center' ;
     position:relative;
 

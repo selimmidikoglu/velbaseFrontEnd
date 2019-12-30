@@ -7,11 +7,11 @@
   
   .searchTerm {
     width: 100%;
-    border: 3px solid #303030;
+    border: 3px solid white;
     border-right: none;
     padding: 5px;
     height: 35px;
-    border-radius: 5px 0 0 5px;
+    border-radius: 4px 0 0 4px;
     outline: none;
     color: #9DBFAF;
   }
@@ -27,7 +27,7 @@
     background: #303030;
     text-align: center;
     color: #fff;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 4px 4px 0;
     cursor: pointer;
     font-size: 20px;
   }

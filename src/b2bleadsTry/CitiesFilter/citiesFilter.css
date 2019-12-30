@@ -1,0 +1,13 @@
+.city-text-filter {
+    color:white;
+    font-family: 'Chivo', sans-serif;
+    font-size: 10px;
+    font-optical-sizing: 10px;
+
+}
+.city-text-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:20px
+  }

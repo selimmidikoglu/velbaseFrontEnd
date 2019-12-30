@@ -1,0 +1,93 @@
+.input_text_style{
+    margin-top: 20px;
+    font-family: 'Chivo', sans-serif;
+    width: 100%;
+    color: 'gray';
+    font-size: 18px;
+    outline:none;
+    border-style: none;
+    border-bottom: 1px solid rgb(62, 126, 179);
+}
+.input_text_style:focus{
+    border-bottom: 2px solid gray;
+}
+.input_text_style::-webkit-input-placeholder {
+    font-size: 15px;
+    line-height: 20;
+}
+.send_button_container{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 70px;
+    background-color: rgb(23, 233, 225);
+    border-radius: 5px;
+    cursor: pointer;
+    color:white;
+    
+}
+
+.send_button_container:hover{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 70px;
+    background-color: rgb(62, 126, 179);
+    border-radius: 5px;
+    cursor: pointer;
+    color:whitesmoke;
+    
+}
+.send_button_text{
+    font-family: 'Chivo', sans-serif;
+    font-size: 19px;
+  
+
+    text-align: center;
+    vertical-align: center;
+}
+.payment_container {
+    -webkit-box-shadow: -1px 2px 23px 1px rgba(120,171,184,1);
+    box-shadow: -1px 2px 23px 1px rgba(120,171,184,1);    
+}
+.payment_container{
+    -moz-box-shadow : -1px 2px 23px 1px rgba(120,171,184,1);
+    
+
+}
+.payment_container {box-shadow:-1px 2px 23px 1px rgba(120,171,184,1);}
+
+.dropdown_exp
+{
+    position: absolute;
+    z-index: 2000;
+
+    margin-top: 20px;
+}
+.card_info_header_container{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -10px;
+}
+.card_info_header{
+    font-family: 'Chivo', sans-serif;
+    font-size: 25px;
+    color: cadetblue;
+}
+.select_nav_buttons{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    height:50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.select_nav_buttons:hover{
+    cursor: pointer;
+}
