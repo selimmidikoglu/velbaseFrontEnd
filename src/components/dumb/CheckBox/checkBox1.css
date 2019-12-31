@@ -41,7 +41,7 @@
     z-index: 1000;
   }
   .option-input:hover {
-    background: #9faab7;
+    background-color:red;
   }
   .option-input:checked {
     background: #40e0d0;

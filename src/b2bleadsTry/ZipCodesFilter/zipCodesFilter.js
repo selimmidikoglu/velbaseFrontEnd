@@ -14,14 +14,14 @@ class ZipCodesFilter extends Component {
         let zipCodes = null
         if (Object.keys(this.props.totalFilters.zipCodes).length !== 0) {
             zipCodes =
-                <div className="row" style={{ marginTop: '10px', borderRadius: '5px', backgroundColor: '#416268', width: '100%' }}>
+                <div className="row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'2px'}}>
                     <div className="col-12" style={{ textAlign: 'center', alignItems: 'center', justifyContent: 'center' }}><h2 style={{ color: '#fff', textAlign: 'center', fontSize: '12px', fontWeight: 'bold' }}>ZipCodes</h2></div>
                     {Object.keys(this.props.totalFilters.zipCodes).map((zipCode, index) => {
                         return (
                             <div className="col-12" style={{ height: 'auto' }}>
                                 <div className="row" style={{ marginTop: '5px' }}>
                                     <div className="col-md-8 city-text-container" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                                        <h1 className="city-text-filter" style={{ margin: 0 }}>{zipCode}</h1>
+                                        <h1 className="city-text-filter" style = {{color:'#fff',fontSize:'13px'}}>{zipCode}</h1>
                                     </div>
                                     <div className="col-md-4" style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}>
                                         <div>
@@ -39,7 +39,7 @@ class ZipCodesFilter extends Component {
                 </div>
         }
         return (
-            <div className="col-4">
+            <div className="col-12" style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
                 {zipCodes}
             </div>
         )

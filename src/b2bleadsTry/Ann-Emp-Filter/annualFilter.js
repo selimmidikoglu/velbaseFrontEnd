@@ -33,17 +33,17 @@ class AnnEmpFilter extends Component {
         if(count !== 1){
             console.log("sıçış")
             annual_revenue = 
-            <div className = "row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#416268',width:'100%'}}>
+            <div className = "row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'2px'}}>
                 <div  className="col-12" style={{textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 style={{color:'#fff',textAlign:'center',fontSize:'12px',fontWeight:'bold'}}>Annual revenue</h2></div>
                 {this.props.totalFilters.scaleAnnualRevenue.map((scaleAnnRevenue,index) => {
                     if(scaleAnnRevenue === true && index !== 0)
                         return (
-                            <div className= "col-12" style={{height:'auto'}}> 
-                                <div className = "row" style={{marginTop:'5px',placeContent:'center'}}>
-                                    <div className = "col-md-8 state-text-container" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
-                                        <h1 className= "state-text-filter" style={{margin:0}}>{valueArray[index].text}</h1>
+                            <div className= "col-12" style={{width:'100%'}}> 
+                                <div className = "row" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
+                                    <div className = "col-md-10 state-text-container" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
+                                        <h1 className= "state-text-filter" style = {{color:'#fff',fontSize:'13px'}}>{valueArray[index].text}</h1>
                                     </div>
-                                    <div className="col-md-4" style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+                                    <div className="col-md-2" style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                         <div>
                                             <button  className="close-button pull-right " onClick={(event) => {
                                                 this.props.setSpinner()
@@ -59,7 +59,7 @@ class AnnEmpFilter extends Component {
             </div>
         }
         return( 
-            <div className="col-12">
+            <div className="col-12" style={{display:'flex',alignItems:'flex-start',justifyContent:'center'}}>
                 {annual_revenue}
             </div>
         )

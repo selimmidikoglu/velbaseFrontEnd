@@ -31,12 +31,12 @@ class Categories extends Component {
         let categories = null
         if (typeof this.props.defaultCategories !== 'undefined' && this.props.matchedCategories.length === 0) {
             categories = (
-                <div className= "container">
+                <div className= "col-12">
                     {this.props.defaultCategories.map((category, index) => {
                         return(
-                            <div className="row">
-                                <div className="col-8" style={{ textAlign: 'left' }}><label className="category-name">{category.category_name}</label></div>
-                                <div className="col-4" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
+                            <div className="row category-box">
+                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{category.category_name}</label></div>
+                                <div className="col-2" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
                                         this.props.insertChoosenCategories(event, "categories", index, category.category_name)
@@ -53,12 +53,12 @@ class Categories extends Component {
         else if (typeof this.props.defaultCategories !== 'undefined' && this.props.searchKeyCategories !== "" && typeof this.props.matchedCategories !== 'undefined') {
             console.log(this.props.matchedCategories)
             categories = (
-                <div className="container">
+                <div className="col-12">
                     {this.props.matchedCategories.map((category, index) => {
                         return (
-                        <div className="row">
-                                <div className="col-8" style={{ textAlign: 'left' }}><label className="category-name">{category.category_name}</label></div>
-                                <div className="col-4" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
+                        <div className="row category-box">
+                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{category.category_name}</label></div>
+                                <div className="col-2" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
                                         this.props.insertChoosenCategories(event, "categories", index, category.category_name)
@@ -72,12 +72,12 @@ class Categories extends Component {
         }
         else {
             categories = (
-                <div className="container">
+                <div className="col-12 ">
                     {this.props.defaultCategories.map((category, index) => {
                         return (
-                            <div className="row">
-                                <div className="col-8" style={{ textAlign: 'left' }}><label className="category-name">{category.category_name}</label></div>
-                                <div className="col-4" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
+                            <div className="row category-box">
+                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{category.category_name}</label></div>
+                                <div className="col-2" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
                                         this.props.insertChoosenCategories(event, "categories", index, category.category_name)

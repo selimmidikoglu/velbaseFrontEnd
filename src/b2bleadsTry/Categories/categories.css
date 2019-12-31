@@ -1,9 +1,14 @@
 .category-name {
-    color:white;
+    color:gray;
     font-family: 'Chivo', sans-serif;
     font-size: 13px;
     font-optical-sizing: 13px;
     display: list-item;          /* This has to be "list-item"                                               */
     list-style-type: disc;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
     list-style-position: inside;
+    font-weight: 'bold';
+    
+}
+.category-box:hover{
+    background-color: #81d4fa;
 }

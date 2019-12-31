@@ -24,41 +24,41 @@ class ResultsColumn extends Component {
     render() {
         
         return( 
-            <div className="container result-inner-box">
-                <div className="row" style={{justifyContent:'center',alignContent:'center', textAlign:'center',backgroundColor:'cyan',borderRadius:'15px'}}>
-                    <label style = {{marginTop: '10px',color:'#455A64',fontSize:18,fontWeight:'bold',height:'50%'}}className = "dataCount" >Total Count: {this.props.totalCount}</label>
+            <div className="col-12 result-inner-box" style={{padding:'40px',backgroundColor:'#0091ea'}}>
+                <div className="row" style={{justifyContent:'center',alignItems:'center', textAlign:'center',backgroundColor:'white'}}>
+                    <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%'}}className = "dataCount" >Total Count: {this.props.totalCount}</h1>
                 </div>
-                <Link to="/second">
-                <div className="row"  hidden={this.props.totalCount!==0?false:true}>
+                <div className="row" style={{justifyContent:'center',alignItems:'center', textAlign:'center',backgroundColor:'white'}}>
+                    <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%'}}className = "dataCount" >Total Price: {this.props.totalCount * 6/100}$</h1>
+                </div>
+                <Link style={{textDecoration:'none'}} to="/second">
+                <div className="row"   hidden={this.props.totalCount!==0?false:true}>
                     
-                    <a className = "data-button" onClick = {()=>{
+                    <div className = "data-button" onClick = {()=>{
                         this.props.setSpinner()
                         this.props.getTotalData(this.props.totalFilters,apiUrl)
-                        }}><h1 className="data-button-text">Get template</h1></a>
-                </div>
+                        }}><h1 className="data-button-text">Get sample</h1></div>
+                    </div>
+                
                 </Link>
-                <div className="col-12" style={{padding:0}}>
-                    <CategoriesFilter/>
-                </div>
-                <div className= "col-12">
-                    <div className="row">
+                
+               
+                <div className= "row" style={{backgroundColor:'white',padding:'10px',marginTop:'20px'}}>
+                        <div className="col-12"  style={{padding:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                            <div style={{widht:'100%'}}><h1 className="filters-header">Filters</h1></div> <br/>   
+                        </div>
+                        
+                        <CategoriesFilter/>
+                        <AnnEmpFilter/>
+                        <EmpFilter/>
                         <StatesFilter/>
                         <CitiesFilter/>
                         <ZipCodesFilter/>
-                    </div>     
+                 
                 </div>
-                <div className="col-12">
-                    <div className="row">
-                        <AnnEmpFilter/>
-                    </div>
-                </div>
-                <div className="col-12">
-                    <div className="row">
-                        <EmpFilter/>
-                    </div>
-                </div>
-                <div className="col-12 count-of-other-data">
-                    <div className="row"  hidden={this.props.totalCount!==0?false:true} style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#416268',width:'100%'}}>
+                
+                <div className="col-12 count-of-other-data" style={{display:'flex',alignItems:'flex-start',justifyContent:'center',marginTop:'20px'}}>
+                    <div className="row"  hidden={this.props.totalCount!==0?false:true} style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'20px'}}>
                         <div className="col-6">
                             <div className="row">
                                 <div className="col-6">
@@ -112,7 +112,7 @@ class ResultsColumn extends Component {
                         <div className="col-6">
                             <div className="row">
                                 <div className="col-6">
-                                    <h1 className="other-params-text">bbb_accredited:</h1>
+                                    <h1 className="other-params-text">bbb_accr:</h1>
                                 </div>
                                 <div className="col-6">
                                     <h1 className="other-params-data-text">{this.props.countBBB}</h1>

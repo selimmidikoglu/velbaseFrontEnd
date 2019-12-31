@@ -17,18 +17,16 @@ class Locations extends Component {
         return (
             <div className="row locations-container">
                 <div className="col-4 locations-header-box">
-                    <h1 className="location-headers">States</h1>
+                
                     <div className="wrap">
                         <div className="search">
-                            <input type="text" className="searchTerm" placeholder="Search" value={this.props.searchKeyState} onKeyDown={(event) => this.props.changeStateColumn(event)} onChange={(event) => this.props.changeStateColumn(event)} />
-                            <button type="button" onClick={(event) => this.props.changeStateColumn(event)} className="searchButton">
-                                <i className="fa fa-search"></i>
-                            </button>
+                            <input type="text" className="searchTerm" placeholder="Search states" value={this.props.searchKeyState} onKeyDown={(event) => this.props.changeStateColumn(event)} onChange={(event) => this.props.changeStateColumn(event)} />
+    
                         </div>
                     </div>
                 </div>
                 <div className="col-4 locations-header-box">
-                    <h1 className="location-headers">Cities</h1>
+                   
                     <div className="wrap">
                         <div className="search" >
                             <input type="text" className="searchTerm" placeholder="Search cities" value={this.props.searchKeyCities}
@@ -40,20 +38,13 @@ class Locations extends Component {
                                     this.props.setCitySearchKey(event)
                                     this.props.searchCitiesInList(event, this.props.defaultCities)
                                 }} />
-                            <button type="button"
-                                onClick={(event) => {
-                                    this.props.setCitySearchKey(event)
-                                    this.props.searchCitiesInList(event, this.props.defaultCities)
-                                }}
-                                className="searchButton">
-                                <i className="fa fa-search"></i>
-                            </button>
+                
                         </div>
                         {/*<h6 style={{ fontSize: '12px', color: 'white', marginTop: '5px' }}>Select state, type key word, click Enter or search button!</h6>*/}
                     </div>
                 </div>
                 <div className="col-4 locations-header-box">
-                    <h1 className="location-headers">ZipCodes</h1>
+                  
                     <div className="wrap">
                         <div className="search">
                             <input type="text" className="searchTerm" placeholder="Search zipCodes" value={this.props.searchKeyZipCodes} onKeyDown={(event) => this.changeZipCodes(event)}
@@ -61,13 +52,7 @@ class Locations extends Component {
                                     this.props.setZipCodeSearchKey(event)
                                     this.props.searchZipCodesInList(event, this.props.defaultZipCodes)
                                 }} />
-                            <button type="button" value={this.props.searchKeyZipCodes}
-                                onClick={(event) => {
-                                    this.props.setZipCodeSearchKey(event)
-                                    this.props.searchZipCodesInList(event, this.props.defaultZipCodes)
-                                }} className="searchButton">
-                                <i className="fa fa-search"></i>
-                            </button>
+                           
                         </div>
                         {/*<h6 style={{ fontSize: '12px', color: 'white', marginTop: '5px' }}>Select city first, type key zipCode, click Enter or search button!</h6>*/}
                     </div>

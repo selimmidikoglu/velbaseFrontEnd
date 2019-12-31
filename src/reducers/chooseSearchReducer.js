@@ -1,6 +1,6 @@
 import CHOOSE_OTHER_SEARCH from '../actions/chooseSearchActions'
 let initialState = {
-    buttonCategory: '#17E9E1',
+    buttonCategory: '#81d4fa',
     buttonLocation: 'white',
     textColorCategory: 'white',
     textColorLocation :'gray',
@@ -18,7 +18,7 @@ export const chooseSearchReducer = (state = initialState,action) => {
                 console.log("gimred")
                 return{
                     ...state,
-                    buttonCategory: '#17E9E1',
+                    buttonCategory: '#81d4fa',
                     buttonLocation: 'white',
                     textColorCategory: 'white',
                     textColorLocation :'gray',
@@ -32,7 +32,7 @@ export const chooseSearchReducer = (state = initialState,action) => {
                 return{
                     ...state,
                     buttonCategory: 'white',
-                    buttonLocation: '#17E9E1',
+                    buttonLocation: '#81d4fa',
                     textColorCategory: 'gray',
                     textColorLocation :'white',
                     categoryHidden : true,

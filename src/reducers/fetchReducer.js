@@ -136,22 +136,21 @@ export const fetchReducer = (state = initialState,action) => {
         case CHANGE_STATES_COLUMN:
             console.log(action.payload)
             let temp = []
-            if (action.payload !== "" && action.payload.length < 3){
-              if (action.payload.length === 1) {
+            if (action.payload !== ""){
                 temp = state.defaultStates.filter(state => {
-                  console.log(state)
-                  return state.abbreviation[0] === action.payload[0].toUpperCase()
+                    console.log(state.state.startsWith(action.payload.toString()) )
+                  return state.state.toLowerCase().startsWith(action.payload)
+                })
+              if(temp.length === 0){
+                temp = state.defaultStates.filter(state => {
+                   
+                  return state.abbreviation.toLowerCase().startsWith(action.payload)
                 })
               }
-              else {
-                temp = state.defaultStates.filter(state => {
-                  return state.abbreviation === action.payload.toUpperCase()
-                })
-              }
-              return {...state,searchKeyState: action.payload.toUpperCase(),matchedStates: temp}
+              return {...state,searchKeyState: action.payload,matchedStates: temp}
             }
             else {
-                return {...state,searchKeyState: action.payload.toUpperCase(),matchedStates: state.defaultStates}
+                return {...state,searchKeyState: action.payload,matchedStates: state.defaultStates}
             }
         case FETCH_CITIES_IN_STATE:
             console.log(action.payload)
@@ -159,16 +158,18 @@ export const fetchReducer = (state = initialState,action) => {
         case INSERT_CHOOSEN_STATES:
                 let tempStates = state.totalFilters.states
                 //if( action.payload.state in tempStates && tempStates[action.payload.state].checked)
-                if( action.payload.state in tempStates)
-                    delete tempStates[action.payload.state]
+                if( action.payload.abbreviation in tempStates){
+                    delete tempStates[action.payload.abbreviation]
+                }
+                    
                 else
                     //action.payload['checked']= !action.payload['checked']
-                    tempStates[action.payload.state] = action.payload
+                    tempStates[action.payload.abbreviation] = action.payload
                 return {
                     ...state,
                     totalFilters : {
                         ...state.totalFilters,
-                        states: tempStates
+                        states:tempStates
                     },
                 }
         case FETCH_ZIPCODES_IN_CITY:

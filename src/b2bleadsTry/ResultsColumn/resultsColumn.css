@@ -21,11 +21,9 @@
     color:white;
 }
 .data-button {
-	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	background:linear-gradient(to bottom, cyan 5%, rgb(62, 126, 179) 100%);
-	background-color:#79bbff;
+	background-color:#81d4fa;
+	
 	border-radius:6px;
-	border:2px solid white;
 	display:inline-block;
 	cursor:pointer;
     margin-top: 10px;
@@ -33,13 +31,9 @@
 
 }
 .data-button:hover {
-	background:linear-gradient(to bottom,  rgb(62, 126, 179) 5%, cyan 100%);
-	background-color:#378de5;
+    text-decoration: none;
 }
-.data-button:active {
-	position:relative;
-	top:1px;
-}
+
 .other-params-text{
     font-family: 'Chivo', sans-serif;
     color:white;
@@ -49,4 +43,10 @@
     font-family: 'Chivo', sans-serif;
     color: cadetblue;
     font-size:13px;
+}
+.filters-header{
+    font-family: 'Chivo', sans-serif;
+    color: #81d4fa;
+    font-size:20px;
+    width:100%;
 }

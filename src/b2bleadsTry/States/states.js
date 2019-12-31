@@ -29,8 +29,7 @@ class States extends Component {
                                     checked={this.props.totalFilters.states[state.abbreviation]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
-                                        this.props.insertChoosenStates(event, "states", index, state.abbreviation)
-                                        
+                                        this.props.insertChoosenStates(event, "states", index, state.state , state.abbreviation)
                                         this.props.setSpinner()
                                         this.props.getTotalData(this.props.totalFilters,apiUrl)
                                         this.props.getCitiesInState(apiUrl, "states", this.props.totalFilters.states)

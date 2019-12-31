@@ -224,7 +224,7 @@ export const changeStateColumn = (event) => {
     }
 }
 
-export const insertChoosenStates = (event,type,id,state) => {
+export const insertChoosenStates = (event,type,id,state,abbreviation) => {
     console.log("girdi")
     return {
         type: INSERT_CHOOSEN_STATES,
@@ -232,7 +232,8 @@ export const insertChoosenStates = (event,type,id,state) => {
             checked: event.target.checked,
             type:type,
             id:id,
-            state: state
+            state: state,
+            abbreviation: abbreviation
         }
     }
 }

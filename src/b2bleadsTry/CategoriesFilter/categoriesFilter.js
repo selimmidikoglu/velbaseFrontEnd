@@ -17,14 +17,14 @@ class CategoriesFilter extends Component {
         console.log(Object.keys(this.props.totalFilters.categories))
         if(Object.keys(this.props.totalFilters.categories).length !== 0){
             categories = 
-            <div className="row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#416268',width:'100%'}}>
-                <div  className="col-12" style={{textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 style={{color:'#fff',textAlign:'center',fontSize:'12px',fontWeight:'bold'}}>Categories</h2></div>
+            <div className="row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'20px'}}>
+                <div  className="col-12" style={{marginBottom:'5px',textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 style={{color:'#fff',textAlign:'center',fontSize:'12px',fontWeight:'bold'}}>Categories</h2></div>
                 {Object.keys(this.props.totalFilters.categories).map((category,index) => {
                     return (
-                        <div className="col-12" style={{width:'100%'}}> 
+                        <div className="col-12" style={{width:'100%',marginTop:'3px'}}> 
                             <div className="row">
-                                <div className="col-10" style={{display:'flex',justifyContent:'left',alignItems:'center'}}>
-                                    <div style={{height:'100%',display:'flex',textAlign:'left'}}><label style = {{fontWeight:'bold',color:'#000',fontSize:'10px',}}>{category}</label></div>
+                                <div className="col-10" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
+                                    <div style={{height:'100%',display:'flex',textAlign:'left'}}><h1 style = {{color:'#fff',fontSize:'13px'}}>{category}</h1></div>
                                 </div>
                                 <div className="col-2" style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                     
@@ -42,7 +42,7 @@ class CategoriesFilter extends Component {
             </div>
         }
         return( 
-            <div className="col-12">
+            <div className="col-12" style={{display:'flex',alignItems:'flex-start',justifyContent:'center'}}>
                 {categories}
             </div>
         )

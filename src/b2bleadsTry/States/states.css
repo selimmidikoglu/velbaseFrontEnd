@@ -1,5 +1,5 @@
 .state-text{
-    color:white;
+    color:gray;
     font-family: 'Chivo', sans-serif;
     font-size: 13px;
     margin-left: 5px;
@@ -7,3 +7,7 @@
     list-style-type: square;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
     list-style-position: outside;
 }
+.styles-checkbox:hover{
+    background-color: #81d4fa;
+}
+

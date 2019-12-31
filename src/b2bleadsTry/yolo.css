@@ -3,11 +3,11 @@
 
 
 .additional-info-container{
-    background-color: red;
+    
 }
 .search-box-container{
-    margin-top: 5px;
-    height:3rem;
+    margin-top: 0px;
+    height:50px;
 }
 .results-container {
     border-radius: 5px;
@@ -22,42 +22,55 @@
     background-color: aquamarine;
     
 }
+.navbar1-container{
+    border-bottom-color: #81d4fa;
+    border-bottom-width: 7px;
+    border-bottom-style: solid;
+}
 .bottom-part{
-    -webkit-box-shadow: 1px 1px 12px 4px rgba(0,0,0,0.31);
-    -moz-box-shadow: 1px 1px 12px 4px rgba(0,0,0,0.31);
-    box-shadow: 1px 1px 12px 4px rgba(0,0,0,0.31);
+ 
 
 
 }
 .categories-locations-container{
-    {/*overflow-y: hidden;*/}
     position: relative;
-    height:780px;
+    height:800px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 0px;
 }
 .category-nav-button{
     cursor: pointer;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height:50px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .location-nav-button{
     cursor: pointer;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     text-align: center;
+    height:50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .header-categories{
 
     padding-top: 5px;
     color:#708065;
-    vertical-align: middle;
+    
     font-family: 'Chivo', sans-serif;
+    font-size: 20px;
 }
 .header-location{
     padding-top: 5px;
     color:#708065;
     font-family: 'Chivo', sans-serif;
+    font-size: 20px;
 }
 .main-row{ 
     border: 0.5rem solid #2B57D9;
@@ -76,35 +89,36 @@
 
 body{
     background-color: #F2F2F2;
-    overflow-y: hidden;
+    //overflow-y: hidden;
 }
 
 .container {
     margin-top: 5rem;
-    background-color: rgb(62, 126, 179);  
+    //background-color: rgb(62, 126, 179);  
 }
 
 
 .categories-locations-container::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #F5F5F5;
+    background-color: #F5F5F5;
+    
 }
 
 .categories-locations-container::-webkit-scrollbar
 {
-	width: 10px;
+	width: 7px;
 	background-color: #F5F5F5;
 }
 
 .categories-locations-container::-webkit-scrollbar-thumb
 {
-	background-color: #2B57D9;
+	background-color: #81d4fa;
 	border: 1px solid white;
 }
 
 @media (min-width: 1240px){
 .container {
-    max-width: 1400px !important;
+    max-width: 1600px !important;
 }}
   

@@ -18,10 +18,9 @@ body, html {
 .searchTerm {
   width: 100%;
   border: 3px solid #303030;
-  border-right: none;
-  padding: 5px;
+  padding: 20px;
   height: 35px;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
   outline: none;
   color: #9DBFAF;
 }
@@ -46,7 +45,6 @@ body, html {
 .wrap{
   margin-bottom: 10px;
   width: 100%;
-  padding: 10px;
   font-family: 'Open Sans', sans-serif;
 }
 hr {

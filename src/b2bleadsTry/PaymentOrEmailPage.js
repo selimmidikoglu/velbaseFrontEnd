@@ -50,7 +50,7 @@ class PaymentOrEmailPage extends Component {
                         <div className="row payment_container" style={infoColumn}>
 
                             <div className="col-sm-6 col-md-6 select_nav_buttons" style={{height:'50px',backgroundColor: backgroundColorTemplate}} onClick={()=> this.setState({paymentNav:false,templateNav:true})}>
-                                <div><label className="header-categories" style={{color:colorTemplate}}>Send template</label></div></div>
+                                <div><label className="header-categories" style={{color:colorTemplate}}>Send Sample</label></div></div>
                             <div className="col-sm-6 col-md-6  select_nav_buttons" style={{backgroundColor: backgroundColorPayment}} onClick={()=> this.setState({paymentNav:true,templateNav:false})} >
                                 <label className="header-location" style={{color:colorPayment}}>Send all data and proceed payment</label>
                             </div>
@@ -125,7 +125,7 @@ class PaymentOrEmailPage extends Component {
                             </div>
                             <div className="col-12 send_button_container" onClick={() => this.checkBeforeSubmit()}>
                                 <div className="">
-                                    <h1 className="send_button_text">{!this.state.paymentNav?'Send Template':'Send All and Proceed Payment'}</h1>
+                                    <h1 className="send_button_text">{!this.state.paymentNav?'Send Sample':'Send All and Proceed Payment'}</h1>
                                 </div>
                             </div>
                         </div>

@@ -16,20 +16,21 @@ class StatesFilter extends Component {
         console.log(Object.keys(this.props.totalFilters.states))
         if(Object.keys(this.props.totalFilters.states).length !== 0){
             states = 
-            <div className = "row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#416268',width:'100%'}}>
+            <div className = "row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'2px'}}>
                 <div  className="col-12" style={{textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 style={{color:'#fff',textAlign:'center',fontSize:'12px',fontWeight:'bold'}}>States</h2></div>
                 {Object.keys(this.props.totalFilters.states).map((state,index) => {
+                    console.log(this.props.totalFilters.states[state])
                     return (
                         <div className= "col-12" style={{height:'auto'}}> 
                             <div className = "row" style={{marginTop:'5px',placeContent:'center'}}>
                                 <div className = "col-md-8 state-text-container" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
-                                    <h1 className= "state-text-filter" style={{margin:0}}>{state}</h1>
+                                    <h1 className= "state-text-filter" style = {{color:'#fff',fontSize:'13px'}}>{this.props.totalFilters.states[state].state}</h1>
                                 </div>
                                 <div className="col-md-4" style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                     <div>
                                         <button  className="close-button pull-right " onClick={(event) => {
                                             this.props.setSpinner()
-                                            this.props.insertChoosenStates(event, "states", index, state)
+                                            this.props.insertChoosenStates(event, "states", index,this.props.totalFilters.states[state].state, this.props.totalFilters.states[state].abbreviation)
                                             this.props.getCitiesInState(apiUrl, "states", this.props.totalFilters.states)
                                             this.props.setSpinner()
                                             this.props.getTotalData(this.props.totalFilters,apiUrl)
@@ -43,7 +44,7 @@ class StatesFilter extends Component {
             </div>
         }
         return( 
-            <div className="col-4">
+            <div className="col-6" style={{display:'flex',alignItems:'flex-start',justifyContent:'center'}}>
                 {states}
             </div>
         )
