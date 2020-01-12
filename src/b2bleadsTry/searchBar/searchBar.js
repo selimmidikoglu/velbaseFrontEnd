@@ -42,7 +42,6 @@ class SearchBar extends Component {
   render() {
     let conditionSearchBottomHidden = Object.keys(this.props.fetchReducer.matchedLocations).length < 2 ? true : false
     let searchLocationsResults = null
-    console.log(Object.keys(this.props.fetchReducer.matchedLocations))
     if (Object.keys(this.props.fetchReducer.matchedLocations).length !== 0) {
       if (this.props.fetchReducer.matchedLocations.states.length > 0 || this.props.fetchReducer.matchedLocations.cities.length > 0)
         searchLocationsResults = (
@@ -53,7 +52,7 @@ class SearchBar extends Component {
               onClick={(event) => {
                 this.props.setSpinner()
                 this.props.fetchLocations('empty', this.props.fetchReducer.searchKeyLocations)
-                this.props.insertChoosenStates(event, "states", index, state.state)
+                this.props.insertChoosenStates(event, "states", index, state.stateFullName, state.state)
                 this.props.getCitiesInState(apiUrl, "states", this.props.fetchReducer.totalFilters.states)
                 this.props.setSpinner()
                 if (Object.keys(this.props.fetchReducer.totalFilters.states).length !== 0)
@@ -67,7 +66,7 @@ class SearchBar extends Component {
               }}
               onClick={(event) => {
                 this.props.setSpinner()
-                this.props.insertChoosenStates(event, "states", index, data.state)
+                this.props.insertChoosenStates(event, "states", index, data.stateFullName,data.state)
                 setTimeout(200)
                 this.props.insertChoosenCities(event, "cities", data.state, data.city)
                 setTimeout(200)
@@ -90,7 +89,6 @@ class SearchBar extends Component {
       }
     }
 
-    console.log(this.props)
     let category_search = (
       <div className="row">
         <div className="col-12 search-bar"><input type="text" className="search-text" placeholder="Searh Category"
@@ -114,7 +112,8 @@ class SearchBar extends Component {
       </div>
     )
     return (
-      !this.props.chooseSearchReducer.categoryHidden ? (category_search) : (locations_search)
+      !this.props.chooseSearchReducer.categoryHidden ? (category_search) : !this.props.chooseSearchReducer.locationHidden?(locations_search):null
+      
     );
   }
 }

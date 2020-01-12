@@ -24,6 +24,18 @@ import { SEND_TEMP_EMAIL } from '../actions/fetchActions'
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+let annualRevenueObject= {
+    "0" :0,
+    "10.000$":1,
+    "100.000$":2,
+    "1.000.000$":3,
+    "10.000.000$":4,
+    "100.000.000$":5,
+    "1 billion $":6,
+    "10 billion $":7,
+    "100 billion $":8,
+    "More than 100 billion $":9
+}
 const removeProperty = (obj, property) => {
     return  Object.keys(obj).reduce((acc, key) => {
       if (key !== property) {
@@ -81,26 +93,10 @@ let initialState = {
             hasEmail3 : false,
             hasHours: false,
             founded : 0,
-            scaleAnnualRevenue : [
-                true,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-            ],
-            scaleEmployeeCount: [
-                true,
-                false,
-                false,
-                false,
-                false,
-                false
-            ],
+            scaleAnnualRevenue : {first: 0,last:0},
+            scaleEmployeeCount: {first: 0,last:0},
+            annual_revenue_first: 0,
+            annual_revenue_last: 0,
             hasContact: false,
             hasOwner: false,
             hasFax : false,
@@ -153,7 +149,7 @@ export const fetchReducer = (state = initialState,action) => {
                 return {...state,searchKeyState: action.payload,matchedStates: state.defaultStates}
             }
         case FETCH_CITIES_IN_STATE:
-            console.log(action.payload)
+            //console.log(action.payload)
             return {...state,...action.payload}
         case INSERT_CHOOSEN_STATES:
                 let tempStates = state.totalFilters.states
@@ -226,16 +222,30 @@ export const fetchReducer = (state = initialState,action) => {
         case UPDATE_OTHER_FILTER:
             let type = action.payload.filter_type
             let index = action.payload.index
-            
+
             if(type === 'annual_revenue'){
                 let tempTotalFilters = {...state.totalFilters}
-                tempTotalFilters.scaleAnnualRevenue[index] = !tempTotalFilters.scaleAnnualRevenue[index]
-                return { ...state, tempTotalFilters}
+                let first = index.first
+                let last  = index.last
+                tempTotalFilters.scaleAnnualRevenue.first= first
+                tempTotalFilters.scaleAnnualRevenue.last = last
+                return { 
+                    ...state,tempTotalFilters
+                }
+                
+               
+                
+                
             }
             else if(type === 'employee_count'){
                 let tempTotalFilters = {...state.totalFilters}
-                tempTotalFilters.scaleEmployeeCount[index] = !tempTotalFilters.scaleEmployeeCount[index]
-                return { ...state, tempTotalFilters}
+                let first = index.first
+                let last  = index.last
+                tempTotalFilters.scaleEmployeeCount.first= first
+                tempTotalFilters.scaleEmployeeCount.last = last
+                return { 
+                    ...state,tempTotalFilters
+                }
             }
             else if(type === 'hours') {
                 return { 

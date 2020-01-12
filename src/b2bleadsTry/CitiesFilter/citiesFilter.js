@@ -13,19 +13,18 @@ class CitiesFilter extends Component {
     
     render() {
         let cities = null
-        console.log(Object.keys(this.props.totalFilters.cities))  
         if(Object.keys(this.props.totalFilters.cities).length !== 0){
             cities = 
-            <div className="row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'2px'}}>
+            <div className="row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'20px'}}>
                 <div className="col-12" style={{textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 style={{color:'#fff',textAlign:'center',fontSize:'12px',fontWeight:'bold'}}>Cities</h2></div>
                 {Object.keys(this.props.totalFilters.cities).map((city,index) => {
                     return (
                         <div className= "col-12" style={{height:'auto'}}> 
                             <div className = "row" style={{marginTop:'5px'}}>
-                            <div className="col-md-8 city-text-container" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
+                            <div className="col-md-10 city-text-container" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
                                 <h1 className="city-text-filter" style = {{color:'#fff',fontSize:'13px'}}>{city}</h1>
                             </div>
-                            <div className="col-md-4"style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+                            <div className="col-md-2"style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                 <div>
                                     <button  className="close-button pull-right " onClick={(event) => {
                                         this.props.setSpinner()
@@ -43,7 +42,7 @@ class CitiesFilter extends Component {
             </div>
         }
         return( 
-            <div className="col-6" style={{display:'flex',alignItems:'flex-start',justifyContent:'center'}}>
+            <div className="col-12" style={{display:'flex',alignItems:'flex-start',justifyContent:'center'}}>
                 {cities}
             </div>
         )

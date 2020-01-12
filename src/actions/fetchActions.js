@@ -155,7 +155,6 @@ export const setSearchKeyLocations = event => {
 }
 export const fetchLocations = (url,searchKeyLocations) => {
     if(searchKeyLocations < 2 || url === 'empty'){ 
-        console.log('buraya girerler')
         return dispatch => {
             dispatch ({
                 type: FETCH_CITIES_IN_STATE,
@@ -177,11 +176,11 @@ export const fetchLocations = (url,searchKeyLocations) => {
             }
             for(var i=0;i<locations.length;i++){
                 if(locations[i].stateFullName.toLowerCase().startsWith(searchKeyLocations.toLowerCase()) || locations[i].state.toLowerCase().startsWith(searchKeyLocations.toLowerCase())){
-                    console.log("girdi")
+
                     locationsObj.states.push({stateFullName:locations[i].stateFullName,state:locations[i].state})
                 }
                 else if(locations[i].city.toLowerCase().startsWith(searchKeyLocations.toLowerCase())){
-                    locationsObj.cities.push({city:locations[i].city,state:locations[i].state})
+                    locationsObj.cities.push({city:locations[i].city,state:locations[i].state,stateFullName:locations[i].stateFullName})
                 }
 
             }
@@ -469,21 +468,19 @@ export const getTotalData = (mainObject,url) => {
             }
             else if(mainKeys[i] == "scaleAnnualRevenue"){
                 let scaleAnnualRevenue = []
-                for(var j=1;j<mainObject[mainKeys[i]].length;j++){
-                    if(mainObject[mainKeys[i]][j] === true){
-                        scaleAnnualRevenue.push(j)
-                    }
+                console.log(mainObject[mainKeys[i]])
+                for (let i = mainObject["scaleAnnualRevenue"].first +1; i <= mainObject["scaleAnnualRevenue"].last; i++) {
+                    scaleAnnualRevenue.push(i);
+                    
                 }
                 bodyData['scaleAnnualRevenue'] = scaleAnnualRevenue
             }
             else if(mainKeys[i] == "scaleEmployeeCount"){
-                let employeeCountArr = mainObject['scaleEmployeeCount']
                 let scaleEmployeeCount = []
-                for(var j=1;j<employeeCountArr.length;j++){
-                    if(employeeCountArr[j]=== true){
-                        scaleEmployeeCount.push(j)
-                        console.log("scaleEmployee",scaleEmployeeCount)
-                    }
+                console.log(mainObject[mainKeys[i]])
+                for (let i = mainObject["scaleEmployeeCount"].first +1; i <= mainObject["scaleEmployeeCount"].last; i++) {
+                    scaleEmployeeCount.push(i);
+                    
                 }
                 bodyData['scaleEmployeeCount'] = scaleEmployeeCount
             }

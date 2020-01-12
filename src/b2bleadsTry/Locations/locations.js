@@ -16,7 +16,7 @@ class Locations extends Component {
     render() {
         return (
             <div className="row locations-container">
-                <div className="col-4 locations-header-box">
+                <div className="col-6 locations-header-box">
                 
                     <div className="wrap">
                         <div className="search">
@@ -25,7 +25,7 @@ class Locations extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-4 locations-header-box">
+                <div className="col-6 locations-header-box">
                    
                     <div className="wrap">
                         <div className="search" >
@@ -43,7 +43,7 @@ class Locations extends Component {
                         {/*<h6 style={{ fontSize: '12px', color: 'white', marginTop: '5px' }}>Select state, type key word, click Enter or search button!</h6>*/}
                     </div>
                 </div>
-                <div className="col-4 locations-header-box">
+                {/*<div className="col-6 locations-header-box">
                   
                     <div className="wrap">
                         <div className="search">
@@ -53,18 +53,18 @@ class Locations extends Component {
                                     this.props.searchZipCodesInList(event, this.props.defaultZipCodes)
                                 }} />
                            
-                        </div>
-                        {/*<h6 style={{ fontSize: '12px', color: 'white', marginTop: '5px' }}>Select city first, type key zipCode, click Enter or search button!</h6>*/}
+                            </div>
+                        <h6 style={{ fontSize: '12px', color: 'white', marginTop: '5px' }}>Select city first, type key zipCode, click Enter or search button!</h6>
                     </div>
-                </div>
-                <div className="col-4 mh-75 overflow-auto state-container container-scroll">
+                </div>*/}
+                <div className="col-6 mh-75 overflow-auto state-container container-scroll">
 
                     <States /></div>
-                <div className="col-4 city-container container-scroll">
+                <div className="col-6 city-container container-scroll">
 
                     <Cities />
                 </div>
-                <div className="col-4 zipCode-container container-scroll"><ZipCodes /></div>
+                {/*<div className="col-4 zipCode-container container-scroll"><ZipCodes /></div>*/}
             </div>
         );
     }

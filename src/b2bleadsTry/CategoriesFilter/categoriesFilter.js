@@ -14,7 +14,6 @@ class CategoriesFilter extends Component {
     
     render() {
         let categories = null
-        console.log(Object.keys(this.props.totalFilters.categories))
         if(Object.keys(this.props.totalFilters.categories).length !== 0){
             categories = 
             <div className="row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'20px'}}>

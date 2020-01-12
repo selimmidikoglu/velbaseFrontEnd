@@ -27,7 +27,6 @@ class Categories extends Component {
     }
     
     render() {
-        console.log(this.props.matchedCategories)
         let categories = null
         if (typeof this.props.defaultCategories !== 'undefined' && this.props.matchedCategories.length === 0) {
             categories = (

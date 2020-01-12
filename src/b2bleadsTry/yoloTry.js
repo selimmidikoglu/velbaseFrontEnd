@@ -5,6 +5,8 @@ import Categories from './Categories/categories'
 import Locations from './Locations/locations'
 import ResultsColumns from './ResultsColumn/resultsColumn'
 import AnnEmp from './Ann-Emp/ann_emp'
+import OtherFilters from './OtherFilters/otherFilters'
+import AnnEmpRange from './Ann-Emp-Range/annEmpRange'
 import Spinner from '../components/dumb/Spinner/spinner'
 //redux connect
 import { connect } from 'react-redux'
@@ -49,7 +51,7 @@ class YoloTry extends Component {
   }
 
   render() {
-    console.log(this.props)
+    
     return (
 
       <div style={{ width: '100%', height: '100%', marginTop: '100px' }} ref={node => { this.node = node; }} onClick={() => this.handleClick()}>
@@ -58,25 +60,32 @@ class YoloTry extends Component {
           <div className="row ">
             <div className="col-8 main-filters-container" style={{padding:'40px',backgroundColor:'#0091ea'}}>
               <div className="row">
-                <div className="col-8 search-box-nav-container">
+                <div className="col-12 search-box-nav-container">
                   <div className="row navbar1-container" style={{paddingTop:'10px'}} >
-                    <div className="col-6 category-nav-button" style={{ backgroundColor: this.props.chooseSearchReducer.buttonCategory }}
+                    <div className="col-4 category-nav-button" style={{ backgroundColor: this.props.chooseSearchReducer.buttonCategory }}
                       onClick={() => this.props.chooseOtherSearch("category")}>
                       <div>
                         <label className="header-categories"
                           style={{ color: this.props.chooseSearchReducer.textColorCategory }}>Categories</label>
                       </div>
                     </div>
-                    <div className="col-6 location-nav-button" style={{ backgroundColor: this.props.chooseSearchReducer.buttonLocation }}
+                    <div className="col-4 location-nav-button" style={{ backgroundColor: this.props.chooseSearchReducer.buttonLocation }}
                       onClick={() => this.props.chooseOtherSearch("location")}>
                       <div>
                         <label className="header-location"
                           style={{ color: this.props.chooseSearchReducer.textColorLocation }}>Locations</label>
                       </div>
                     </div>
+                    <div className="col-4 location-nav-button" style={{ backgroundColor: this.props.chooseSearchReducer.buttonOtherFilters }}
+                      onClick={() => this.props.chooseOtherSearch("otherFilters")}>
+                      <div>
+                        <label className="header-location"
+                          style={{ color: this.props.chooseSearchReducer.textColorOtherFilters }}>OtherFilters</label>
+                      </div>
+                    </div>
                   </div>
                   <div className="row">
-                    <div className="col-12 search-box-container" style={{backgroundColor:'#81d4fa'}}><SearchBar /></div>
+                    <div className="col-12 search-box-container" style={{backgroundColor:'#81d4fa',height:this.props.chooseSearchReducer.otherFiltersHidden === false?'0px': 'auto'}}><SearchBar /></div>
                   </div>
 
 
@@ -84,10 +93,9 @@ class YoloTry extends Component {
                 <div className="col-4 "></div>
               </div>
               <div className="row bottom-part">
-                <div className="col-8 categories-locations-container" style={{ overflowY: this.props.chooseSearchReducer.overflowYMain,backgroundColor:'white'}}>
-                  {!this.props.chooseSearchReducer.categoryHidden ? (<Categories />) : (<Locations />)}
+                <div className="col-12 categories-locations-container" style={{ overflowY: this.props.chooseSearchReducer.overflowYMain,backgroundColor:'white'}}>
+                  {!this.props.chooseSearchReducer.categoryHidden ? (<Categories />) : (!this.props.chooseSearchReducer.locationHidden?(<Locations/>):(<OtherFilters/>))}
                 </div>
-                <div className="col-4 ann-emp-container" ref="ann"  ><AnnEmp /></div>
               </div>
             </div>
             <div className="col-4 results-container"><ResultsColumns /></div>

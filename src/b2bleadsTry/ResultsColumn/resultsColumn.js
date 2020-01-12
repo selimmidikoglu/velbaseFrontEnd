@@ -9,7 +9,8 @@ import StatesFilter from '../StatesFilter/statesFilter'
 import ZipCodesFilter from '../ZipCodesFilter/zipCodesFilter'
 import CitiesFilter from '../CitiesFilter/citiesFilter'
 import AnnEmpFilter from '../Ann-Emp-Filter/annualFilter'
-import EmpFilter from '../Ann-Emp-Filter/employeeFilter'
+
+import EmpFilter from '../EmpFilter/empFilter'
 //redux connect
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -49,11 +50,12 @@ class ResultsColumn extends Component {
                         </div>
                         
                         <CategoriesFilter/>
-                        <AnnEmpFilter/>
-                        <EmpFilter/>
+                        
                         <StatesFilter/>
                         <CitiesFilter/>
                         <ZipCodesFilter/>
+                        <AnnEmpFilter/>
+                        <EmpFilter/>
                  
                 </div>
                 
