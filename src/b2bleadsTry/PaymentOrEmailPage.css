@@ -91,3 +91,39 @@
 .select_nav_buttons:hover{
     cursor: pointer;
 }
+
+.header-filters{
+    font-family: 'Chivo', sans-serif;
+    font-size: 16px;
+    color: #17E9E1;
+    text-decoration: underline;
+}
+.back-button-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    padding: 10px;
+}
+.back-button{
+    height: 44px;
+    width: 44px;
+    border-radius: 22px;
+    border: 2px white solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white
+    
+}
+.back-button:hover{
+    cursor: pointer;
+    border-color: rgb(23, 233, 225);
+    color:rgb(23, 233, 225);
+    
+}
+.icon-back-arrow{
+    font-size:30px;
+ 
+}
+

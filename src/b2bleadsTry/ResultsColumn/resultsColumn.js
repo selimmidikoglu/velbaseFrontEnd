@@ -30,7 +30,7 @@ class ResultsColumn extends Component {
                     <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%'}}className = "dataCount" >Total Count: {this.props.totalCount}</h1>
                 </div>
                 <div className="row" style={{justifyContent:'center',alignItems:'center', textAlign:'center',backgroundColor:'white'}}>
-                    <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%'}}className = "dataCount" >Total Price: {this.props.totalCount * 6/100}$</h1>
+                    <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%'}}className = "dataCount" >Total Price: {this.props.totalCount * 9/100}$</h1>
                 </div>
                 <Link style={{textDecoration:'none'}} to="/second">
                 <div className="row"   hidden={this.props.totalCount!==0?false:true}>

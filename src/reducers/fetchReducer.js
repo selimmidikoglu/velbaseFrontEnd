@@ -21,6 +21,7 @@ import { SET_SPINNER } from '../actions/fetchActions'
 import { FETCH_LOCATIONS } from '../actions/fetchActions'
 import { SET_CUSTOMER_INFO } from '../actions/fetchActions'
 import { SEND_TEMP_EMAIL } from '../actions/fetchActions'
+import { CHANGE_ALERT_BOX_STATE } from '../actions/fetchActions'
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -67,6 +68,7 @@ let initialState = {
         matchedCities: [],
         matchedZipCodes : [],
         matchedLocations: {},
+        alertOrNot : false,
         totalFilters: {
             address: '',
             fileType: '',
@@ -412,6 +414,9 @@ export const fetchReducer = (state = initialState,action) => {
                 }
             }
         case SEND_TEMP_EMAIL:
+            return {...state,...action.payload}
+        
+        case CHANGE_ALERT_BOX_STATE:
             return {...state,...action.payload}
         default:
             return state;

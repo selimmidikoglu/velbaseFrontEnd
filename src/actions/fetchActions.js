@@ -18,6 +18,7 @@ export const SET_SEARCH_KEY_LOCATIONS = 'SET_SEARCH_KEY_LOCATIONS'
 export const FETCH_LOCATIONS = 'FETCH_LOCATIONS'
 export const SET_CUSTOMER_INFO = 'SET_CUSTOMER_INFO'
 export const SEND_TEMP_EMAIL = 'SEND_TEMP_EMAIL'
+export const CHANGE_ALERT_BOX_STATE = 'CHANGE_ALERT_BOX_STATE'
 
 //conditional action for UI like run spinner
 export const SET_SPINNER = 'SET_SPINNER'
@@ -54,7 +55,7 @@ export const send_temp_email = (mainObject,url,totalCount) => {
     bodyData['exp_month'] = mainObject.exp_month;
     bodyData['exp_year'] = mainObject.exp_year;
     bodyData['cvc'] = mainObject.cvc;
-    bodyData['totalPrice'] = totalCount * 6 
+    bodyData['totalPrice'] = totalCount * 9 
     for (let i = 0; i < mainKeys.length; i++) {
         const element = mainObject[mainKeys[i]];
         if(typeof element == "boolean"){
@@ -131,7 +132,12 @@ export const send_temp_email = (mainObject,url,totalCount) => {
             dispatch({
                 type: SEND_TEMP_EMAIL,
                 payload:{
-                   message: 'Done'
+                   message: 'Done',
+                   alertOrNot : true,
+                   conditionForSpinner : {
+                    divPointerEvents : 'all',
+                    runSpinner: false
+                }
                 }
             })
         })    
@@ -534,5 +540,14 @@ export const set_customer_info = (data,type) => {
 export const setSpinner = () => {
     return {
         type: SET_SPINNER,
+    }
+}
+
+export const changeAlertBoxState = () =>{
+    return {
+        type: CHANGE_ALERT_BOX_STATE,
+        payload:{
+            alertOrNot: false
+        }
     }
 }
