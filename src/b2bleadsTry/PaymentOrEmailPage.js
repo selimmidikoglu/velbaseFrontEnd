@@ -99,6 +99,7 @@ class PaymentOrEmailPage extends Component {
                         </div>
                     )
                 })
+                
         }
         let annual_revenue = null
         if (this.props.totalFilters.scaleAnnualRevenue.last !== 0)

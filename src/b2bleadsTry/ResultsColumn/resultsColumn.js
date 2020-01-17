@@ -36,8 +36,8 @@ class ResultsColumn extends Component {
                 <div className="row"   hidden={this.props.totalCount!==0?false:true}>
                     
                     <div className = "data-button" onClick = {()=>{
-                        this.props.setSpinner()
-                        this.props.getTotalData(this.props.totalFilters,apiUrl)
+                        /*this.props.setSpinner()
+                        this.props.getTotalData(this.props.totalFilters,apiUrl)*/
                         }}><h1 className="data-button-text">Get sample</h1></div>
                     </div>
                 
