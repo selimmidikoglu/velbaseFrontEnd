@@ -42,7 +42,7 @@ export const getDefaultCategoriesAndStates = url => {
         });
     };
 };
-export const send_temp_email = (mainObject,url,totalCount) => {
+export const send_temp_email = (mainObject,url,totalCount,type) => {
     let bodyData = {}
     let mainKeys = Object.keys(mainObject)
     let mainValues = Object.keys(mainObject)
@@ -55,7 +55,11 @@ export const send_temp_email = (mainObject,url,totalCount) => {
     bodyData['exp_month'] = mainObject.exp_month;
     bodyData['exp_year'] = mainObject.exp_year;
     bodyData['cvc'] = mainObject.cvc;
-    bodyData['totalPrice'] = totalCount * 9 
+    bodyData['totalPrice'] = totalCount * 9
+    if(type == 'sample_data')
+        bodyData['data_type'] = 'sample_data'
+    else if(type == 'data')
+        bodyData['data_type'] = 'data'
     for (let i = 0; i < mainKeys.length; i++) {
         const element = mainObject[mainKeys[i]];
         if(typeof element == "boolean"){
@@ -67,7 +71,6 @@ export const send_temp_email = (mainObject,url,totalCount) => {
         else{
             //categoriesupdate_other_filter
             if(mainKeys[i] == "categories"){
-                console.log("kategori var",element)
                 let categoryKeys = Object.keys(element);
                 bodyData[mainKeys[i]] = categoryKeys
             }

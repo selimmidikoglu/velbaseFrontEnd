@@ -9,6 +9,7 @@ import StatesFilter from '../StatesFilter/statesFilter'
 import ZipCodesFilter from '../ZipCodesFilter/zipCodesFilter'
 import CitiesFilter from '../CitiesFilter/citiesFilter'
 import AnnEmpFilter from '../Ann-Emp-Filter/annualFilter'
+import FieldFiltersFilters from '../FieldFilters_Filters/fieldFiltersFilters'
 
 import EmpFilter from '../EmpFilter/empFilter'
 //redux connect
@@ -32,13 +33,20 @@ class ResultsColumn extends Component {
                 <div className="row" style={{justifyContent:'center',alignItems:'center', textAlign:'center',backgroundColor:'white'}}>
                     <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%'}}className = "dataCount" >Total Price: {this.props.totalCount * 9/100}$</h1>
                 </div>
-                <Link style={{textDecoration:'none'}} to="/second">
+                <Link style={{textDecoration:'none'}} to={{pathname:"/second",state:{section:'full_data'}}} >
                 <div className="row"   hidden={this.props.totalCount!==0?false:true}>
                     
                     <div className = "data-button" onClick = {()=>{
                         /*this.props.setSpinner()
                         this.props.getTotalData(this.props.totalFilters,apiUrl)*/
-                        }}><h1 className="data-button-text">Get sample</h1></div>
+                        }}><h1 className="data-button-text">Process payment</h1></div>
+                    </div>
+                
+                </Link>
+                <Link style={{textDecoration:'none'}} to={{pathname:"/second",state:{section:'sample'}}} >
+                <div className="row"   hidden={this.props.totalCount!==0?false:true}>
+                    
+                    <div className = ""><h1 className="data-button-text get-sample-button" style={{fontSize:'14px',textDecoration:'underline'}}>Get sample</h1></div>
                     </div>
                 
                 </Link>
@@ -48,12 +56,11 @@ class ResultsColumn extends Component {
                         <div className="col-12"  style={{padding:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
                             <div style={{widht:'100%'}}><h1 className="filters-header">Filters</h1></div> <br/>   
                         </div>
-                        
                         <CategoriesFilter/>
-                        
                         <StatesFilter/>
                         <CitiesFilter/>
                         <ZipCodesFilter/>
+                        <FieldFiltersFilters/>
                         <AnnEmpFilter/>
                         <EmpFilter/>
                  

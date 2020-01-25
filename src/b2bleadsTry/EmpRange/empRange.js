@@ -88,7 +88,7 @@ class EmpRange extends Component {
         //console.log(this.props)
         
         return (
-            <div className="row" style={{ width: '100%', height: 'auto', backgroundColor: 'white', padding: '10px',borderRadius:'10px',backgroundColor:'whitesmoke',borderColor:'whitesmoke',borderStyle: 'solid',borderWidth: '2px'}}>
+            <div className="row" style={{ width: '100%', height: 'auto', backgroundColor: 'white', padding: '10px',borderRadius:'10px',backgroundColor:'whitesmoke',borderColor:'whitesmoke',borderStyle: 'solid',borderWidth: '2px',marginTop:'10px'}}>
                 <div className="col-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <h1 className="ann-revenue-header-text">Employee Count</h1>
                 </div>

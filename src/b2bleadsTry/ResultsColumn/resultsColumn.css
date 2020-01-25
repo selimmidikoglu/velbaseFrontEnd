@@ -50,3 +50,9 @@
     font-size:20px;
     width:100%;
 }
+.get-sample-button{
+    color:#81d4fa;
+}
+.get-sample-button:hover{
+    color:white;
+}

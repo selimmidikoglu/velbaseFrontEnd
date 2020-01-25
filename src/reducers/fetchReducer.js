@@ -268,6 +268,7 @@ export const fetchReducer = (state = initialState,action) => {
                 }
             }
             else if(type === 'website') {
+                console.log('website changed')
                 return { 
                     ...state,
                     totalFilters: {
@@ -291,6 +292,15 @@ export const fetchReducer = (state = initialState,action) => {
                     totalFilters: {
                         ...state.totalFilters,
                         hasContact: !state.totalFilters.hasContact
+                    }
+                }
+            }
+            else if(type === 'phone') {
+                return { 
+                    ...state,
+                    totalFilters: {
+                        ...state.totalFilters,
+                        hasPhone1: !state.totalFilters.hasPhone1
                     }
                 }
             }

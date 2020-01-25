@@ -30,8 +30,9 @@ class PaymentOrEmailPage extends Component {
         this.state = {
             card_number: '',
             expiration: '',
-            paymentNav: false,
-            templateNav: true
+            paymentNav: this.props.location.state.section == 'full_data'?true:false,
+            templateNav: this.props.location.state.section == 'sample'?true:false,
+            sample_or_data : 'sample'
         }
     }
     checkBeforeSubmit() {
@@ -41,15 +42,22 @@ class PaymentOrEmailPage extends Component {
                 alert('please fill required fields')
                 return;
             }
+            else{
+                this.props.setSpinner()
+                this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount,'data')
+            }
         }
         else {
             if (this.props.totalFilters.name === '' || this.props.totalFilters.surname === '' || this.props.totalFilters.email === '') {
                 alert('please fill required fields')
                 return;
             }
+            else{
+                this.props.setSpinner()
+                this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount,'sample_data')
+            }
         }
-        this.props.setSpinner()
-        this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount)
+        
     }
     render() {
         let backgroundColorTemplate = this.state.templateNav ? 'rgb(23, 233, 225)' : 'whitesmoke'
@@ -141,9 +149,9 @@ class PaymentOrEmailPage extends Component {
                         
                         <div className="row payment_container" style={infoColumn}>
                             
-                            <div className="col-sm-6 col-md-6 select_nav_buttons" style={{ height: '50px', backgroundColor: backgroundColorTemplate }} onClick={() => this.setState({ paymentNav: false, templateNav: true })}>
+                            <div className="col-sm-6 col-md-6 select_nav_buttons" style={{ height: '50px', backgroundColor: backgroundColorTemplate }} onClick={() => this.setState({ paymentNav: false, templateNav: true, sample_or_data: 'sample' })}>
                                 <div><label className="header-categories" style={{ color: colorTemplate }}>Send Sample</label></div></div>
-                            <div className="col-sm-6 col-md-6  select_nav_buttons" style={{ backgroundColor: backgroundColorPayment }} onClick={() => this.setState({ paymentNav: true, templateNav: false })} >
+                            <div className="col-sm-6 col-md-6  select_nav_buttons" style={{ backgroundColor: backgroundColorPayment }} onClick={() => this.setState({ paymentNav: true, templateNav: false, sample_or_data: 'data'})} >
                                 <label className="header-location" style={{ color: colorPayment }}>Send all data and proceed payment</label>
                             </div>
 

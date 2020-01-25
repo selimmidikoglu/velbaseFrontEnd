@@ -1,0 +1,66 @@
+input[type='radio'] {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 80%;
+    margin: 0;
+    padding: 0 2px;
+    /* Add some L/R padding to ensure box shadow of handle is shown */
+    overflow: hidden;
+    border: 0;
+    border-radius: 1px;
+    outline: none;
+    background: linear-gradient(rgb(12, 5, 5), grey) no-repeat center;
+    /* Use a linear gradient to generate only the 2px height background */
+    background-size: 100% 2px;
+    pointer-events: none;
+  }
+  input[type='radio']:active,
+  input[type='radio']:focus {
+    outline: none;
+  }
+  input[type='radio']::-webkit-slider-thumb {
+    height: 18px;
+    width: 18px;
+    border-radius: 18px;
+    background-color: #81d4fa;
+    position: relative;
+    margin: 5px 0;
+    /* Add some margin to ensure box shadow is shown */
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: all;
+    //box-shadow: 0 1px 4px 0.5px rgba(0, 0, 0, 0.25);
+  }
+  input[type='radio']::-webkit-slider-thumb::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 13px;
+    left: 100%;
+    width: 2000px;
+    height: 2px;
+  }
+  .solo-radio {
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .solo-radio input[type='radio'] {
+    position: absolute;
+  }
+  .solo-radio input[type='radio']:nth-child(1)::-webkit-slider-thumb::before {
+    background-color: purple;
+  }
+  .solo-radio input[type='radio']:nth-child(2) {
+    background: none;
+  }
+  .solo-radio input[type='radio']:nth-child(2)::-webkit-slider-thumb::before {
+    background-color: grey;
+  }
+
+

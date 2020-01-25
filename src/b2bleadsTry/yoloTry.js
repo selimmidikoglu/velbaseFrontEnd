@@ -58,7 +58,7 @@ class YoloTry extends Component {
         <div className="container custom-container" style={{ pointerEvents: this.props.fetchReducer.conditionForSpinner.divPointerEvents, paddingLeft: '50px', paddingRight: '50px', paddingTop: '40px' }}>
           {this.props.fetchReducer.conditionForSpinner.runSpinner ? (<Spinner />) : null}
           <div className="row ">
-            <div className="col-8 main-filters-container" style={{padding:'40px',backgroundColor:'#0091ea'}}>
+            <div className="col-md-8 col-sm-12 main-filters-container" style={{padding:'40px',backgroundColor:'#0091ea'}}>
               <div className="row">
                 <div className="col-12 search-box-nav-container">
                   <div className="row navbar1-container" style={{paddingTop:'10px'}} >
@@ -98,7 +98,7 @@ class YoloTry extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-4 results-container"><ResultsColumns /></div>
+            <div className="col-md-4 col-sm-12 results-container"><ResultsColumns /></div>
           </div>
         </div>
       </div>

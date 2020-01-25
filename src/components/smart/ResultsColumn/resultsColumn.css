@@ -1,13 +1,14 @@
 .close-button {
     width: 20px;
     height: 20px;
-    border-width: 1px;
+    border-width: 0px;
     border-radius: 5px;
-    background-color: rgb(49, 63, 55);
+    background-color: #0091EA ; 
     align-self:'center' ;
     position:relative;
 
   }
+  
   .close-button:before,
   .close-button:after {
     content: '';
