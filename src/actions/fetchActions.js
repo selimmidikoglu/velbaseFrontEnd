@@ -19,6 +19,8 @@ export const FETCH_LOCATIONS = 'FETCH_LOCATIONS'
 export const SET_CUSTOMER_INFO = 'SET_CUSTOMER_INFO'
 export const SEND_TEMP_EMAIL = 'SEND_TEMP_EMAIL'
 export const CHANGE_ALERT_BOX_STATE = 'CHANGE_ALERT_BOX_STATE'
+export const ADD_NO_ANNUAL_REVENUE = 'ADD_NO_ANNUAL_REVENUE'
+export const ADD_NO_EMPLOYEE_COUNT = 'ADD_NO_EMPLOYEE_COUNT'
 
 //conditional action for UI like run spinner
 export const SET_SPINNER = 'SET_SPINNER'
@@ -552,5 +554,17 @@ export const changeAlertBoxState = () =>{
         payload:{
             alertOrNot: false
         }
+    }
+}
+
+export const add_no_annual_revenue = () => {
+    return {
+        type:ADD_NO_ANNUAL_REVENUE
+    }
+}
+
+export const add_no_employee_count = () => {
+    return {
+        type:ADD_NO_EMPLOYEE_COUNT
     }
 }

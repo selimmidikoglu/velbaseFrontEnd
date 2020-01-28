@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { setSpinner, getTotalData, update_other_filter } from '../../actions/fetchActions'
+import { setSpinner, getTotalData, update_other_filter, add_no_employee_count} from '../../actions/fetchActions'
 
 import { apiUrl } from '../../consts/consts'
 import './empRange.css'
@@ -92,12 +92,19 @@ class EmpRange extends Component {
                 <div className="col-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <h1 className="ann-revenue-header-text">Employee Count</h1>
                 </div>
-                <div class="col-12 multi-range" style={{ width: 'inherit' }}>
+                <div class="col-12 multi-range" style={{ width: 'inherit',backgroundColor: this.props.totalFilters.scaleEmployeeCount.last == 0?'white':'whitesmoke'}}>
 
                     <input type="range" min="0" max="5" value={this.state.valueFirst} step="1" id="upper" disabled= {this.props.totalFilters.scaleEmployeeCount.last !== 0 }
                         onChange={(e) => this.changeEmployeeCountRange(e, "first")} />
                     <input type="range" min="0" max="5" value={this.state.valueLast} step="1" id="lower" disabled= {this.props.totalFilters.scaleEmployeeCount.last !== 0 }
                         onChange={(e) => this.changeEmployeeCountRange(e, "last")} />
+                </div>
+                <div className="col-12 lock-icon" style = {{backgroundColor: this.props.totalFilters.scaleEmployeeCount.last == 0?'white':'whitesmoke'}}  >
+                    <div className="row">
+                        <div className="col-10"></div>
+                        <div className="col-2">
+                            {this.props.totalFilters.scaleEmployeeCount.last == 0?(<i className="fa fa-unlock"></i>):(<i className="fa fa-lock"></i>)}</div>
+                    </div>
                 </div>
                 <div className="col-12 ann-revenue-list">
                   
@@ -121,9 +128,28 @@ class EmpRange extends Component {
                                     else{
                                         this.setState({checked: false, checkedAll:true})
                                         this.props.update_other_filter(true,'employee_count',{first:0,last:0})
+                                        this.props.add_no_employee_count()
                                     }
                                     this.props.getTotalData(this.props.totalFilters,apiUrl)
                             }} /></div>
+                            </div>
+                        </div>
+                        <div className="row" hidden = {this.props.totalFilters.scaleEmployeeCount.last == 0}>
+                            <div className="col-md-10 col-sm-8">
+                                <h1 className="annual-revenue-data-text">Include businesses with no employee count</h1>
+                            </div>
+                            <div className="col-md-2 col-sm-4">
+                                <div><input type="checkbox" className="option-input checkbox" checked={this.props.totalFilters.noEmployeeCount}
+
+
+                                    onClick={(event) => {
+
+                                        this.props.setSpinner()
+                                        this.props.add_no_employee_count()
+                                        //setTimeout(() => this.props.getTotalData(this.props.totalFilters,apiUrl),200)
+                                        this.props.getTotalData(this.props.totalFilters,apiUrl)
+
+                                    }} /></div>
                             </div>
                         </div>
                         <div className="row">
@@ -164,7 +190,8 @@ function mapDispatchToProps(dispatch) {
     return {
         setSpinner: bindActionCreators(setSpinner, dispatch),
         getTotalData: bindActionCreators(getTotalData, dispatch),
-        update_other_filter: bindActionCreators(update_other_filter,dispatch)
+        update_other_filter: bindActionCreators(update_other_filter,dispatch),
+        add_no_employee_count: bindActionCreators(add_no_employee_count,dispatch)
     }
 
 }

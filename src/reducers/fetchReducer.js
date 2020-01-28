@@ -22,6 +22,8 @@ import { FETCH_LOCATIONS } from '../actions/fetchActions'
 import { SET_CUSTOMER_INFO } from '../actions/fetchActions'
 import { SEND_TEMP_EMAIL } from '../actions/fetchActions'
 import { CHANGE_ALERT_BOX_STATE } from '../actions/fetchActions'
+import { ADD_NO_ANNUAL_REVENUE } from '../actions/fetchActions'
+import { ADD_NO_EMPLOYEE_COUNT } from '../actions/fetchActions'
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -96,7 +98,9 @@ let initialState = {
             hasHours: false,
             founded : 0,
             scaleAnnualRevenue : {first: 0,last:0},
+            noAnnualRevenue : false,
             scaleEmployeeCount: {first: 0,last:0},
+            noEmployeeCount : false,
             annual_revenue_first: 0,
             annual_revenue_last: 0,
             hasContact: false,
@@ -415,6 +419,22 @@ export const fetchReducer = (state = initialState,action) => {
             }
         case FETCH_TOTAL_DATA:
                 return {...state,...action.payload}
+        case ADD_NO_ANNUAL_REVENUE:
+            return {
+                ...state,
+                totalFilters:{
+                    ...state.totalFilters,
+                    noAnnualRevenue: !state.totalFilters.noAnnualRevenue
+                }
+            }
+        
+        case ADD_NO_EMPLOYEE_COUNT:
+            let tempTotalFilters = state.totalFilters
+            tempTotalFilters.noEmployeeCount = !tempTotalFilters.noEmployeeCount
+            return {
+                ...state,
+                totalFilters: tempTotalFilters
+            }
         case SET_CUSTOMER_INFO:
             return {
                 ...state,
