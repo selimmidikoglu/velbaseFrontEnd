@@ -24,6 +24,15 @@ let valueArray = [
     "100 billion $",
     "More than 100 billion $"
 ]
+let valueArrayEmp= [
+    "0",
+    "100",
+    "1000",
+    "10.000",
+    "100.000",
+    "More than 100.000",
+]
+
 class PaymentOrEmailPage extends Component {
     constructor(props) {
         super(props);
@@ -125,7 +134,7 @@ class PaymentOrEmailPage extends Component {
                     <div className="col-12" style={{ width: '100%' }}>
                         <div className="row">
                             <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                                <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px' }}>{valueArray[this.props.totalFilters.scaleEmployeeCount.first]} - {valueArray[this.props.totalFilters.scaleEmployeeCount.last]}</h1>
+                                <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px' }}>{valueArrayEmp[this.props.totalFilters.scaleEmployeeCount.first]} - {valueArrayEmp[this.props.totalFilters.scaleEmployeeCount.last]}</h1>
                             </div>
                             
                         </div>
