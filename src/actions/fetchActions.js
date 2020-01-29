@@ -100,21 +100,19 @@ export const send_temp_email = (mainObject,url,totalCount,type) => {
             }
             else if(mainKeys[i] == "scaleAnnualRevenue"){
                 let scaleAnnualRevenue = []
-                for(var j=1;j<mainObject[mainKeys[i]].length;j++){
-                    if(mainObject[mainKeys[i]][j] === true){
-                        scaleAnnualRevenue.push(j)
-                    }
+                console.log(mainObject[mainKeys[i]])
+                for (let i = mainObject["scaleAnnualRevenue"].first +1; i <= mainObject["scaleAnnualRevenue"].last; i++) {
+                    scaleAnnualRevenue.push(i);
+                    
                 }
                 bodyData['scaleAnnualRevenue'] = scaleAnnualRevenue
             }
             else if(mainKeys[i] == "scaleEmployeeCount"){
-                let employeeCountArr = mainObject['scaleEmployeeCount']
                 let scaleEmployeeCount = []
-                for(var j=1;j<employeeCountArr.length;j++){
-                    if(employeeCountArr[j]=== true){
-                        scaleEmployeeCount.push(j)
-                        console.log("scaleEmployee",scaleEmployeeCount)
-                    }
+                console.log(mainObject[mainKeys[i]])
+                for (let i = mainObject["scaleEmployeeCount"].first +1; i <= mainObject["scaleEmployeeCount"].last; i++) {
+                    scaleEmployeeCount.push(i);
+                    
                 }
                 bodyData['scaleEmployeeCount'] = scaleEmployeeCount
             }
