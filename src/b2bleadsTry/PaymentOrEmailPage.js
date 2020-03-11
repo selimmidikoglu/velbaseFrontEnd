@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 //bootstrap
-
-
+//Stripe ELEMENTS
+import { useStripe, useElements, CardElement, Elements ,ElementsConsumer } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CardForm from '../b2bleadsTry/StripeElements/cardForm'
 //redux connect
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { setSpinner, insertChoosenStates, getCitiesInState, getTotalData, update_other_filter, set_customer_info, send_temp_email } from '../actions/fetchActions'
 import Spinner from '../components/dumb/Spinner/spinner'
 import AlertDone from './AlertDone/alertDone'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './PaymentOrEmailPage.css'
 //url
 import { apiUrl } from '../consts/consts'
@@ -24,7 +26,7 @@ let valueArray = [
     "100 billion $",
     "More than 100 billion $"
 ]
-let valueArrayEmp= [
+let valueArrayEmp = [
     "0",
     "100",
     "1000",
@@ -32,28 +34,30 @@ let valueArrayEmp= [
     "100.000",
     "More than 100.000",
 ]
-
+const stripePromise = loadStripe("pk_test_bMUfGs3Awcntdu9lsaMdD1IF00jU3L68xT");
+console.log(stripePromise)
 class PaymentOrEmailPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             card_number: '',
             expiration: '',
-            paymentNav: this.props.location.state.section == 'full_data'?true:false,
-            templateNav: this.props.location.state.section == 'sample'?true:false,
-            sample_or_data : 'sample'
+            paymentNav: this.props.location.state.section == 'full_data' ? true : false,
+            templateNav: this.props.location.state.section == 'sample' ? true : false,
+            sample_or_data: 'sample'
         }
+
     }
-    checkBeforeSubmit() {
-        if (this.state.paymentNav) {
+    checkBeforeSubmit = async () => {
+        /*if (this.state.paymentNav) {
             if (this.props.totalFilters.name === '' || this.props.totalFilters.surname === '' || this.props.totalFilters.email === '' || this.props.totalFilters.card_number === '' || this.props.totalFilters.exp_month === ''
                 || this.props.totalFilters.exp_year === '' || this.props.totalFilters.cvc === '') {
                 alert('please fill required fields')
                 return;
             }
-            else{
+            else {
                 this.props.setSpinner()
-                this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount,'data')
+                this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'data')
             }
         }
         else {
@@ -61,12 +65,50 @@ class PaymentOrEmailPage extends Component {
                 alert('please fill required fields')
                 return;
             }
-            else{
+            else {
                 this.props.setSpinner()
-                this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount,'sample_data')
+                this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample_data')
             }
+        }*/
+        if (this.props.totalFilters.name === '' || this.props.totalFilters.surname === '' || this.props.totalFilters.email === '') {
+            alert('please fill required fields')
+            return;
         }
-        
+        else {
+            
+
+            const {stripe, elements} = this.props;
+
+            if (!stripe || !elements) {
+            // Stripe.js has not loaded yet. Make sure to disable
+            // form submission until Stripe.js has loaded.
+            console.log(stripe, elements)
+            return;
+            }
+
+            // Get a reference to a mounted CardElement. Elements knows how
+            // to find your CardElement because there can only ever be one of
+            // each type of element.
+            const cardElement = elements.getElement(CardElement);
+
+            /*const {error, paymentMethod} = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement,
+            });*/
+            const {error, token} = await stripe.createToken(cardElement,{name:'Selim'});
+
+            if (error) {
+            console.log('[error]', error);
+            } else {
+            console.log('[PaymentMethod]', token);
+            console.log(token.id)
+            this.props.set_customer_info(token.id,'payment_token')
+            console.log(this.props)
+            this.props.setSpinner()
+            this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample_data')
+        }
+
+    }
     }
     render() {
         let backgroundColorTemplate = this.state.templateNav ? 'rgb(23, 233, 225)' : 'whitesmoke'
@@ -116,7 +158,7 @@ class PaymentOrEmailPage extends Component {
                         </div>
                     )
                 })
-                
+
         }
         let annual_revenue = null
         if (this.props.totalFilters.scaleAnnualRevenue.last !== 0)
@@ -131,37 +173,37 @@ class PaymentOrEmailPage extends Component {
         let employee_count = null
         if (this.props.totalFilters.scaleEmployeeCount.last !== 0)
             employee_count =
-                    <div className="col-12" style={{ width: '100%' }}>
-                        <div className="row">
-                            <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                                <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px' }}>{valueArrayEmp[this.props.totalFilters.scaleEmployeeCount.first]} - {valueArrayEmp[this.props.totalFilters.scaleEmployeeCount.last]}</h1>
-                            </div>
-                            
+                <div className="col-12" style={{ width: '100%' }}>
+                    <div className="row">
+                        <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
+                            <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px' }}>{valueArrayEmp[this.props.totalFilters.scaleEmployeeCount.first]} - {valueArrayEmp[this.props.totalFilters.scaleEmployeeCount.last]}</h1>
                         </div>
+
                     </div>
+                </div>
         return (
-            
-            <div className="container" style={{ pointerEvents: this.props.conditionForSpinner.divPointerEvents}}>
+
+            <div className="container" style={{ pointerEvents: this.props.conditionForSpinner.divPointerEvents }}>
                 {this.props.conditionForSpinner.runSpinner ? (<Spinner />) : null}
-                {this.props.alertOrNot !== false?(<AlertDone/>):null}
+                {this.props.alertOrNot !== false ? (<AlertDone />) : null}
                 <div className="row" style={backgroundStyle} >
                     <div className="col-12">
                         <div className="row back-button-container">
-                        <Link style={{textDecoration:'none'}} to="/">
-                            <div className="back-button">
-                            <i class="fa fa-angle-left icon-back-arrow"  aria-hidden="true"></i>
-                            </div>
-                        </Link>
+                            <Link style={{ textDecoration: 'none' }} to="/">
+                                <div className="back-button">
+                                    <i className="fa fa-angle-left icon-back-arrow" aria-hidden="true"></i>
+                                </div>
+                            </Link>
                         </div>
                     </div>
                     <div className="col-sm-12 col-md-8" >
-                        
+
                         <div className="row payment_container" style={infoColumn}>
-                            
+
                             <div className="col-sm-6 col-md-6 select_nav_buttons" style={{ height: '50px', backgroundColor: backgroundColorTemplate }} onClick={() => this.setState({ paymentNav: false, templateNav: true, sample_or_data: 'sample' })}>
-                                <div><label className="header-categories" style={{ color: colorTemplate }}>Send Sample</label></div></div>
-                            <div className="col-sm-6 col-md-6  select_nav_buttons" style={{ backgroundColor: backgroundColorPayment }} onClick={() => this.setState({ paymentNav: true, templateNav: false, sample_or_data: 'data'})} >
-                                <label className="header-location" style={{ color: colorPayment }}>Send all data and proceed payment</label>
+                                <div><label className="header-categories-payment" style={{ color: colorTemplate }}>Send Sample</label></div></div>
+                            <div className="col-sm-6 col-md-6  select_nav_buttons" style={{ backgroundColor: backgroundColorPayment }} onClick={() => this.setState({ paymentNav: true, templateNav: false, sample_or_data: 'data' })} >
+                                <label className="header-location-payment" style={{ color: colorPayment }}>Send all data and proceed payment</label>
                             </div>
 
                             <div className="col-md-12 col-sm-12" style={{ height: '50px', borderTopColor: 'rgb(23, 233, 225)', borderTopWidth: '5px', borderTopStyle: 'solid' }}>
@@ -187,8 +229,51 @@ class PaymentOrEmailPage extends Component {
                             <div className="col-md-12 col-sm-12 card_info_header_container" hidden={hiddenCardInfos}>
                                 <div><h1 className="card_info_header">Card Fields</h1></div>
                             </div>
+
+                            {/*<form onSubmit={(event) => this.handleSubmit(event)}>
+                                    Card details
+                                    <CardElement
+                                    options={{
+                                        style: {
+                                        base: {
+                                            fontSize: '16px',
+                                            color: '#424770',
+                                            '::placeholder': {
+                                            color: '#aab7c4',
+                                            width: '400px',
+                                            
+                                            },
+                                        },
+                                        invalid: {
+                                            color: '#9e2146',
+                                        },
+                                        },
+                                    }}
+                                    onReady={() => {
+                                        console.log("CardElement [ready]");
+                                    }}
+                                    onChange={event => {
+                                        console.log("CardElement [change]", event);
+                                    }}
+                                    onBlur={() => {
+                                        console.log("CardElement [blur]");
+                                    }}
+                                    onFocus={() => {
+                                        console.log("CardElement [focus]");
+                                    }}
+                                    />
+                            <button type="submit" disabled={!stripe}>
+                                Pay
+                            </button>
+                                </form>*/}
                             <div className="col-md-12 col-sm-12" hidden={hiddenCardInfos}>
-                                <input className="input_text_style" type="" placeholder="Card Number*" required value={this.state.card_number} onChange={(event) => {
+                                
+                                <Elements options={{hidePostalCode: true}}
+                                    stripe={stripePromise}>
+                                    <CardForm></CardForm>
+                                    
+                                </Elements>
+                                {/*<input className="input_text_style" type="" placeholder="Card Number*" required value={this.state.card_number} onChange={(event) => {
                                     let card_number = event.target.value.replace(/-/g, '');
                                     let len_card_number = card_number.length
                                     if (len_card_number > 4 && len_card_number <= 8)
@@ -245,14 +330,12 @@ class PaymentOrEmailPage extends Component {
                             <div className="col-md-4 col-sm-4" hidden={hiddenCardInfos}>
                                 <input className="input_text_style" type="tel" placeholder="CVC*" value={this.props.totalFilters.cvc}
                                     onChange={(event) => this.props.set_customer_info(event.target.value, 'cvc')}>
-                                </input>
+                                </input>*/}
                             </div>
-                            <div className="col-12 send_button_container" onClick={() => this.checkBeforeSubmit()}>
-                                <div className="">
-                                    <h1 className="send_button_text">{!this.state.paymentNav ? 'Send Sample' : 'Send All and Proceed Payment'}</h1>
-                                </div>
+                            <div className="col-12 send_button_container" onClick={() => this.checkBeforeSubmit()} hidden={this.state.paymentNav}>
+                                <h1 className="send_button_text">{!this.state.paymentNav ? 'Send Sample' : 'Send All and Proceed Payment'}</h1>
                             </div>
-                        </div>
+                            </div>
 
                     </div>
                     <div className="col-sm-12 col-md-4">
@@ -284,7 +367,7 @@ class PaymentOrEmailPage extends Component {
                                 {/*Annual_revenue*/}
                                 {this.props.totalFilters.scaleAnnualRevenue.last !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '3px' }}><h1 className="header-filters">Annual revenue</h1></div>) : null}
                                 {annual_revenue}
-                                {this.props.totalFilters.scaleEmployeeCount.last !== 0 ?(<div className="col-12" style={{ width: '100%', marginTop: '3px' }}><h1 className="header-filters">Employee Count</h1></div>) : null}
+                                {this.props.totalFilters.scaleEmployeeCount.last !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '3px' }}><h1 className="header-filters">Employee Count</h1></div>) : null}
                                 {employee_count}
                             </div>
                         </div>
@@ -316,7 +399,7 @@ function mapDispatchToProps(dispatch) {
         getTotalData: bindActionCreators(getTotalData, dispatch),
         set_customer_info: bindActionCreators(set_customer_info, dispatch),
         send_temp_email: bindActionCreators(send_temp_email, dispatch),
-        
+
     }
 
 }

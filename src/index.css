@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@font-face {
+  font-family: 'Gilmer-Light';
+  src: local('Gilmer-Light'), ur('../src/consts/fonts/Gilment-Light.otf') format('truetype');
+}
+@font-face {
+  font-family: 'Gilmer-Heavy';
+  src: local('Gilmer-Heavy'), url('../src/consts/fonts/Gilmer Heavy.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Gilmer-Regular';
+  src: local('Gilmer-Regular'), url('../src/consts/fonts/Gilmer Regular.ttf') format('truetype');
+}
+

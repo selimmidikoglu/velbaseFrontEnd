@@ -30,7 +30,7 @@ class Categories extends Component {
         let categories = null
         if (typeof this.props.defaultCategories !== 'undefined' && this.props.matchedCategories.length === 0) {
             categories = (
-                <div className= "col-12">
+                <div className= "col-12" style={{marginTop:'10px'}}>
                     {this.props.defaultCategories.map((category, index) => {
                         return(
                             <div className="row category-box">
@@ -52,7 +52,7 @@ class Categories extends Component {
         else if (typeof this.props.defaultCategories !== 'undefined' && this.props.searchKeyCategories !== "" && typeof this.props.matchedCategories !== 'undefined') {
             console.log(this.props.matchedCategories)
             categories = (
-                <div className="col-12">
+                <div className="col-12" style={{marginTop:'10px'}}>
                     {this.props.matchedCategories.map((category, index) => {
                         return (
                         <div className="row category-box">
@@ -71,7 +71,7 @@ class Categories extends Component {
         }
         else {
             categories = (
-                <div className="col-12 ">
+                <div className="col-12" style={{marginTop:'10px'}}>
                     {this.props.defaultCategories.map((category, index) => {
                         return (
                             <div className="row category-box">

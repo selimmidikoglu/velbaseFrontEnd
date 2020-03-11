@@ -1,6 +1,7 @@
 import CHOOSE_OTHER_SEARCH from '../actions/chooseSearchActions'
 let initialState = {
-    buttonCategory: '#81d4fa',
+    //buttonCategory: '#81d4fa',
+    buttonCategory: '#FCBD17',
     buttonLocation: 'white',
     buttonOtherFilters : 'white',
     textColorCategory: 'white',
@@ -20,7 +21,7 @@ export const chooseSearchReducer = (state = initialState,action) => {
             if(action.payload === "category"){
                 return{
                     ...state,
-                    buttonCategory: '#81d4fa',
+                    buttonCategory: '#FCBD17',
                     buttonLocation: 'white',
                     buttonOtherFilters: 'white',
                     textColorCategory: 'white',
@@ -37,7 +38,7 @@ export const chooseSearchReducer = (state = initialState,action) => {
                 return{
                     ...state,
                     buttonCategory: 'white',
-                    buttonLocation: '#81d4fa',
+                    buttonLocation: '#FCBD17',
                     buttonOtherFilters: 'white',
                     textColorCategory: 'gray',
                     textColorLocation :'white',
@@ -53,7 +54,7 @@ export const chooseSearchReducer = (state = initialState,action) => {
                     ...state,
                     buttonCategory: 'white',
                     buttonLocation: 'white',
-                    buttonOtherFilters: '#81d4fa',
+                    buttonOtherFilters: '#FCBD17',
                     textColorCategory: 'gray',
                     textColorLocation :'gray',
                     textColorOtherFilters:'white',

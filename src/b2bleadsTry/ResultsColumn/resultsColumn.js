@@ -26,7 +26,7 @@ class ResultsColumn extends Component {
     render() {
         
         return( 
-            <div className="col-12 result-inner-box" style={{padding:'40px',backgroundColor:'#0091ea'}}>
+            <div className="col-12 result-inner-box">
                 <div className="row" style={{justifyContent:'center',alignItems:'center', textAlign:'center',backgroundColor:'white'}}>
                     <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%'}}className = "dataCount" >Total Count: {this.props.totalCount}</h1>
                 </div>

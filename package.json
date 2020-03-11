@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@gilbarbara/react-range-slider": "^0.5.0",
+    "@stripe/react-stripe-js": "^1.0.3",
+    "@stripe/stripe-js": "^1.0.2",
     "bootstrap": "^4.4.1",
     "bootstrap-slider": "^10.6.2",
     "mdbreact": "^4.24.0",

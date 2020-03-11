@@ -45,7 +45,7 @@
   background: #343d46;
 }
 .option-input:checked {
-  background: #81d4fa;
+  background: #FCBD17;
 }
 .option-input:checked::before {
   height: 15px;

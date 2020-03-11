@@ -1,5 +1,8 @@
 .result-inner-box{
-    background-color: rgb(102, 129, 129);
+    border-radius: 7px;
+    padding:40px;
+    //background-color:#0091ea;
+    background-image: linear-gradient(to right, #E61575 , #2B3079);
 }
 .locations-container{
    margin-top: 0;

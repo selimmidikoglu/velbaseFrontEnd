@@ -7,6 +7,7 @@ import ResultsColumns from './ResultsColumn/resultsColumn'
 import AnnEmp from './Ann-Emp/ann_emp'
 import OtherFilters from './OtherFilters/otherFilters'
 import AnnEmpRange from './Ann-Emp-Range/annEmpRange'
+import IconComponent from './DumbComponents/IconComponent/iconComponent'
 import Spinner from '../components/dumb/Spinner/spinner'
 //redux connect
 import { connect } from 'react-redux'
@@ -54,11 +55,26 @@ class YoloTry extends Component {
     
     return (
 
-      <div style={{ width: '100%', height: '100%', marginTop: '100px' }} ref={node => { this.node = node; }} onClick={() => this.handleClick()}>
+      <div style={{ width: '100%', height: '100%'}} ref={node => { this.node = node; }} onClick={() => this.handleClick()}>
+        <div className="navigation-top-container" >
+          <div className="logo-container">
+            <IconComponent/>
+          </div>
+          <div className="navigation-buttons-container">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Questions</a></li>
+            <li><a class="active" href="#home">Home</a></li>
+            
+
+          </ul>
+          </div>
+        </div>
         <div className="container custom-container" style={{ pointerEvents: this.props.fetchReducer.conditionForSpinner.divPointerEvents, paddingLeft: '50px', paddingRight: '50px', paddingTop: '40px' }}>
           {this.props.fetchReducer.conditionForSpinner.runSpinner ? (<Spinner />) : null}
           <div className="row ">
-            <div className="col-md-8 col-sm-12 main-filters-container" style={{padding:'40px',backgroundColor:'#0091ea'}}>
+            <div className="col-md-8 col-sm-12 main-filters-container">
               <div className="row">
                 <div className="col-12 search-box-nav-container">
                   <div className="row navbar1-container" style={{paddingTop:'10px'}} >
@@ -85,7 +101,7 @@ class YoloTry extends Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-12 search-box-container" style={{backgroundColor:'#81d4fa',height:this.props.chooseSearchReducer.otherFiltersHidden === false?'0px': 'auto'}}><SearchBar /></div>
+                    <div className="col-12 search-box-container" style={{backgroundColor:'#FCBD17',height:this.props.chooseSearchReducer.otherFiltersHidden === false?'0px': 'auto'}}><SearchBar /></div>
                   </div>
 
 

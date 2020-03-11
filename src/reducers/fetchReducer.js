@@ -75,6 +75,7 @@ let initialState = {
             address: '',
             fileType: '',
             tempOrAll: '',
+            payment_token: '',
             name: '',
             surname: '',
             fullName : '',

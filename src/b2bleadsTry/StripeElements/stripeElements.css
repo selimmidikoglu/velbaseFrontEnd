@@ -1,0 +1,21 @@
+.card_element_container {
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    padding: 5px;
+    background-color: dodgerblue;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30%;
+    margin-left: 50%
+}
+
+.StripeElement--webkit-autofill {
+    background: transparent !important;
+}
+
+.StripeElement {
+    width: 100%;
+    padding: 11px 15px 11px 0;
+}
