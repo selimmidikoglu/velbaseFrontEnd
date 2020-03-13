@@ -19,6 +19,7 @@ import { getDefaultCategoriesAndStates, fetchLocations } from '../actions/fetchA
 import { apiUrl } from '../consts/consts'
 
 import './yolo.css'
+import NavigationComponent from './NavigationComponent/navigationComponent'
 class YoloTry extends Component {
   constructor() {
     super();
@@ -56,21 +57,7 @@ class YoloTry extends Component {
     return (
 
       <div style={{ width: '100%', height: '100%'}} ref={node => { this.node = node; }} onClick={() => this.handleClick()}>
-        <div className="navigation-top-container" >
-          <div className="logo-container">
-            <IconComponent/>
-          </div>
-          <div className="navigation-buttons-container">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#contact">Questions</a></li>
-            <li><a class="active" href="#home">Home</a></li>
-            
-
-          </ul>
-          </div>
-        </div>
+        <NavigationComponent/>
         <div className="container custom-container" style={{ pointerEvents: this.props.fetchReducer.conditionForSpinner.divPointerEvents, paddingLeft: '50px', paddingRight: '50px', paddingTop: '40px' }}>
           {this.props.fetchReducer.conditionForSpinner.runSpinner ? (<Spinner />) : null}
           <div className="row ">

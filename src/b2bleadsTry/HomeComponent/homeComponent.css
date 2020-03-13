@@ -1,0 +1,96 @@
+.home-page-main-header{
+    margin-top: 100px;
+    margin-left: 100px;
+    font-family: Gilmer-Heavy;
+    font-size: 40px;
+    background: linear-gradient(to right, #E61575  , #2B3079 )    ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.home-page-sub-header{
+    margin-left: 100px;
+    margin-top: 20px;
+    font-family: Gilmer-Heavy;
+    font-size: 27px;
+    background: #E61575 ;
+    //background: linear-gradient(to right, #E61575  , #2B3079 );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    //text-shadow: 2px 2px #2B3079;
+}
+.home-page-small-text{
+    padding:20px 0px;
+    margin-left: 100px;
+    margin-top: 20px;
+    font-family: Gilmer-Regular;
+    font-size: 16px;
+    color:gray;
+}
+.home-page-small-text-question{
+    margin-left: 100px;
+    margin-top: 20px;
+    font-family: Gilmer-Heavy;
+    font-size: 17px;
+    background: #E61575 ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.how-to-use-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.first-image-cascade{
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: #E61575;
+    position: absolute;
+    border-color: aliceblue;
+    border-width: 0.5px;
+    border-style: solid;
+}
+.second-image-cascade{
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
+    background: linear-gradient(to right,  #2B3079 , #E61575 );
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-color: aliceblue;
+    border-width: 0.5px;
+    border-style: solid;
+}
+.third-image-cascade{
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: #2B3079;
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 40px;
+    border-color: aliceblue;
+    border-width: 0.5px;
+    border-style: solid;
+}
+.discover-leads-button{
+    width: 200px;
+    height: 50px;
+    background-color: #FCBD17;
+    text-align: center;
+    margin-left: 100px;
+    border-radius: 30px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.discover-leads-button:hover{
+    background-color: #E61575;
+}
+.discover-leads-button-text{
+    font-size: 20px;
+    font-family: Gilmer-Regular;
+    color: whitesmoke;
+    
+}
