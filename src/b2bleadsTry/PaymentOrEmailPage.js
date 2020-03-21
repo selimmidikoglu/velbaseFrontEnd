@@ -189,7 +189,7 @@ class PaymentOrEmailPage extends Component {
                 <div className="row" style={backgroundStyle} >
                     <div className="col-12">
                         <div className="row back-button-container">
-                            <Link style={{ textDecoration: 'none' }} to="/">
+                            <Link style={{ textDecoration: 'none' }} to={{pathname:'/leads'}}>
                                 <div className="back-button">
                                     <i className="fa fa-angle-left icon-back-arrow" aria-hidden="true"></i>
                                 </div>

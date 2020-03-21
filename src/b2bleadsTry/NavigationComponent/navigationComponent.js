@@ -11,9 +11,13 @@ export default class NavigationComponent extends Component {
                 </div>
                 <div className="navigation-buttons-container">
                     <ul>
-                        <li><a href="#about">About</a></li>
+                        <Link style={{ textDecoration: 'none' }} to={{ pathname: "/aboutus", state: { section: 'full_data' } }} >
+                            <li><a href="#about">About</a></li>
+                        </Link>
                         <li><a href="#news">News</a></li>
-                        <li><a href="#contact">Questions</a></li>
+                        <Link style={{ textDecoration: 'none' }} to={{ pathname: "/questions"}} >
+                            <li><a href="#contact">Questions</a></li>
+                        </Link>
                         <Link style={{ textDecoration: 'none' }} to={{ pathname: "/home", state: { section: 'full_data' } }} >
                             <li><a class="active" href="#home">Home</a></li>
                         </Link>

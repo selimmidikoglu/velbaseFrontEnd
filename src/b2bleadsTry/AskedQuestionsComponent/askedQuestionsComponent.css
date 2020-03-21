@@ -1,0 +1,26 @@
+.main-header-asked-questions-text{
+    font-size:3.1vh;
+    margin-top: 100px;
+    margin-left: 2vw;
+    margin-bottom:3vh;
+    font-family: Gilmer-Heavy;
+    background: linear-gradient(to right, #E61575  , #2B3079 )    ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.question-text{
+    padding:0.5vh 0px;  
+    font-family: Gilmer-Regular;
+    font-size: 2.2vh;
+    margin-left:2vw;
+    color:#2B3079;
+    font-weight: 700;
+}
+.answer-text{
+    padding:0px;  
+    font-family: Gilmer-Regular;
+    font-size: 2vh;
+    margin-left:2vw;
+    margin-right:2vw;
+    color:#313335;
+}

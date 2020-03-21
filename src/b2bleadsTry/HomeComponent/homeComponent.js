@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NavigationComponent from '../NavigationComponent/navigationComponent'
 import './homeComponent.css'
+import { Link } from 'react-router-dom'
 import image1 from './process1.JPG';
 import image2 from './process2.JPG';
 export default class HomeComponent extends Component {
@@ -62,7 +63,9 @@ export default class HomeComponent extends Component {
                         </div>
                         <div className="col-12">
                             <div className="discover-leads-button">
-                                <label className="discover-leads-button-text">Discover Leads</label>
+                                <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
+                                    <label className="discover-leads-button-text">Discover Leads</label>
+                                </Link>
                             </div>
                         </div>
                     </div>

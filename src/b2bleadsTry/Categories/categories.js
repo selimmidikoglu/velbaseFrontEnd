@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux'
 import './categories.css'
 import { getDefaultCategoriesAndStates, getMatchedCategories, insertChoosenCategories,setSearchKeyCategories, getTotalData, setSpinner} from '../../actions/fetchActions'
 
-const apiUrl = "http://139.99.68.189:3000/"
+import {apiUrl} from '../../consts/consts'
 
 class Categories extends Component {
 

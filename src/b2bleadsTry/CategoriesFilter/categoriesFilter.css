@@ -1,0 +1,10 @@
+.categories-header-filter-text-1 {
+    font-family: Gilmer-Regular;
+    color:#fff;
+    text-align:center;
+    font-size:1.3vw;
+}
+.category-filter-con {
+    border-bottom: 2px solid rgba(255,255,255,0.8);
+    border-radius: 1px;
+}

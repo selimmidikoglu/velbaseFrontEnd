@@ -1,1 +1,1 @@
-export const apiUrl = "http://139.99.68.189:3000/"
+export const apiUrl = "https://vb.intenwin.com/api/"

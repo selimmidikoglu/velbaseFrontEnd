@@ -16,16 +16,16 @@ class CategoriesFilter extends Component {
         let categories = null
         if(Object.keys(this.props.totalFilters.categories).length !== 0){
             categories = 
-            <div className="row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'20px'}}>
-                <div  className="col-12" style={{marginBottom:'5px',textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 style={{color:'#fff',textAlign:'center',fontSize:'12px',fontWeight:'bold'}}>Categories</h2></div>
+            <div className="row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'rgb(252, 189, 23)',width:'100%',padding:'20px'}}>
+                <div  className="col-12" style={{marginBottom:'5px',textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 className="categories-header-filter-text-1">Categories</h2></div>
                 {Object.keys(this.props.totalFilters.categories).map((category,index) => {
                     return (
                         <div className="col-12" style={{width:'100%',marginTop:'3px'}}> 
-                            <div className="row">
-                                <div className="col-10" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
+                            <div className="row category-filter-con">
+                                <div className="col-sm-6 col-md-8 " style={{display:'flex',justifyContent:'left',alignItems:'center',margin:0}}>
                                     <div style={{height:'100%',display:'flex',textAlign:'left'}}><h1 style = {{color:'#fff',fontSize:'13px'}}>{category}</h1></div>
                                 </div>
-                                <div className="col-2" style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+                                <div className="col-sm-6 col-md-4" style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                     
                                         <button  className="close-button" href="/" onClick={(event) => {
                                         this.props.setSpinner()
