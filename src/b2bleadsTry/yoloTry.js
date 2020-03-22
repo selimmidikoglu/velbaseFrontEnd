@@ -61,28 +61,28 @@ class YoloTry extends Component {
         <div className="container custom-container" style={{ pointerEvents: this.props.fetchReducer.conditionForSpinner.divPointerEvents, paddingLeft: '50px', paddingRight: '50px', paddingTop: '40px' }}>
           {this.props.fetchReducer.conditionForSpinner.runSpinner ? (<Spinner />) : null}
           <div className="row ">
-            <div className="col-md-8 col-sm-12 main-filters-container">
+            <div className="col-xl-8 col-md-7 col-sm-12 main-filters-container">
               <div className="row">
                 <div className="col-12 search-box-nav-container">
                   <div className="row navbar1-container" style={{paddingTop:'10px'}} >
                     <div className="col-4 category-nav-button" style={{ backgroundColor: this.props.chooseSearchReducer.buttonCategory }}
                       onClick={() => this.props.chooseOtherSearch("category")}>
                       <div>
-                        <label className="header-categories"
+                        <label className="header-leads-page"
                           style={{ color: this.props.chooseSearchReducer.textColorCategory }}>Categories</label>
                       </div>
                     </div>
                     <div className="col-4 location-nav-button" style={{ backgroundColor: this.props.chooseSearchReducer.buttonLocation }}
                       onClick={() => this.props.chooseOtherSearch("location")}>
                       <div>
-                        <label className="header-location"
+                        <label className="header-leads-page"
                           style={{ color: this.props.chooseSearchReducer.textColorLocation }}>Locations</label>
                       </div>
                     </div>
                     <div className="col-4 location-nav-button" style={{ backgroundColor: this.props.chooseSearchReducer.buttonOtherFilters }}
                       onClick={() => this.props.chooseOtherSearch("otherFilters")}>
                       <div>
-                        <label className="header-location"
+                        <label className="header-leads-page"
                           style={{ color: this.props.chooseSearchReducer.textColorOtherFilters }}>OtherFilters</label>
                       </div>
                     </div>
@@ -101,7 +101,7 @@ class YoloTry extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-4 col-sm-12 results-container"><ResultsColumns /></div>
+            <div className="col-xl-4 col-md-5 col-sm-12 results-container"><ResultsColumns /></div>
           </div>
         </div>
       </div>

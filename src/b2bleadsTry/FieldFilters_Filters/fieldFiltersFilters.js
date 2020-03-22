@@ -14,48 +14,50 @@ class FieldFiltersFilters extends Component {
     render() {
         let filters = null
         filters =
-            <div className="row" style={{ marginTop: '10px', borderRadius: '5px', backgroundColor: '#81d4fa', width: '100%', padding: '20px' }}>
-                <div className="col-12" style={{ textAlign: 'center', alignItems: 'center', justifyContent: 'center' }}><h2 style={{ color: '#fff', textAlign: 'center', fontSize: '12px', fontWeight: 'bold' }}>Field Filters</h2></div>
-
-                <div className="col-lg-10 col-md-8 col-sm-6 city-text-container" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }} hidden={!this.props.totalFilters.hasPhone1}>
-                    <h1 className="city-text-filter" style={{ color: '#fff', fontSize: '13px' }}>Has Phone</h1>
-                </div>
-                <div className="col-lg-2 col-md-4 col-sm-6" style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', alignItems: 'center' }} hidden={!this.props.totalFilters.hasPhone1}>
-                    <div>
-                        <button className="close-button pull-right " onClick={(event) => {
-                            this.props.setSpinner()
-                            this.props.update_other_filter(true, 'phone', null)
-                            setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
-                        }} ></button>
+            <div className="row every-filter-container">
+                <div className="col-12" style={{marginBottom:'5px',textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 className="categories-header-filter-text-1">Field Filters</h2></div>
+                <div className="col-12" style={{width:'100%',marginTop:'3px'}} hidden={!this.props.totalFilters.hasPhone1}> 
+                    <div className="row category-filter-con">
+                        <div className="col-10 col-md-8 col-lg-11 filter-info-container"  hidden={!this.props.totalFilters.hasPhone1}>
+                            <span className="category-text-span">Has Phone</span>
+                        </div>
+                        <div className="col-2 col-md-4 col-lg-1 category-remove-button-con"  hidden={!this.props.totalFilters.hasPhone1}>
+                                <button className="close-button" onClick={(event) => {
+                                    this.props.setSpinner()
+                                    this.props.update_other_filter(true, 'phone', null)
+                                    setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
+                                }} ></button>
+                        </div>
+                    </div>
+                </div>  
+                <div className="col-12" style={{width:'100%',marginTop:'3px'}} hidden={!this.props.totalFilters.hasEmail1}> 
+                    <div className="row category-filter-con">    
+                        <div className="col-10 col-md-8 col-lg-11 filter-info-container" hidden={!this.props.totalFilters.hasEmail1}>
+                            <span className="category-text-span">Has Email</span>
+                        </div>
+                        <div className="col-2 col-md-4 col-lg-1 category-remove-button-con" hidden={!this.props.totalFilters.hasEmail1}>
+                                <button className="close-button" onClick={(event) => {
+                                    this.props.setSpinner()
+                                    this.props.update_other_filter(true, 'email', null)
+                                    setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
+                                }} ></button>
+                        </div>
                     </div>
                 </div>
-
-                <div className="col-lg-10 col-md-8 col-sm-6 city-text-container" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', marginTop:'5px' }} hidden={!this.props.totalFilters.hasEmail1}>
-                    <h1 className="city-text-filter" style={{ color: '#fff', fontSize: '13px' }}>Has Email</h1>
-                </div>
-                <div className="col-lg-2 col-md-4 col-sm-6" style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', alignItems: 'center',marginTop:'5px' }} hidden={!this.props.totalFilters.hasEmail1}>
-                    <div>
-                        <button className="close-button pull-right " onClick={(event) => {
-                            this.props.setSpinner()
-                            this.props.update_other_filter(true, 'email', null)
-                            setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
-                        }} ></button>
-                    </div>
-                </div>
-
-                <div className="col-lg-10 col-md-8 col-sm-6 city-text-container" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', marginTop:'5px' }} hidden={!this.props.totalFilters.hasWebsite}>
-                    <h1 className="city-text-filter" style={{ color: '#fff', fontSize: '13px' }}>Has Website</h1>
-                </div>
-                <div className="col-lg-2 col-md-4 col-sm-6" style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', alignItems: 'center',marginTop:'5px' }} hidden={!this.props.totalFilters.hasWebsite}>
-                    <div>
-                        <button className="close-button pull-right " onClick={(event) => {
-                            this.props.setSpinner()
-                            this.props.update_other_filter(true, 'website', null)
-                            setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
-                        }} ></button>
-                    </div>
-                </div>
-
+                <div className="col-12" style={{width:'100%',marginTop:'3px'}} hidden={!this.props.totalFilters.hasWebsite}> 
+                    <div className="row category-filter-con">
+                        <div className="col-10 col-md-8 col-lg-11 filter-info-container" hidden={!this.props.totalFilters.hasWebsite}>
+                            <span className="category-text-span">Has Website</span>
+                        </div>
+                        <div className="col-2 col-md-4 col-lg-1 category-remove-button-con"  hidden={!this.props.totalFilters.hasWebsite}>
+                                <button className="close-button" onClick={(event) => {
+                                    this.props.setSpinner()
+                                    this.props.update_other_filter(true, 'website', null)
+                                    setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
+                                }} ></button>
+                        </div>
+                    </div> 
+                </div>               
             </div>
         if(!(this.props.totalFilters.hasEmail1 || this.props.totalFilters.hasPhone1 ||this.props.totalFilters.hasWebsite))
         {

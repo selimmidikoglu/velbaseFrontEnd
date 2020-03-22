@@ -1,8 +1,8 @@
 .result-inner-box{
     border-radius: 7px;
     padding:40px;
-    //background-color:#0091ea;
-    background-image: linear-gradient(to right, #E61575 , #2B3079);
+    background-color:#4A52BF;
+    //background-image: linear-gradient(to right, #E61575 , #2B3079);
 }
 .locations-container{
    margin-top: 0;
@@ -14,7 +14,7 @@
     margin-bottom: 20px;
 }
 .data-button-text{
-    font-family: 'Chivo', sans-serif;
+    font-family: Gilmer-Regular;
 	font-size:15px;
 	//font-weight:bold;
 	text-decoration:none;
@@ -24,8 +24,7 @@
     color:white;
 }
 .data-button {
-	background-color:#81d4fa;
-	
+	background-color:#E94A40;
 	border-radius:6px;
 	display:inline-block;
 	cursor:pointer;
@@ -35,21 +34,22 @@
 }
 .data-button:hover {
     text-decoration: none;
+    background-color:#FCBD17;
 }
 
 .other-params-text{
-    font-family: 'Chivo', sans-serif;
-    color:white;
+    font-family: Gilmer-Regular;
+    color:rgb(252,189,23);
     font-size:13px;
 }
 .other-params-data-text{
-    font-family: 'Chivo', sans-serif;
-    color: cadetblue;
+    font-family: Gilmer-Regularf;
+    color: white;
     font-size:13px;
 }
 .filters-header{
-    font-family: 'Chivo', sans-serif;
-    color: #81d4fa;
+    font-family: Gilmer-Regular;
+    color: rgb(252,189,23);
     font-size:20px;
     width:100%;
 }
@@ -58,4 +58,16 @@
 }
 .get-sample-button:hover{
     color:white;
+}
+.count-of-other-data{
+    border-color: white;
+    border-width:1px;
+    border-style:solid;
+    border-radius:10px;
+    background-color:#2B3079;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    margin-top:10px;
+    padding:10px;
 }

@@ -15,7 +15,7 @@ class Locations extends Component {
 
     render() {
         return (
-            <div className="row locations-container">
+            <div className="row locations-container" style={{zIndex:-1}}>
                 <div className="col-6 locations-header-box">
                 
                     <div className="wrap">

@@ -93,7 +93,7 @@ class SearchBar extends Component {
       <div className="row">
         <div className="col-12 search-bar"><input type="text" className="search-text" placeholder="Searh Category"
           value={this.props.fetchReducer.searchKeyCategories} onKeyDown={(event) => this.handleKeyEnterCategories(event)} onChange={(event) => this.props.setSearchKeyCategories(event)} /></div>
-        <div className="col-12 search-results" hidden style={{ zIndex: 2000 }}></div>
+        <div className="col-12 search-results" hidden></div>
       </div>
     )
     let locations_search = (
@@ -106,7 +106,7 @@ class SearchBar extends Component {
             this.props.setSearchKeyLocations(event)
           }}
           onClick={(event) => this.handleKeyEnterLocations(event)} /></div>
-        <div className="col-12 search-results" hidden={conditionSearchBottomHidden} style={{ backgroundColor: 'rgba(255,255,255,0)', zIndex: 2000, width: 'auto' }}>
+        <div className="col-12 search-results" hidden={conditionSearchBottomHidden} style={{marginTop:'5px',backgroundColor: 'rgba(255,255,255,0)', width: 'auto', position:'relative' }}>
           {searchLocationsResults}
         </div>
       </div>

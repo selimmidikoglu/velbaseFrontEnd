@@ -24,18 +24,20 @@ class States extends Component {
                 this.props.matchedStates.map((state, index) => {
                     return (
                         <div key={index} className="row styles-checkbox">
-                                <div className ="col-md-8" style={{textAlign: 'left' }}><label className="state-text">{state.state} </label></div>
-                                <div className ="col-md-4" ><div><input type="checkbox" key={index} className="option-input checkbox" defaultChecked={false} 
+                                <div className ="col-9 col-sm-9 col-md-8" style={{textAlign: 'left' }}><label className="state-text">{state.state} </label></div>
+                                <div className ="col-3 col-sm-3 col-md-4" ><input type="checkbox" key={index} className="option-input checkbox" defaultChecked={false} 
                                     checked={this.props.totalFilters.states[state.abbreviation]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
                                         this.props.insertChoosenStates(event, "states", index, state.state , state.abbreviation)
+                                        this.props.getCitiesInState(apiUrl, "states", this.props.totalFilters.states)
                                         this.props.setSpinner()
                                         this.props.getTotalData(this.props.totalFilters,apiUrl)
-                                        this.props.getCitiesInState(apiUrl, "states", this.props.totalFilters.states)
+                                        
+                                        
                                         console.log("lanet gelsin",this.props.totalFilters.states)
                                         
-                                    }} /></div></div>
+                                    }} /></div>
                         </div>
                     )
 

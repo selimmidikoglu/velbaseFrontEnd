@@ -16,27 +16,25 @@ class CitiesFilter extends Component {
         let cities = null
         if(Object.keys(this.props.totalFilters.cities).length !== 0){
             cities = 
-            <div className="row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'20px'}}>
-                <div className="col-12" style={{textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 style={{color:'#fff',textAlign:'center',fontSize:'12px',fontWeight:'bold'}}>Cities</h2></div>
+            <div className="row" className="every-filter-container">
+                <div className="col-12" style={{textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 className="categories-header-filter-text-1">Cities</h2></div>
                 {Object.keys(this.props.totalFilters.cities).map((city,index) => {
                     console.log(this.props.totalFilters.cities[city])
                     return (
                         
-                        <div className= "col-12" style={{height:'auto'}}> 
-                            <div className = "row" style={{marginTop:'5px'}}>
-                            <div className="col-md-10 city-text-container" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
-                                <h1 className="city-text-filter" style = {{color:'#fff',fontSize:'13px'}}>{city}, {this.props.totalFilters.cities[city].state}</h1>
+                        <div className= "col-12" style={{width:'100%',marginTop:'3px'}}> 
+                            <div className = "row category-filter-con">
+                            <div className="col-10 col-md-8 col-lg-11 filter-info-container" >
+                                <span className="city-text-filter" style = {{color:'#fff',fontSize:'13px'}}>{city}, {this.props.totalFilters.cities[city].state}</span>
                             </div>
-                            <div className="col-md-2"style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
-                                <div>
-                                    <button  className="close-button pull-right " onClick={(event) => {
+                            <div className="col-2 col-md-4 col-lg-1 category-remove-button-con">
+                                    <button  className="close-button" onClick={(event) => {
                                         this.props.setSpinner()
                                         this.props.insertChoosenCities(event, "cities", index, city)
                                         this.props.getZipCodesInCities(apiUrl, "cities", this.props.totalFilters.cities)
                                         this.props.setSpinner()
                                         this.props.getTotalData(this.props.totalFilters,apiUrl)
                                     }} ></button>
-                                </div>
                             </div>
                         </div>
                         </div>

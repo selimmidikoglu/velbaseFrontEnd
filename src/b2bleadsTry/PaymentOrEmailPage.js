@@ -105,7 +105,7 @@ class PaymentOrEmailPage extends Component {
             this.props.set_customer_info(token.id,'payment_token')
             console.log(this.props)
             this.props.setSpinner()
-            this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample_data')
+            this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'data')
         }
 
     }

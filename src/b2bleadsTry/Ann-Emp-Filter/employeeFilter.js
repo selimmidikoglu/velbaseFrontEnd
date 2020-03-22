@@ -29,19 +29,19 @@ class EmpFilter extends Component {
         }
         if(count !== 1){
             emp_count = 
-            <div className = "row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'2px'}}>
-                <div  className="col-12" style={{textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 style={{color:'#fff',textAlign:'center',fontSize:'12px',fontWeight:'bold'}}>Employee Count</h2></div>
+            <div className = "row every-filter-container">
+                <div  className="col-12" style={{marginBottom:'5px',textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 className="categories-header-filter-text-1">Employee Count</h2></div>
                 {this.props.totalFilters.scaleEmployeeCount.map((scaleEmpCount,index) => {
                     if(scaleEmpCount === true && index !== 0)
                         return (
-                            <div className= "col-12" style={{height:'auto'}}> 
-                                <div className = "row" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
-                                    <div className = "col-md-10 state-text-container" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
-                                        <h1 className= "state-text-filter" style = {{color:'#fff',fontSize:'13px'}}>{employeeArray[index].text}</h1>
+                            <div className= "col-12" style={{width:'100%',marginTop:'3px'}}> 
+                                <div className = "col-10 col-md-8 col-lg-11 filter-info-container">
+                                    <div className = "col-md-10 state-text-container">
+                                        <span className= "category-text-span">{employeeArray[index].text}</span>
                                     </div>
-                                    <div className="col-md-2" style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+                                    <div className="col-2 col-md-4 col-lg-1 category-remove-button-con">
                                         <div>
-                                            <button  className="close-button pull-right " onClick={(event) => {
+                                            <button  className="close-button" onClick={(event) => {
                                                 this.props.setSpinner()
                                                 this.props.update_other_filter(true,'employee_count',index)
                                                 this.props.getTotalData(this.props.totalFilters,apiUrl)

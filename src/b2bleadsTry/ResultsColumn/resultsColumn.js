@@ -28,10 +28,12 @@ class ResultsColumn extends Component {
         return( 
             <div className="col-12 result-inner-box">
                 <div className="row" style={{justifyContent:'center',alignItems:'center', textAlign:'center',backgroundColor:'white'}}>
-                    <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%'}}className = "dataCount" >Total Count: {this.props.totalCount}</h1>
+                    <h1 style = {{marginTop: '10px',color:'#FCBD17',fontSize:18,height:'50%', fontFamily:'Gilmer-Heavy',marginRight:'5px'}}className = "dataCount" >Total Count :</h1>
+                    <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%', fontFamily:'Gilmer-Regular'}}className = "dataCount" >{this.props.totalCount}</h1>
                 </div>
                 <div className="row" style={{justifyContent:'center',alignItems:'center', textAlign:'center',backgroundColor:'white'}}>
-                    <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%'}}className = "dataCount" >Total Price: {this.props.totalCount * 9/100}$</h1>
+                    <h1 style = {{marginTop: '10px',color:'#FCBD17',fontSize:18,height:'50%', fontFamily:'Gilmer-Heavy',marginRight:'5px'}} className = "dataCount" >Total Price: </h1>
+                    <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%', fontFamily:'Gilmer-Regular'}}className = "dataCount" >{this.props.totalCount * 9/100}$</h1>
                 </div>
                 <Link style={{textDecoration:'none'}} to={{pathname:"/second",state:{section:'full_data'}}} >
                 <div className="row"   hidden={this.props.totalCount!==0?false:true}>
@@ -46,15 +48,15 @@ class ResultsColumn extends Component {
                 <Link style={{textDecoration:'none'}} to={{pathname:"/second",state:{section:'sample'}}} >
                 <div className="row"   hidden={this.props.totalCount!==0?false:true}>
                     
-                    <div className = ""><h1 className="data-button-text get-sample-button" style={{fontSize:'14px',textDecoration:'underline'}}>Get sample</h1></div>
+                    <div className = ""><h1 className="data-button-text get-sample-button" style={{fontSize:'14px',textDecoration:'underline',fontFamily:'Gilmer-Regular',color:'#E94A40'}}>Get sample</h1></div>
                     </div>
                 
                 </Link>
                 
                
-                <div className= "row" style={{backgroundColor:'white',padding:'10px',marginTop:'20px'}}>
+                <div className= "row filters-box-container" style={{borderColor: 'white', borderWidth:'1px',borderStyle:'solid', backgroundColor:'#2B3079',paddingBottom:'10px',marginTop:'20px',borderRadius:'10px'}}>
                         <div className="col-12"  style={{padding:0,display:'flex',alignItems:'center',justifyContent:'center'}}>
-                            <div style={{widht:'100%'}}><h1 className="filters-header">Filters</h1></div> <br/>   
+                            <div style={{widht:'100%'}}><h1 className="filters-header">Filters</h1></div> <br/> 
                         </div>
                         <CategoriesFilter/>
                         <StatesFilter/>
@@ -66,9 +68,9 @@ class ResultsColumn extends Component {
                  
                 </div>
                 
-                <div className="col-12 count-of-other-data" style={{display:'flex',alignItems:'flex-start',justifyContent:'center',marginTop:'20px'}}>
-                    <div className="row"  hidden={this.props.totalCount!==0?false:true} style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'20px'}}>
-                        <div className="col-6">
+                <div className="row count-of-other-data" hidden={this.props.totalCount!==0?false:true}>
+                    
+                        <div className="col-12">
                             <div className="row">
                                 <div className="col-6">
                                     <h1 className="other-params-text">Facebook:</h1>
@@ -78,7 +80,7 @@ class ResultsColumn extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12">
                             <div className="row">
                                 <div className="col-6">
                                     <h1 className="other-params-text">Twitter:</h1>
@@ -88,7 +90,7 @@ class ResultsColumn extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12">
                             <div className="row">
                                 <div className="col-6">
                                     <h1 className="other-params-text">Email:</h1>
@@ -98,7 +100,7 @@ class ResultsColumn extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12">
                             <div className="row">
                                 <div className="col-6">
                                     <h1 className="other-params-text">Website:</h1>
@@ -108,7 +110,7 @@ class ResultsColumn extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12">
                             <div className="row">
                                 <div className="col-6">
                                     <h1 className="other-params-text">Fax:</h1>
@@ -118,17 +120,17 @@ class ResultsColumn extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12">
                             <div className="row">
                                 <div className="col-6">
-                                    <h1 className="other-params-text">bbb_accr:</h1>
+                                    <h1 className="other-params-text">bbb_accredited:</h1>
                                 </div>
                                 <div className="col-6">
                                     <h1 className="other-params-data-text">{this.props.countBBB}</h1>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12">
                             <div className="row">
                                 <div className="col-6">
                                     <h1 className="other-params-text">Reviewed:</h1>
@@ -139,7 +141,7 @@ class ResultsColumn extends Component {
                             </div>
                         </div>
                     
-                    </div>
+                    
                     
                 </div>
                 

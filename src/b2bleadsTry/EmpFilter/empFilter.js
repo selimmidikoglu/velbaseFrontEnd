@@ -23,21 +23,19 @@ class EmpFilter extends Component {
         let employee_count = null
         if(this.props.totalFilters.scaleEmployeeCount.last !== 0 )
             employee_count = 
-            <div className = "row" style={{marginTop:'10px',borderRadius:'5px',backgroundColor:'#81d4fa',width:'100%',padding:'20px'}}>
-                <div  className="col-12" style={{textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 style={{color:'#fff',textAlign:'center',fontSize:'12px',fontWeight:'bold'}}>Employee Count</h2></div>
-                <div className= "col-12" style={{width:'100%'}}> 
-                    <div className = "row">
-                        <div className = "col-md-10 state-text-container" style={{display:'flex',justifyContent:'left',alignItems:'center',height:'20px',margin:0}}>
-                            <h1 className= "state-text-filter" style = {{color:'#fff',fontSize:'13px'}}>{valueArray[this.props.totalFilters.scaleEmployeeCount.first]} - {valueArray[this.props.totalFilters.scaleEmployeeCount.last]}</h1>
+            <div className = "row every-filter-container">
+                <div  className="col-12" style={{marginBottom:'5px',textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 className="categories-header-filter-text-1">Employee Count</h2></div>
+                <div className= "col-12" style={{width:'100%',marginTop:'3px'}}> 
+                    <div className = "row category-filter-con">
+                        <div className = "col-10 col-md-8 col-lg-11 filter-info-container">
+                            <span className= "category-text-span">{valueArray[this.props.totalFilters.scaleEmployeeCount.first]} - {valueArray[this.props.totalFilters.scaleEmployeeCount.last]}</span>
                         </div>
-                        <div className="col-md-2" style={{display:'flex',alignContent:'center',justifyContent:'center',alignItems:'center'}}>
-                            <div>
-                                <button  className="close-button pull-right " onClick={(event) => {
+                        <div className="col-2 col-md-4 col-lg-1 category-remove-button-con">
+                                <button  className="close-button" onClick={(event) => {
                                     this.props.setSpinner()
                                     this.props.update_other_filter(true,'employee_count',{first:0,last:0})
                                     this.props.getTotalData(this.props.totalFilters,apiUrl)
                                 }} ></button>
-                            </div>
                         </div>
                     </div>
                 </div>

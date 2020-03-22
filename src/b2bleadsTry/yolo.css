@@ -59,20 +59,13 @@
     align-items: center;
     justify-content: center;
 }
-.header-categories{
+.header-leads-page{
 
     padding-top: 5px;
     color:#708065;
-    //font-family: 'Chivo', sans-serif;
     font-family: Gilmer-Regular;
-    font-size: 20px;
 }
-.header-location{
-    padding-top: 5px;
-    color:#708065;
-    font-family: 'Chivo', sans-serif;
-    font-size: 20px;
-}
+
 .main-row{ 
     border: 0.5rem solid #2B57D9;
     background-color: #2B57D9;
@@ -117,12 +110,34 @@ body{
 	background-color: #FCBD17;
 	border: 1px solid white;
 }
-
+@media screen and (max-width: 585px){
+    .header-leads-age {
+        font-size: 13px;
+    }
+}
+@media screen and (min-width: 586px){
+    .header-leads-page {
+        font-size: 20px;
+    }
+}
 
 @media (min-width: 1240px){
 .container {
     max-width: 1600px !important;
 }}
+@media (max-width: 1240px) and (min-width:450px){
+    .container {
+    max-width: 1200px !important;
+    
+    }
+}
+@media (max-width: 450px ) and (min-width:0px){
+    .container {
+    max-width: 1200px !important;
+    padding:0px !important;
+    margin:0px !important;
+    }
+}
   
 
 
@@ -130,8 +145,8 @@ body{
 .main-filters-container{
     border-radius: 7px;
     padding:40px;
-    background-image: linear-gradient(to right, #E61575  , #2B3079 )    ;
-    //background-color: #E61575;
+    //background-image: linear-gradient(to right, #E61575  , #2B3079 )    ;
+    background-color: #4A52BF;
     //background-color:#0091ea;
     //background-color:  rgba(43,48,121,0.6);
 }

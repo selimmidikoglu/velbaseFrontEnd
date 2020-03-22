@@ -2,9 +2,103 @@
     font-family: Gilmer-Regular;
     color:#fff;
     text-align:center;
-    font-size:1.3vw;
+    font-weight: 600;
 }
 .category-filter-con {
-    border-bottom: 2px solid rgba(255,255,255,0.8);
+    border-bottom: 0.8px solid rgba(255,255,255,0.4);
     border-radius: 1px;
+}
+.category-remove-button-con{
+    display:flex;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding:0px;
+    padding-right: 5px;
+}
+.category-text-span{
+    color:#fff;
+    vertical-align:middle;
+    font-size: 20px;
+    font-family: Gilmer-Regular;
+
+}
+@media screen and (min-width: 992px){
+    .category-text-span{
+        font-size: 15px;
+    }
+    .categories-header-filter-text-1 {
+        font-size: 16px;
+    }
+}
+@media (max-width: 992px){
+    .category-text-span{
+        font-size: 13px;
+    }
+    .categories-header-filter-text-1 {
+        font-size: 13px;
+    }
+}
+
+.close-button {
+    width: 20px;
+    height: 20px;
+    border-width: 1px;
+    border-color: red;
+    border-radius: 2px;
+    background-color: #E94A40 ; 
+    align-self: center;
+    position:relative;
+}
+
+.close-button:before,
+.close-button:after {
+  content: '';
+  width: 84%;
+  height: 2px;
+  background: #fff;
+  position: absolute;
+  top: 45%;
+  left: 8%;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.close-button:after {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.close-button:hover:before,
+.close-button:hover:after {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.every-filter-container{
+    margin-top:10px;
+    border-radius:5px;
+    background-color:rgb(252,189,23);
+    width:100%;
+    padding:10px;
+}
+.filter-info-container {
+    display:table-cell;
+    textAlign:left;
 }
