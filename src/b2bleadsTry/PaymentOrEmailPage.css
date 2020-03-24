@@ -1,17 +1,18 @@
 .input_text_style{
     margin-top: 20px;
-    font-family: 'Chivo', sans-serif;
+    font-family: Gilmer-Regular;
     width: 100%;
     color: 'gray';
     font-size: 18px;
     outline:none;
     border-style: none;
-    border-bottom: 1px solid rgb(62, 126, 179);
+    border-bottom: 1px solid gray;
 }
 .input_text_style:focus{
-    border-bottom: 2px solid gray;
+    border-bottom: 2px solid #E61575;
 }
 .input_text_style::-webkit-input-placeholder {
+    font-family: Gilmer-Regular;
     font-size: 15px;
     line-height: 20;
 }
@@ -22,7 +23,7 @@
     justify-content: center;
     width: 100%;
     height: 70px;
-    background-color: rgb(23, 233, 225);
+    background-color: #E61575;
     border-radius: 5px;
     cursor: pointer;
     color:white;
@@ -36,7 +37,7 @@
     justify-content: center;
     width: 100%;
     height: 70px;
-    background-color: rgb(62, 126, 179);
+    background-color: #4A52BF;
     border-radius: 5px;
     cursor: pointer;
     color:whitesmoke;
@@ -45,8 +46,8 @@
 
 @media screen and (max-width: 992px){
     .send_button_text{
-        font-family: 'Chivo', sans-serif;
-        font-size: 8px;
+        font-family: Gilmer-Regular;
+        font-size: 15px;
       
     
         text-align: center;
@@ -55,8 +56,8 @@
 }
 @media screen and (min-width: 992px){
     .send_button_text{
-        font-family: 'Chivo', sans-serif;
-        font-size: 19px;
+        font-family: Gilmer-Regular;
+        font-size: 17px;
       
     
         text-align: center;
@@ -89,39 +90,50 @@
     margin-bottom: -10px;
 }
 .card_info_header{
-    font-family: 'Chivo', sans-serif;
+    font-family: Gilmer-Regular;
     font-size: 25px;
-    color: cadetblue;
+    color: #4A52BF;
 }
 .select_nav_buttons{
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
     height:50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    padding-top:10px;
 }
 .select_nav_buttons:hover{
     cursor: pointer;
 }
 
 .header-filters{
-    font-family: 'Chivo', sans-serif;
+    font-family: Gilmer-Regular;
     font-size: 16px;
-    color: #17E9E1;
+    color: #E61575;
     text-decoration: underline;
 }
 .back-button-container{
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: 40px;
+    height: 50px;
     padding: 10px;
 }
+@media screen and (max-width: 443px){
+    .back-button-container{
+        height: 20px;
+    }
+    .back-button{
+        margin-left:10px;
+        
+    }
+}
 .back-button{
-    height: 44px;
-    width: 44px;
-    border-radius: 22px;
+    height: 36px;
+    width: 36px;
+    border-radius: 18px;
     border: 2px white solid;
     display: flex;
     justify-content: center;
@@ -131,22 +143,28 @@
 }
 .back-button:hover{
     cursor: pointer;
-    border-color: rgb(23, 233, 225);
-    color:rgb(23, 233, 225);
+    border-color: #E61575;
+    color:#E61575;
     
 }
 .icon-back-arrow{
     font-size:30px;
  
 }
+.header-location-payment{
+    font-family: Gilmer-Regular;
+    font-size:16px
+}
 
-@media screen and (min-width:1026px){
-    .header-location-payment{
-        font-size:16px;
+@media (min-width: 1240px){
+    .custom-payment-container {
+        margin-top:100px;
+        max-width: 1000px !important;
+}}
+@media (max-width: 1240px) and (min-width:450px){
+    .custom-payment-container {
+    max-width: 1200px !important;
+    
     }
 }
-@media screen and (max-width:1026px){
-    .header-location-payment{
-        font-size:12px;
-    }
-}
+

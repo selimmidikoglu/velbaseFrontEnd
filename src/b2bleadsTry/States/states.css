@@ -10,7 +10,7 @@
 .styles-checkbox:hover{
     background-color: #FCBD17;
 }
-@media screen and (max-width : 575px){
+@media screen and (max-width : 790px){
     .state-text{
         font-size: 11px;
     }

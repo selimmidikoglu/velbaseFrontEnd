@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux'
 import { setSpinner, insertChoosenStates, getCitiesInState, getTotalData, update_other_filter, set_customer_info, send_temp_email } from '../actions/fetchActions'
 import Spinner from '../components/dumb/Spinner/spinner'
 import AlertDone from './AlertDone/alertDone'
+import IconComponentColored from './DumbComponents/IconComponent/iconComponentColored'
 import { Link } from 'react-router-dom'
 import './PaymentOrEmailPage.css'
 //url
@@ -111,8 +112,8 @@ class PaymentOrEmailPage extends Component {
     }
     }
     render() {
-        let backgroundColorTemplate = this.state.templateNav ? 'rgb(23, 233, 225)' : 'whitesmoke'
-        let backgroundColorPayment = this.state.paymentNav ? 'rgb(23, 233, 225)' : 'whitesmoke'
+        let backgroundColorTemplate = this.state.templateNav ? '#E61575' : 'whitesmoke'
+        let backgroundColorPayment = this.state.paymentNav ? '#E61575' : 'whitesmoke'
         let colorTemplate = this.state.templateNav ? 'white' : 'gray'
         let colorPayment = this.state.paymentNav ? 'white' : 'gray'
         let hiddenCardInfos = !this.state.paymentNav
@@ -134,7 +135,7 @@ class PaymentOrEmailPage extends Component {
                             <div className="col-12" style={{ height: 'auto' }}>
                                 <div className="row" style={{ marginTop: '5px', placeContent: 'center' }}>
                                     <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                                        <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px' }}>{this.props.totalFilters.states[state].state}</h1>
+                                        <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{this.props.totalFilters.states[state].state}</h1>
                                     </div>
 
                                 </div>
@@ -152,7 +153,7 @@ class PaymentOrEmailPage extends Component {
                         <div className="col-12" style={{ height: 'auto' }}>
                             <div className="row" style={{ marginTop: '5px' }}>
                                 <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                                    <h1 className="city-text-filter" style={{ color: 'gray', fontSize: '13px' }}>{city}</h1>
+                                    <h1 className="city-text-filter" style={{ color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{city}</h1>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +167,7 @@ class PaymentOrEmailPage extends Component {
                 <div className="col-12" style={{ width: '100%' }}>
                     <div className="row">
                         <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                            <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px' }}>{valueArray[this.props.totalFilters.scaleAnnualRevenue.first] + "-" + valueArray[this.props.totalFilters.scaleAnnualRevenue.last]}</h1>
+                            <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{valueArray[this.props.totalFilters.scaleAnnualRevenue.first] + "-" + valueArray[this.props.totalFilters.scaleAnnualRevenue.last]}</h1>
                         </div>
                     </div>
                 </div>
@@ -176,16 +177,18 @@ class PaymentOrEmailPage extends Component {
                 <div className="col-12" style={{ width: '100%' }}>
                     <div className="row">
                         <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                            <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px' }}>{valueArrayEmp[this.props.totalFilters.scaleEmployeeCount.first]} - {valueArrayEmp[this.props.totalFilters.scaleEmployeeCount.last]}</h1>
+                            <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{valueArrayEmp[this.props.totalFilters.scaleEmployeeCount.first]} - {valueArrayEmp[this.props.totalFilters.scaleEmployeeCount.last]}</h1>
                         </div>
 
                     </div>
                 </div>
-        return (
+        let mainPayment = (
 
-            <div className="container" style={{ pointerEvents: this.props.conditionForSpinner.divPointerEvents }}>
+            <div className={this.props.alertOrNot !== true ?"container custom-payment-container":"container"} style={{ pointerEvents: this.props.conditionForSpinner.divPointerEvents }}>
+                
+                <IconComponentColored/>
                 {this.props.conditionForSpinner.runSpinner ? (<Spinner />) : null}
-                {this.props.alertOrNot !== false ? (<AlertDone />) : null}
+                
                 <div className="row" style={backgroundStyle} >
                     <div className="col-12">
                         <div className="row back-button-container">
@@ -196,17 +199,18 @@ class PaymentOrEmailPage extends Component {
                             </Link>
                         </div>
                     </div>
-                    <div className="col-sm-12 col-md-8" >
+                    <div className="col-12 col-sm-12 col-md-8" >
 
                         <div className="row payment_container" style={infoColumn}>
 
-                            <div className="col-sm-6 col-md-6 select_nav_buttons" style={{ height: '50px', backgroundColor: backgroundColorTemplate }} onClick={() => this.setState({ paymentNav: false, templateNav: true, sample_or_data: 'sample' })}>
-                                <div><label className="header-categories-payment" style={{ color: colorTemplate }}>Send Sample</label></div></div>
-                            <div className="col-sm-6 col-md-6  select_nav_buttons" style={{ backgroundColor: backgroundColorPayment }} onClick={() => this.setState({ paymentNav: true, templateNav: false, sample_or_data: 'data' })} >
-                                <label className="header-location-payment" style={{ color: colorPayment }}>Send all data and proceed payment</label>
+                            <div className="col-6 col-sm-6 col-md-6 select_nav_buttons" style={{ height: '50px', backgroundColor: backgroundColorTemplate }} onClick={() => this.setState({ paymentNav: false, templateNav: true, sample_or_data: 'sample' })}>
+                                <label className="header-location-payment sample-button-hover" style={{ color: colorTemplate }}>Send sample</label>
+                            </div>
+                            <div className="col-6 col-sm-6 col-md-6  select_nav_buttons" style={{ backgroundColor: backgroundColorPayment }} onClick={() => this.setState({ paymentNav: true, templateNav: false, sample_or_data: 'data' })} >
+                                <label className="header-location-payment" style={{ color: colorPayment }}>Send full data</label>
                             </div>
 
-                            <div className="col-md-12 col-sm-12" style={{ height: '50px', borderTopColor: 'rgb(23, 233, 225)', borderTopWidth: '5px', borderTopStyle: 'solid' }}>
+                            <div className="col-md-12 col-sm-12" style={{ height: '50px', borderTopColor: '#E61575', borderTopWidth: '5px', borderTopStyle: 'solid' }}>
                                 <input className="input_text_style" type="text" placeholder="Name*" required value={this.props.totalFilters.name} onChange={(event) => this.props.set_customer_info(event.target.value, 'name')}>
                                 </input>
                             </div>
@@ -226,111 +230,14 @@ class PaymentOrEmailPage extends Component {
                                 <input className="input_text_style" type="address" placeholder="Address" value={this.props.totalFilters.address} onChange={(event) => this.props.set_customer_info(event.target.value, 'address')}>
                                 </input>
                             </div>
-                            <div className="col-md-12 col-sm-12 card_info_header_container" hidden={hiddenCardInfos}>
-                                <div><h1 className="card_info_header">Card Fields</h1></div>
-                            </div>
 
-                            {/*<form onSubmit={(event) => this.handleSubmit(event)}>
-                                    Card details
-                                    <CardElement
-                                    options={{
-                                        style: {
-                                        base: {
-                                            fontSize: '16px',
-                                            color: '#424770',
-                                            '::placeholder': {
-                                            color: '#aab7c4',
-                                            width: '400px',
-                                            
-                                            },
-                                        },
-                                        invalid: {
-                                            color: '#9e2146',
-                                        },
-                                        },
-                                    }}
-                                    onReady={() => {
-                                        console.log("CardElement [ready]");
-                                    }}
-                                    onChange={event => {
-                                        console.log("CardElement [change]", event);
-                                    }}
-                                    onBlur={() => {
-                                        console.log("CardElement [blur]");
-                                    }}
-                                    onFocus={() => {
-                                        console.log("CardElement [focus]");
-                                    }}
-                                    />
-                            <button type="submit" disabled={!stripe}>
-                                Pay
-                            </button>
-                                </form>*/}
-                            <div className="col-md-12 col-sm-12" hidden={hiddenCardInfos}>
+                            <div className="col-md-12 col-sm-12" hidden={hiddenCardInfos} style={{marginTop:'20px'}}>
                                 
                                 <Elements options={{hidePostalCode: true}}
                                     stripe={stripePromise}>
                                     <CardForm></CardForm>
                                     
                                 </Elements>
-                                {/*<input className="input_text_style" type="" placeholder="Card Number*" required value={this.state.card_number} onChange={(event) => {
-                                    let card_number = event.target.value.replace(/-/g, '');
-                                    let len_card_number = card_number.length
-                                    if (len_card_number > 4 && len_card_number <= 8)
-                                        card_number = card_number.substr(0, 4) + "-" + card_number.substr(4, len_card_number - 4)
-                                    else if (len_card_number > 8 && len_card_number <= 12)
-                                        card_number = card_number.substr(0, 4) + "-" + card_number.substr(4, 4) + "-" + card_number.substr(8, len_card_number - 4)
-                                    else if (len_card_number > 12 && len_card_number <= 16)
-                                        card_number = card_number.substr(0, 4) + "-" + card_number.substr(4, 4) + "-" + card_number.substr(8, 4) + "-" + card_number.substr(12, len_card_number - 4)
-                                    else if (len_card_number > 16)
-                                        card_number = card_number.substr(0, 4) + "-" + card_number.substr(4, 4) + "-" + card_number.substr(8, 4) + "-" + card_number.substr(12, 4)
-                                    this.setState({ card_number: card_number }, () => { console.log("Card Number", this.state.card_number) })
-                                    let str = card_number
-                                    str = str.replace(/-/g, '');
-                                    this.props.set_customer_info(str, 'card_number')
-                                }}>
-                                </input>
-                            </div>
-                            <div className="col-md-4 col-sm-4" hidden={hiddenCardInfos}>
-                                <input className="input_text_style dropdown" list="months" name="months" placeholder="Exp. Month*" value={this.props.totalFilters.exp_month}
-                                    onChange={(event) => this.props.set_customer_info(event.target.value, 'exp_month')}></input>
-
-                                <datalist id="months">
-                                    <option value="January" />
-                                    <option value="Feburuary" />
-                                    <option value="March" />
-                                    <option value="April" />
-                                    <option value="May" />
-                                    <option value="June" />
-                                    <option value="July" />
-                                    <option value="August" />
-                                    <option value="September" />
-                                    <option value="October" />
-                                    <option value="November" />
-                                    <option value="December" />
-                                </datalist>
-
-                            </div>
-                            <div className="col-md-4 col-sm-4" hidden={hiddenCardInfos}>
-                                <input className="input_text_style dropdown-exp" list="years" name="months" placeholder="Exp. Year*" value={this.props.totalFilters.exp_year}
-                                    onChange={(event) => this.props.set_customer_info(event.target.value, 'exp_year')}></input>
-
-                                <datalist id="years">
-                                    <option value="2020" />
-                                    <option value="2021" />
-                                    <option value="2022" />
-                                    <option value="2023" />
-                                    <option value="2024" />
-                                    <option value="2025" />
-                                    <option value="2026" />
-
-                                </datalist>
-
-                            </div>
-                            <div className="col-md-4 col-sm-4" hidden={hiddenCardInfos}>
-                                <input className="input_text_style" type="tel" placeholder="CVC*" value={this.props.totalFilters.cvc}
-                                    onChange={(event) => this.props.set_customer_info(event.target.value, 'cvc')}>
-                                </input>*/}
                             </div>
                             <div className="col-12 send_button_container" onClick={() => this.checkBeforeSubmit()} hidden={this.state.paymentNav}>
                                 <h1 className="send_button_text">{!this.state.paymentNav ? 'Send Sample' : 'Send All and Proceed Payment'}</h1>
@@ -338,36 +245,42 @@ class PaymentOrEmailPage extends Component {
                             </div>
 
                     </div>
-                    <div className="col-sm-12 col-md-4">
+                    <div className="col-12 sm-12 col-md-4">
                         <div className="row payment_container" style={infoColumn}>
-                            <div className=" col-12 count-and-price-container" style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center', backgroundColor: 'whitesmoke', padding: '5px', marginBottom: '10px' }}>
-                                <div><h1 style={{ marginTop: '10px', color: '#455A64', fontSize: 18, height: '50%' }} className="dataCount" >Total Count: {this.props.totalCount}</h1></div>
-                                <div><h1 style={{ marginTop: '10px', color: '#455A64', fontSize: 18, height: '50%' }} className="dataCount" >Total Price: {this.props.totalCount * 9 / 100}$</h1></div>
+                            <div className=" col-12 count-and-price-container" style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center', backgroundColor: 'whitesmoke', padding: '5px', marginBottom: '10px',borderRadius:'5px' }}>
+                                <div className="row" style={{justifyContent:'center',alignItems:'center', textAlign:'center'}}>
+                                    <h1 style = {{marginTop: '10px',color:'#4A52BF',fontSize:18,height:'50%', fontFamily:'Gilmer-Heavy',marginRight:'5px'}}className = "dataCount" >Total Count :</h1>
+                                    <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%', fontFamily:'Gilmer-Regular'}}className = "dataCount" >{this.props.totalCount}</h1>
+                                </div>
+                                <div className="row" style={{justifyContent:'center',alignItems:'center', textAlign:'center'}}>
+                                    <h1 style = {{marginTop: '10px',color:'#4A52BF',fontSize:18,height:'50%', fontFamily:'Gilmer-Heavy',marginRight:'5px'}} className = "dataCount" >Total Price: </h1>
+                                    <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%', fontFamily:'Gilmer-Regular'}}className = "dataCount" >{this.props.totalCount * 9/100}$</h1>
+                                </div>
                             </div>
-                            <div className="col-12" style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'left', backgroundColor: 'whitesmoke', padding: '5px' }}>
+                            <div className="col-12" style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'left', backgroundColor: 'whitesmoke', padding: '5px',borderRadius:'5px' }}>
                                 {/*Categories*/}
-                                {Object.keys(this.props.totalFilters.categories).length !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '3px' }}><h1 className="header-filters">Categories</h1></div>) : null}
+                                {Object.keys(this.props.totalFilters.categories).length !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '3px'}}><h1 className="header-filters">Categories</h1></div>) : null}
                                 {Object.keys(this.props.totalFilters.categories).map((category, index) => {
                                     return (
-                                        <div className="col-12" style={{ width: '100%', marginTop: '3px' }}>
+                                        <div className="col-12" style={{ width: '100%', marginTop: '5px' }}>
                                             <div className="row">
                                                 <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                                                    <div style={{ height: '100%', display: 'flex', textAlign: 'left' }}><h1 style={{ color: 'gray', fontSize: '13px' }}>{category}</h1></div>
+                                                    <div style={{ height: '100%', display: 'flex', textAlign: 'left' }}><h1 style={{ color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{category}</h1></div>
                                                 </div>
                                             </div>
                                         </div>
                                     )
                                 })}
                                 {/*States*/}
-                                {Object.keys(this.props.totalFilters.states).length > stateHolder.length ? (<div className="col-12" style={{ width: '100%', marginTop: '3px' }}><h1 className="header-filters">States</h1></div>) : null}
+                                {Object.keys(this.props.totalFilters.states).length > stateHolder.length ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">States</h1></div>) : null}
                                 {states}
                                 {/*Cities*/}
-                                {Object.keys(this.props.totalFilters.cities).length !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '3px' }}><h1 className="header-filters">Cities</h1></div>) : null}
+                                {Object.keys(this.props.totalFilters.cities).length !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Cities</h1></div>) : null}
                                 {cities}
                                 {/*Annual_revenue*/}
-                                {this.props.totalFilters.scaleAnnualRevenue.last !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '3px' }}><h1 className="header-filters">Annual revenue</h1></div>) : null}
+                                {this.props.totalFilters.scaleAnnualRevenue.last !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Annual revenue</h1></div>) : null}
                                 {annual_revenue}
-                                {this.props.totalFilters.scaleEmployeeCount.last !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '3px' }}><h1 className="header-filters">Employee Count</h1></div>) : null}
+                                {this.props.totalFilters.scaleEmployeeCount.last !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Employee Count</h1></div>) : null}
                                 {employee_count}
                             </div>
                         </div>
@@ -375,17 +288,23 @@ class PaymentOrEmailPage extends Component {
                 </div>
             </div>
         )
+        return (
+            this.props.alertOrNot !== false ? (<AlertDone />) : (mainPayment)
+        )
 
     }
 }
 const backgroundStyle = {
-    backgroundColor: 'rgb(62, 126, 179)',
+    //backgroundColor: 'rgb(62, 126, 179)',
+    backgroundColor:'#4A52BF',
+    borderRadius: '5px'
 
 }
 const infoColumn = {
     backgroundColor: 'white',
-    padding: '40px',
-    margin: '50px',
+    padding: '10px',
+    margin: '20px',
+    borderRadius: '5px'
 }
 
 function mapStateToProps(state) {

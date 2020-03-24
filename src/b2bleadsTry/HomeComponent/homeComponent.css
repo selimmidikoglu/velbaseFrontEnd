@@ -1,6 +1,13 @@
+.home-page-bs-container{
+    margin-left:100px;
+}
+@media screen and (max-width:711px){
+    .home-page-bs-container{
+        margin-left:10px !important;
+    }
+}
 .home-page-main-header{
     margin-top: 100px;
-    margin-left: 100px;
     font-family: Gilmer-Heavy;
     font-size: 40px;
     background: linear-gradient(to right, #E61575  , #2B3079 )    ;
@@ -8,7 +15,6 @@
     -webkit-text-fill-color: transparent;
 }
 .home-page-sub-header{
-    margin-left: 100px;
     margin-top: 20px;
     font-family: Gilmer-Heavy;
     font-size: 27px;
@@ -18,16 +24,15 @@
     -webkit-text-fill-color: transparent;
     //text-shadow: 2px 2px #2B3079;
 }
+
 .home-page-small-text{
     padding:20px 0px;
-    margin-left: 100px;
     margin-top: 20px;
     font-family: Gilmer-Regular;
     font-size: 16px;
     color:gray;
 }
 .home-page-small-text-question{
-    margin-left: 100px;
     margin-top: 20px;
     font-family: Gilmer-Heavy;
     font-size: 17px;
@@ -79,7 +84,6 @@
     height: 50px;
     background-color: #FCBD17;
     text-align: center;
-    margin-left: 100px;
     border-radius: 30px;
     display:flex;
     align-items: center;

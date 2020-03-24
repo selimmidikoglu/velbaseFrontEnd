@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './iconComponent.css'
-export default class IconComponent extends Component {
+export default class IconComponentColored extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,17 +19,17 @@ export default class IconComponent extends Component {
         window.removeEventListener("resize", this.updatePredicate);
     }
     updatePredicate() {
-        if(window.innerWidth > 1450)
-            this.setState({ isDesktop: true, logoSize:"160px"});
-        else if(window.innerWidth < 1450 && window.innerWidth > 500)
-            this.setState({ isDesktop: false, logoSize:"130px"});
+        if (window.innerWidth > 1450)
+            this.setState({ isDesktop: true, logoSize: "160px" });
+        else if (window.innerWidth < 1450 && window.innerWidth > 500)
+            this.setState({ isDesktop: false, logoSize: "160px" });
     }
 
     render() {
         return (
-            <svg version="1.1" id="katman_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 357 80" style={{ enableBackground: 'new 0 0 357 80' }} space="preserve" width={this.state.logoSize} height="50px">
-                <path className="st0" d="M111.17,41.9c0,1.75-0.18,3.5-0.55,5.25l-0.05,0.31c-0.13,0.73-0.76,1.26-1.5,1.26h-34.4
+            <svg version="1.1" id="katman_1" xmlns="http://www.w3.org/2000/svg"  xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 357 80" style={{ enableBackground: 'new 0 0 357 80;' }}  space="preserve" width={this.state.logoSize} height="40px">
+                <path class="st1" d="M111.17,41.9c0,1.75-0.18,3.5-0.55,5.25l-0.05,0.31c-0.13,0.73-0.76,1.26-1.5,1.26h-34.4
                 c-1,0-1.72,0.94-1.48,1.91c1.38,5.39,5.92,8.22,12.55,8.22c4.25,0,7.6-1.14,10.05-3.81c0.3-0.32,0.71-0.52,1.15-0.52h8.6
                 c1.19,0,1.93,1.32,1.29,2.33c-4.64,7.39-12.68,11.95-22.47,11.95c-13.26,0-22.85-8.47-22.85-21.65c0-14.46,11.61-26.25,26.9-26.25
                 C101.03,20.9,111.17,29,111.17,41.9z M76.49,39.96h21.35c1.05,0,1.8-1.04,1.44-2.02c-1.75-4.67-6.27-7.1-11.79-7.1

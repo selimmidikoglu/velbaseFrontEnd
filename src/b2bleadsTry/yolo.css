@@ -84,6 +84,7 @@
 body{
     background-color: #F2F2F2;
     //overflow-y: hidden;
+    position: relative;
 }
 
 .container {

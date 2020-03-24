@@ -24,8 +24,8 @@ class States extends Component {
                 this.props.matchedStates.map((state, index) => {
                     return (
                         <div key={index} className="row styles-checkbox">
-                                <div className ="col-9 col-sm-9 col-md-8" style={{textAlign: 'left' }}><label className="state-text">{state.state} </label></div>
-                                <div className ="col-3 col-sm-3 col-md-4" ><input type="checkbox" key={index} className="option-input checkbox" defaultChecked={false} 
+                                <div className ="col-9 col-sm-9 col-md-8 col-lg-10" style={{textAlign: 'left' }}><label className="state-text">{state.state} </label></div>
+                                <div className ="col-3 col-sm-3 col-md-4 col-lg-2" ><input type="checkbox" key={index} className="option-input checkbox" defaultChecked={false} 
                                     checked={this.props.totalFilters.states[state.abbreviation]}
                                     onClick={(event) => {
                                         this.props.setSpinner()

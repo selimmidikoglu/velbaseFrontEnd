@@ -7,7 +7,19 @@ class CardForm extends Component{
       return (
         <ElementsConsumer>
           {({elements, stripe}) => (
-            <CheckoutForm elements={elements} stripe={stripe} />
+            <CheckoutForm elements={elements} stripe={stripe}  
+            options={{
+              style: {
+                  fontSize: '40px',
+                  color: '#123313',
+                  '::placeholder': {
+                    color: '#aab7c4',
+                  },
+                invalid: {
+                  color: '#9e2146',
+                },
+              },
+            }}/>
           )}
         </ElementsConsumer>
       );

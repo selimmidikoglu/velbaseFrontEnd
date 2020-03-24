@@ -48,7 +48,7 @@ class ResultsColumn extends Component {
                 <Link style={{textDecoration:'none'}} to={{pathname:"/second",state:{section:'sample'}}} >
                 <div className="row"   hidden={this.props.totalCount!==0?false:true}>
                     
-                    <div className = ""><h1 className="data-button-text get-sample-button" style={{fontSize:'14px',textDecoration:'underline',fontFamily:'Gilmer-Regular',color:'#E94A40'}}>Get sample</h1></div>
+                    <div className = ""><h1 className="data-button-text get-sample-button" style={{fontSize:'14px',textDecoration:'underline',fontFamily:'Gilmer-Regular'}}>Get sample</h1></div>
                     </div>
                 
                 </Link>

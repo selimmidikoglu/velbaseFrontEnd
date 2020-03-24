@@ -54,11 +54,12 @@
     width:100%;
 }
 .get-sample-button{
-    color:#81d4fa;
+    color:#E94A40;
 }
 .get-sample-button:hover{
-    color:white;
+    color:rgb(252,189,23);
 }
+
 .count-of-other-data{
     border-color: white;
     border-width:1px;

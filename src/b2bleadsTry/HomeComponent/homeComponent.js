@@ -27,8 +27,8 @@ export default class HomeComponent extends Component {
         return (
             <div>
                 <NavigationComponent />
-                <div className="container">
-                    <div className="row">
+                <div className="container home-page-bs-container" >
+                    <div className="row" >
                         <div className="col-md-12">
                             <header className="home-page-main-header">Are you ready to grow your business?</header>
                             <label className="home-page-sub-header">Velbase can help!</label>
@@ -50,17 +50,14 @@ export default class HomeComponent extends Component {
                                 3.Get your leads delivered to your email<br/>
                             </p>
                         </div>
-                        <div className="col-sm-12 col-md-7 how-to-use-container">
+                        {/*<div className="col-sm-12 col-md-7 how-to-use-container">
                             <div className="first-image-cascade">
-                                {/*<img src={this.state.images[0]}></img>*/}
                             </div>
                             <div className="second-image-cascade">
-                                {/*<img src={this.state.images[0]}></img>*/}
                             </div>
                             <div className="third-image-cascade">
-                                {/*<img src={this.state.images[0]}></img>*/}
                             </div>
-                        </div>
+                        </div>*/}
                         <div className="col-12">
                             <div className="discover-leads-button">
                                 <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
