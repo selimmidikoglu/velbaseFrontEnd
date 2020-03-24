@@ -14,7 +14,7 @@
 .input_text_style::-webkit-input-placeholder {
     font-family: Gilmer-Regular;
     font-size: 15px;
-    line-height: 20;
+    //line-height: 20;
 }
 .send_button_container{
     margin-top: 20px;

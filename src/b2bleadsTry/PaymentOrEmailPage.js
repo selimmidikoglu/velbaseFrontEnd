@@ -186,10 +186,11 @@ class PaymentOrEmailPage extends Component {
 
             <div className={this.props.alertOrNot !== true ?"container custom-payment-container":"container"} style={{ pointerEvents: this.props.conditionForSpinner.divPointerEvents }}>
                 
-                <IconComponentColored/>
+                
                 {this.props.conditionForSpinner.runSpinner ? (<Spinner />) : null}
                 
                 <div className="row" style={backgroundStyle} >
+                    <IconComponentColored/>
                     <div className="col-12">
                         <div className="row back-button-container">
                             <Link style={{ textDecoration: 'none' }} to={{pathname:'/leads'}}>

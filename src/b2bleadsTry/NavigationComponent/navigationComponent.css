@@ -67,7 +67,7 @@ li a:hover {
 }
 .navigation-dropdown-menu{
     position: relative;
-    z-index: 1000;
+    z-index: 10000;
     background-color: #2B3079;
     display:flex;
     flex-direction: column-reverse;
