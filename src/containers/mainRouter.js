@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, HashRouter} from 'react-router-dom'
 import YoloTry from '../b2bleadsTry/yoloTry'
 import PaymentOrEmailPage from '../b2bleadsTry/PaymentOrEmailPage'
 import HomeComponent from '../b2bleadsTry/HomeComponent/homeComponent'
@@ -9,7 +9,7 @@ class MainRoute extends Component {
 
     render() {
         return (
-            <Router>
+            <HashRouter >
                 <Switch>
                     
                 <Route path="/" exact component={HomeComponent}></Route>
@@ -20,7 +20,7 @@ class MainRoute extends Component {
                 <Route path="/questions" component={AskedQuestionsComponent}></Route>    
                 {/*<Route path="/askedQuestions" component={AskedQuestions}></Route>*/}
                 </Switch>
-            </Router>
+            </HashRouter>
         );
     }
 }

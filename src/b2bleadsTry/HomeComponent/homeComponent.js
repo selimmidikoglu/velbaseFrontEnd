@@ -29,7 +29,7 @@ export default class HomeComponent extends Component {
                 <NavigationComponent />
                 <div className="container home-page-bs-container" >
                     <div className="row" >
-                        <div className="col-md-12">
+                        <div className=" col-sm-8 col-md-10 col-lg-12">
                             <header className="home-page-main-header">Are you ready to grow your business?</header>
                             <label className="home-page-sub-header">Velbase can help!</label>
 
@@ -37,7 +37,7 @@ export default class HomeComponent extends Component {
 
                     </div>
                     <div className="row">
-                        <div className="col-sm-12 col-md-5">
+                        <div className="col-10 col-sm-8 col-md-7 col-lg-5">
                             <p className="home-page-small-text">Velbase is trusted company that can provide you with what you need to make your business flourish. We have over 12,000,000 business leads
                                     that can amplify your service needs immediately! We've broken down our leads into categories to simplify your needs.
                             </p>

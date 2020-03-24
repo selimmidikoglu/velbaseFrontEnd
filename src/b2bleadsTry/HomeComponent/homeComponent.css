@@ -1,5 +1,5 @@
 .home-page-bs-container{
-    margin-left:100px;
+    
 }
 @media screen and (max-width:711px){
     .home-page-bs-container{
@@ -32,6 +32,7 @@
     font-size: 16px;
     color:gray;
 }
+
 .home-page-small-text-question{
     margin-top: 20px;
     font-family: Gilmer-Heavy;
@@ -96,5 +97,7 @@
     font-size: 20px;
     font-family: Gilmer-Regular;
     color: whitesmoke;
+    cursor: pointer;
     
 }
+
