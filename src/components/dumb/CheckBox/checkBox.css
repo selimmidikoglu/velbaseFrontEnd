@@ -57,6 +57,22 @@
   text-align: center;
   line-height: 15px;
 }
+@media screen and (max-width:776px){
+  .option-input:checked::before {
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    content: '✔';
+    display: inline-block;
+    font-size: 13.66667px;
+    text-align: center;
+    line-height: 15px;
+    
+  }
+  .option-input:checked::after {
+    color:'FFFFFF'
+  }
+}
 //.option-input:checked::after {
   -webkit-animation: click-wave 0.65s;
   -moz-animation: click-wave 0.65s;

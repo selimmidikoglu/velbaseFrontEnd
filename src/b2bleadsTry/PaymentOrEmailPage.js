@@ -38,6 +38,7 @@ let valueArrayEmp = [
 const stripePromise = loadStripe("pk_test_bMUfGs3Awcntdu9lsaMdD1IF00jU3L68xT");
 console.log(stripePromise)
 class PaymentOrEmailPage extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -77,7 +78,10 @@ class PaymentOrEmailPage extends Component {
         }
         else {
             
-
+            if(this.state.templateNav){
+                this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample-data')
+                return;
+            }
             const {stripe, elements} = this.props;
 
             if (!stripe || !elements) {
@@ -186,11 +190,11 @@ class PaymentOrEmailPage extends Component {
 
             <div className={this.props.alertOrNot !== true ?"container custom-payment-container":"container"} style={{ pointerEvents: this.props.conditionForSpinner.divPointerEvents }}>
                 
-                
+                <IconComponentColored/>
                 {this.props.conditionForSpinner.runSpinner ? (<Spinner />) : null}
                 
                 <div className="row" style={backgroundStyle} >
-                    <IconComponentColored/>
+                
                     <div className="col-12">
                         <div className="row back-button-container">
                             <Link style={{ textDecoration: 'none' }} to={{pathname:'/leads'}}>
