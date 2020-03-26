@@ -61,7 +61,7 @@ export default class HomeComponent extends Component {
                         <div className="col-12">
                             <div className="discover-leads-button">
                                 <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
-                                    <label className="discover-leads-button-text">Discover Leads</label>
+                                    <label className="discover-leads-button-text">Download</label>
                                 </Link>
                             </div>
                         </div>

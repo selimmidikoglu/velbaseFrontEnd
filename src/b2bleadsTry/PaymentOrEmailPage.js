@@ -35,7 +35,7 @@ let valueArrayEmp = [
     "100.000",
     "More than 100.000",
 ]
-const stripePromise = loadStripe("pk_test_bMUfGs3Awcntdu9lsaMdD1IF00jU3L68xT");
+const stripePromise = loadStripe("pk_test_CRpsYZi2SNLhgow7U83Mn2C800cWErS3mQ");
 console.log(stripePromise)
 class PaymentOrEmailPage extends Component {
     
