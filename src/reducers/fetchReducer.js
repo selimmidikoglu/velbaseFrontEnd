@@ -24,6 +24,7 @@ import { SEND_TEMP_EMAIL } from '../actions/fetchActions'
 import { CHANGE_ALERT_BOX_STATE } from '../actions/fetchActions'
 import { ADD_NO_ANNUAL_REVENUE } from '../actions/fetchActions'
 import { ADD_NO_EMPLOYEE_COUNT } from '../actions/fetchActions'
+import { ALERT_TOP_LIMIT } from '../actions/fetchActions'
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -71,13 +72,14 @@ let initialState = {
         matchedZipCodes : [],
         matchedLocations: {},
         alertOrNot : false,
+        topLimit: false,
         totalFilters: {
             address: '',
             fileType: '',
             tempOrAll: '',
             payment_token: '',
             name: '',
-            surname: '',
+            company_name: '',
             fullName : '',
             email: '',
             phone: '',
@@ -449,6 +451,21 @@ export const fetchReducer = (state = initialState,action) => {
         
         case CHANGE_ALERT_BOX_STATE:
             return {...state,...action.payload}
+        case ALERT_TOP_LIMIT:
+            return {
+                ...state,
+                alertOrNot:!state.alertOrNot
+            }
+            if(state.totalCount <6 || state.totalCount > 11111.1111)
+                return {
+                    ...state,
+                    alertOrNot:true
+                }
+            else
+                return {
+                    ...state,
+                    alertOrNot:false
+                }
         default:
             return state;
     }

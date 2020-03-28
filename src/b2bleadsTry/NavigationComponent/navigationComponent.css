@@ -1,5 +1,5 @@
 .navigation-top-container{
-    height: 50px;
+    height: 54px;
     background-image: linear-gradient(to right, #E61575 , #2B3079); 
     //background-color:#4A52BF;
     padding-right:40px;
@@ -32,7 +32,7 @@ ul {
   
 li {
     float: right;
-    max-width: 100px;
+    max-width: 110px;
     margin-left:40px;
 
 }
@@ -48,6 +48,15 @@ li a {
     font-family: Gilmer-Regular;
     font-size: 18px;
 }
+.download-navigation-button{
+    border-radius: 5px;
+    background-color: #FCBD17;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 @media screen and (max-width: 711px){
     li a{
         font-size: 13px;

@@ -20,6 +20,7 @@ import { apiUrl } from '../consts/consts'
 
 import './yolo.css'
 import NavigationComponent from './NavigationComponent/navigationComponent'
+import TopLimitAlert from './TopLimitAlert/topLimitAlert'
 class YoloTry extends Component {
   constructor() {
     super();
@@ -53,14 +54,17 @@ class YoloTry extends Component {
   }
 
   render() {
-    
+    console.log("alert or not ", this.props)
     return (
 
       <div style={{ width: '100%', height: '100%'}} ref={node => { this.node = node; }} onClick={() => this.handleClick()}>
+        <div className="top-limit-alert-container" hidden={!this.props.fetchReducer.alertOrNot}><TopLimitAlert/></div>
         <NavigationComponent/>
         <div className="container custom-container" style={{ pointerEvents: this.props.fetchReducer.conditionForSpinner.divPointerEvents, paddingLeft: '50px', paddingRight: '50px', paddingTop: '40px' }}>
+        
           {this.props.fetchReducer.conditionForSpinner.runSpinner ? (<Spinner />) : null}
           <div className="row ">
+            
             <div className="col-xl-8 col-md-7 col-sm-12 main-filters-container">
               <div className="row">
                 <div className="col-12 search-box-nav-container">

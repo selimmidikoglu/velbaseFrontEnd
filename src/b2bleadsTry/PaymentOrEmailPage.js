@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux'
 import { setSpinner, insertChoosenStates, getCitiesInState, getTotalData, update_other_filter, set_customer_info, send_temp_email } from '../actions/fetchActions'
 import Spinner from '../components/dumb/Spinner/spinner'
 import AlertDone from './AlertDone/alertDone'
+import AlertSample from './AlertDone/alertSample'
 import IconComponentColored from './DumbComponents/IconComponent/iconComponentColored'
 import { Link } from 'react-router-dom'
 import './PaymentOrEmailPage.css'
@@ -72,14 +73,15 @@ class PaymentOrEmailPage extends Component {
                 this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample_data')
             }
         }*/
-        if (this.props.totalFilters.name === '' || this.props.totalFilters.surname === '' || this.props.totalFilters.email === '') {
+        if (this.props.totalFilters.name === '' || this.props.totalFilters.company_name === '' || this.props.totalFilters.email === '') {
             alert('please fill required fields')
             return;
         }
         else {
             
             if(this.state.templateNav){
-                this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample-data')
+                console.log("AHAA GELDİ")
+                this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample_data')
                 return;
             }
             const {stripe, elements} = this.props;
@@ -100,7 +102,7 @@ class PaymentOrEmailPage extends Component {
             type: 'card',
             card: cardElement,
             });*/
-            const {error, token} = await stripe.createToken(cardElement,{name:'Selim'});
+            const {error, token} = await stripe.createToken(cardElement,{name:this.props.totalFilters.name});
 
             if (error) {
             console.log('[error]', error);
@@ -216,15 +218,15 @@ class PaymentOrEmailPage extends Component {
                             </div>
 
                             <div className="col-md-12 col-sm-12" style={{ height: '50px', borderTopColor: '#E61575', borderTopWidth: '5px', borderTopStyle: 'solid' }}>
-                                <input className="input_text_style" type="text" placeholder="Name*" required value={this.props.totalFilters.name} onChange={(event) => this.props.set_customer_info(event.target.value, 'name')}>
-                                </input>
-                            </div>
-                            <div className="col-md-12 col-sm-12">
-                                <input className="input_text_style" type="text" placeholder="Surname*" required value={this.props.totalFilters.surname} onChange={(event) => this.props.set_customer_info(event.target.value, 'surname')}>
+                                <input className="input_text_style" type="text" placeholder="Full Name*" required value={this.props.totalFilters.name} onChange={(event) => this.props.set_customer_info(event.target.value, 'name')}>
                                 </input>
                             </div>
                             <div className="col-md-12 col-sm-12">
                                 <input className="input_text_style" type="email" placeholder="Email*" required value={this.props.totalFilters.email} onChange={(event) => this.props.set_customer_info(event.target.value, 'email')}>
+                                </input>
+                            </div>
+                            <div className="col-md-12 col-sm-12">
+                                <input className="input_text_style" type="text" placeholder="Company Name*" required value={this.props.totalFilters.company_name} onChange={(event) => this.props.set_customer_info(event.target.value, 'company_name')}>
                                 </input>
                             </div>
                             <div className="col-md-12 col-sm-12">
@@ -294,7 +296,7 @@ class PaymentOrEmailPage extends Component {
             </div>
         )
         return (
-            this.props.alertOrNot !== false ? (<AlertDone />) : (mainPayment)
+            this.props.alertOrNot !== false ? (this.state.templateNav?(<AlertSample/>): (<AlertDone />) ) : (mainPayment)
         )
 
     }

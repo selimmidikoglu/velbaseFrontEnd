@@ -1,0 +1,25 @@
+.top-limit-modal{
+    width:100%;
+    height:100%;
+}
+.modal-container-content{
+    background-color: rgba(0,0,0,0);
+    border-radius: 20px;
+    
+    font-family: Gilmer-Regular;
+    padding:20px;
+}
+.data-count-alert-text{
+    font-family: Gilmer-Regular;
+    color:gray;
+    font-size:14px;
+
+}
+.top-limit-alert-rows{
+    flex:1;
+    background-color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align: center;
+}

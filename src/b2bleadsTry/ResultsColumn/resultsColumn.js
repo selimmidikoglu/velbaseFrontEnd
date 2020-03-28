@@ -15,7 +15,7 @@ import EmpFilter from '../EmpFilter/empFilter'
 //redux connect
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { setSpinner, getTotalData } from '../../actions/fetchActions'
+import { setSpinner, getTotalData,alert_top_limit } from '../../actions/fetchActions'
 
 import {Link} from 'react-router-dom'
 import './resultsColumn.css'
@@ -35,17 +35,19 @@ class ResultsColumn extends Component {
                     <h1 style = {{marginTop: '10px',color:'#FCBD17',fontSize:18,height:'50%', fontFamily:'Gilmer-Heavy',marginRight:'5px'}} className = "dataCount" >Total Price: </h1>
                     <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%', fontFamily:'Gilmer-Regular'}}className = "dataCount" >{this.props.totalCount * 9/100}$</h1>
                 </div>
-                <Link style={{textDecoration:'none'}} to={{pathname:"/second",state:{section:'full_data'}}} >
-                <div className="row"   hidden={this.props.totalCount!==0?false:true}>
-                    
-                    <div className = "data-button" onClick = {()=>{
-                        /*this.props.setSpinner()
-                        this.props.getTotalData(this.props.totalFilters,apiUrl)*/
-                        }}><h1 className="data-button-text">Process payment</h1></div>
+                <Link style={{textDecoration:'none'}} to={this.props.totalCount < 6|| this.props.totalCount > 11111.1111?{pathname:"/leads",state:{section:'full_data'}}:{pathname:"/second",state:{section:'full_data'}}} 
+                    onClick={() => {
+                        this.props.alert_top_limit()
+                    }}
+                >
+                    <div className="row"   hidden={this.props.totalCount!==0?false:true} onClick={() => this.props.alert_top_limit()}>    
+                        <div className = "data-button" onClick = {()=>{
+                            this.props.alert_top_limit()
+                            }}><h1 className="data-button-text">Process payment</h1>
+                            </div>
                     </div>
-                
                 </Link>
-                <Link style={{textDecoration:'none'}} to={{pathname:"/second",state:{section:'sample'}}} >
+                <Link style={{textDecoration:'none'}} to={{pathname:"/second",state:{section:'sample'}}}>
                 <div className="row"   hidden={this.props.totalCount!==0?false:true}>
                     
                     <div className = ""><h1 className="data-button-text get-sample-button" style={{fontSize:'14px',textDecoration:'underline',fontFamily:'Gilmer-Regular'}}>Get sample</h1></div>
@@ -156,7 +158,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         setSpinner: bindActionCreators(setSpinner,dispatch),
-        getTotalData: bindActionCreators(getTotalData,dispatch)
+        getTotalData: bindActionCreators(getTotalData,dispatch),
+        alert_top_limit: bindActionCreators(alert_top_limit,dispatch)
     }
 
 }

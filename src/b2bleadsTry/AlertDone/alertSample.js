@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 import { apiUrl } from '../../consts/consts'
 import IconComponent from '../DumbComponents/IconComponent/iconComponent'
 import IconComponentColored from '../DumbComponents/IconComponent/iconComponentColored'
-class AlertDone extends Component {
+class AlertSample extends Component {
 
     render() {
         return (
@@ -39,9 +39,7 @@ class AlertDone extends Component {
                                             <div className="row">
                                                 <div className="col-12">
                                                     <div className="close-text-container">
-                                                        <h6 className="message-text">We will be sending your data to your email address.
-                                                        There will be random created zip file and inside that you will find data folder. You can reach you .csv file inside that data folder after unzipping.
-                                                 If you need any custom data please contact us. We do not let online filtering and retrieving of more than 500k data.</h6>
+                                                        <h6 className="message-text">Sample csv will be sent to your email in minutes. If you want to purchase full data you can continue with Send Full Data option.</h6>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
@@ -96,4 +94,4 @@ function mapDispatchToProps(dispatch) {
     }
 
 }
-export default connect(mapStateToProps, mapDispatchToProps)(AlertDone);
+export default connect(mapStateToProps, mapDispatchToProps)(AlertSample);

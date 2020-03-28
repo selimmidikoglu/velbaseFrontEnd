@@ -38,10 +38,16 @@ export default class NavigationComponent extends Component {
                 {isDesktop?(
                     <div className="navigation-buttons-container">
                     <ul>
+                        <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
+                            <li className="download-li" style={{}}>
+                                <div className="download-navigation-button">
+                                <a class="active" href="#leads">Download</a>
+                                </div>
+                            </li>
+                        </Link>
                         <Link style={{ textDecoration: 'none' }} to={{ pathname: "/aboutus", state: { section: 'full_data' } }} >
                             <li><a href="#about">About</a></li>
                         </Link>
-                        <li><a href="#news">News</a></li>
                         <Link style={{ textDecoration: 'none' }} to={{ pathname: "/questions" }} >
                             <li><a href="#contact">Questions</a></li>
                         </Link>

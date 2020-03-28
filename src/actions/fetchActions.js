@@ -21,7 +21,7 @@ export const SEND_TEMP_EMAIL = 'SEND_TEMP_EMAIL'
 export const CHANGE_ALERT_BOX_STATE = 'CHANGE_ALERT_BOX_STATE'
 export const ADD_NO_ANNUAL_REVENUE = 'ADD_NO_ANNUAL_REVENUE'
 export const ADD_NO_EMPLOYEE_COUNT = 'ADD_NO_EMPLOYEE_COUNT'
-
+export const ALERT_TOP_LIMIT = 'ALERT_TOP_LIMIT'
 //conditional action for UI like run spinner
 export const SET_SPINNER = 'SET_SPINNER'
 // GETTING RANDOM CATEGORY AND  ALL STATES maybe later cities and zip
@@ -49,7 +49,7 @@ export const send_temp_email = (mainObject,url,totalCount,type) => {
     let mainKeys = Object.keys(mainObject)
     let mainValues = Object.keys(mainObject)
     bodyData['name'] = mainObject.name;
-    bodyData['surname'] = mainObject.surname;
+    bodyData['company_name'] = mainObject.company_name;
     bodyData['email'] = mainObject.email;
     bodyData['address'] = mainObject.address;
     bodyData['phone'] = mainObject.phone;
@@ -565,5 +565,10 @@ export const add_no_annual_revenue = () => {
 export const add_no_employee_count = () => {
     return {
         type:ADD_NO_EMPLOYEE_COUNT
+    }
+}
+export const alert_top_limit = () => {
+    return {
+        type: ALERT_TOP_LIMIT
     }
 }

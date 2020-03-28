@@ -11,6 +11,21 @@ import {apiUrl} from '../../consts/consts'
 
 class Categories extends Component {
 
+    capitilizeCategory ( str ){
+        var splitStr = str.toLowerCase().split(' ');
+        for (var i = 0; i < splitStr.length; i++) {
+            // You do not need to check if i is larger than splitStr length, as your for does that for you
+            // Assign it back to the array
+            if (splitStr[i] !== "and" && splitStr[i] !== "or" && splitStr[i] !== "of"){
+
+                splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+            }
+            
+
+        }
+        // Directly return the joined string
+        return splitStr.join(' ');     
+    }
     
     
     //retrieve categories matched
@@ -34,7 +49,7 @@ class Categories extends Component {
                     {this.props.defaultCategories.map((category, index) => {
                         return(
                             <div className="row category-box">
-                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{category.category_name}</label></div>
+                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{this.capitilizeCategory(category.category_name)}</label></div>
                                 <div className="col-2" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
@@ -56,7 +71,7 @@ class Categories extends Component {
                     {this.props.matchedCategories.map((category, index) => {
                         return (
                         <div className="row category-box">
-                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{category.category_name}</label></div>
+                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{this.capitilizeCategory(category.category_name)}</label></div>
                                 <div className="col-2" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
@@ -75,7 +90,7 @@ class Categories extends Component {
                     {this.props.defaultCategories.map((category, index) => {
                         return (
                             <div className="row category-box">
-                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{category.category_name}</label></div>
+                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{this.capitilizeCategory(category.category_name)}</label></div>
                                 <div className="col-2" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
