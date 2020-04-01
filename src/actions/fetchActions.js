@@ -303,10 +303,10 @@ export const getCitiesInState = (url,type,states) => {
                         payload:{
                             matchedCities: temp,
                             defaultCities : temp,
-                            conditionForSpinner : {
+                            /*conditionForSpinner : {
                                 divPointerEvents : 'all',
                                 runSpinner: false
-                            }
+                            }*/
 
                         }
                     })
@@ -335,10 +335,10 @@ export const getZipCodesInCities = (url,type,cities) => {
                     payload:{
                         matchedZipCodes: [],
                         defaultZipCodes : [],
-                        conditionForSpinner : {
+                        /*conditionForSpinner : {
                             divPointerEvents : 'all',
                             runSpinner: false
-                        }
+                        }*/
                     }
                 })
             }

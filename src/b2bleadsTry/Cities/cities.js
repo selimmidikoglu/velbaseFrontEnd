@@ -25,7 +25,7 @@ class Cities extends Component {
                                     onClick={(event) => {
                                         this.props.setSpinner()
                                         this.props.insertChoosenCities(event, "cities", city.state, city.city)
-                                        this.props.getZipCodesInCities(apiUrl, "cities", this.props.totalFilters.cities)
+                                        //this.props.getZipCodesInCities(apiUrl, "cities", this.props.totalFilters.cities)
                                         this.props.setSpinner()
                                         this.props.getTotalData(this.props.totalFilters,apiUrl)
                                         

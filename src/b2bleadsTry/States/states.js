@@ -31,7 +31,7 @@ class States extends Component {
                                         this.props.setSpinner()
                                         this.props.insertChoosenStates(event, "states", index, state.state , state.abbreviation)
                                         this.props.getCitiesInState(apiUrl, "states", this.props.totalFilters.states)
-                                        this.props.setSpinner()
+                                        //this.props.setSpinner()
                                         this.props.getTotalData(this.props.totalFilters,apiUrl)
                                         
                                         
