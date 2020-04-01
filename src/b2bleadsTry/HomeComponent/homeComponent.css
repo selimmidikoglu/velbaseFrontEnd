@@ -6,6 +6,11 @@
         margin-left:10px !important;
     }
 }
+@media screen and (min-width:711px){
+    .home-page-bs-container{
+        margin-left:40px !important;
+    }
+}
 .home-page-main-header{
     margin-top: 100px;
     font-family: Gilmer-Heavy;

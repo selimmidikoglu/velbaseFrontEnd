@@ -57,7 +57,8 @@ class AlertSample extends Component {
                                         <div className="close-button-alert" onClick={() => {
                                             this.props.changeAlertBoxState()
                                         }}>
-                                            <h1 className="close-text-X">X</h1>
+                                            {/*<h1 className="">X</h1>*/}
+                                            <i class="fa fa-arrow-right close-text-X"></i>
                                         </div>
                                     </Link>
                                     </div>

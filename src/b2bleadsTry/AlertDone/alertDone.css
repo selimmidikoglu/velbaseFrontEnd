@@ -48,6 +48,10 @@
     font-weight: 300;
     color: #E61575;
 }
+.close-text-X:hover{
+    font-weight: 200;
+    color: #FCBD17;
+}
 .alert-page-icon-container{
     height: 10%;
     width: 100%;

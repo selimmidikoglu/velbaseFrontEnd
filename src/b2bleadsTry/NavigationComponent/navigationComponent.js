@@ -72,9 +72,18 @@ export default class NavigationComponent extends Component {
                                     <Link style={{ textDecoration: 'none' }} to={{ pathname: "/questions" }} >
                                         <div onClick={()=> this.openMenu()}><li><a href="#contact">Questions</a></li></div>
                                     </Link>
-                                    <div><li><a href="#news">News</a></li></div>    
+                                       
                                     <Link style={{ textDecoration: 'none' }} to={{ pathname: "/aboutus", state: { section: 'full_data' } }}  >
                                         <div onClick={()=> this.openMenu()}><li><a href="#about">About</a></li></div>
+                                    </Link>
+                                    <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
+                                        <div onClick={()=> this.openMenu()}>
+                                            <li className="download-li" style={{ width:'100%',backgroundColor:'#FCBD17'}}>
+                                                <div className="download-navigation-button">
+                                                <a class="active" href="#leads">Download</a>
+                                                </div>
+                                            </li>
+                                        </div>
                                     </Link>
                                     
                                     
