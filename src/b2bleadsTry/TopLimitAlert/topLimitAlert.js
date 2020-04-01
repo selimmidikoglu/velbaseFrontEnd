@@ -9,13 +9,13 @@ import { bindActionCreators } from 'redux'
 class TopLimitAlert extends Component {
     render() {
         return (
-            <Modal.Dialog  className="modal-container-content" isOpen={this.props.alertOrNot}>
+            <Modal.Dialog  className="modal-container-content" isOpen={this.props.topLimit}>
                 <div style={{display:'flex',width:'300px',height:'200px',flexDirection:'column',borderRadius:'10px',padding:'20px',borderRadius:'20px'}}>
                     <div className="top-limit-alert-rows">
                         <span className="data-count-alert-text" style={{color:"#2B57D9",fontSize:'16px'}}>Data out of range</span>
                     </div>
                     <div  className="top-limit-alert-rows">
-                        {this.props.totalCount > 11111?<span className="data-count-alert-text">Please contact us for purchases over 10.000$</span>:null}
+                        {this.props.totalCount > 111111?<span className="data-count-alert-text">Please contact us for purchases over 10.000$</span>:null}
                         {this.props.totalCount < 6?<span className="data-count-alert-text">You have to retrieve at least 6 leads to proceed paid data</span>:null}
                     </div>
                     <div  className="top-limit-alert-rows">

@@ -35,15 +35,14 @@ class ResultsColumn extends Component {
                     <h1 style = {{marginTop: '10px',color:'#FCBD17',fontSize:18,height:'50%', fontFamily:'Gilmer-Heavy',marginRight:'5px'}} className = "dataCount" >Total Price: </h1>
                     <h1 style = {{marginTop: '10px',color:'#455A64',fontSize:18,height:'50%', fontFamily:'Gilmer-Regular'}}className = "dataCount" >{this.props.totalCount * 9/100}$</h1>
                 </div>
-                <Link style={{textDecoration:'none'}} to={this.props.totalCount < 6|| this.props.totalCount > 11111.1111?{pathname:"/leads",state:{section:'full_data'}}:{pathname:"/second",state:{section:'full_data'}}} 
+                <Link style={{textDecoration:'none'}} to={this.props.totalCount < 6|| this.props.totalCount > 111111?{pathname:"/leads",state:{section:'full_data'}}:{pathname:"/second",state:{section:'full_data'}}} 
                     onClick={() => {
-                        this.props.alert_top_limit()
+                        if(this.props.totalCount < 6|| this.props.totalCount > 111111)
+                            this.props.alert_top_limit()
                     }}
                 >
-                    <div className="row"   hidden={this.props.totalCount!==0?false:true} onClick={() => this.props.alert_top_limit()}>    
-                        <div className = "data-button" onClick = {()=>{
-                            this.props.alert_top_limit()
-                            }}><h1 className="data-button-text">Process payment</h1>
+                    <div className="row"   hidden={this.props.totalCount!==0?false:true}>    
+                        <div className = "data-button"><h1 className="data-button-text">Process payment</h1>
                             </div>
                     </div>
                 </Link>

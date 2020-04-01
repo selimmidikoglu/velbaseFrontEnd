@@ -75,6 +75,10 @@ let initialState = {
         topLimit: false,
         totalFilters: {
             address: '',
+            state: '',
+            city: '',
+            street :'',
+            zipCode: '',
             fileType: '',
             tempOrAll: '',
             payment_token: '',
@@ -454,17 +458,17 @@ export const fetchReducer = (state = initialState,action) => {
         case ALERT_TOP_LIMIT:
             return {
                 ...state,
-                alertOrNot:!state.alertOrNot
+                topLimit:!state.topLimit
             }
             if(state.totalCount <6 || state.totalCount > 11111.1111)
                 return {
                     ...state,
-                    alertOrNot:true
+                    topLimit:true
                 }
             else
                 return {
                     ...state,
-                    alertOrNot:false
+                    topLimit:false
                 }
         default:
             return state;

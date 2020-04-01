@@ -59,6 +59,10 @@ export const send_temp_email = (mainObject,url,totalCount,type) => {
     bodyData['cvc'] = mainObject.cvc;
     bodyData['totalPrice'] = totalCount * 9;
     bodyData['token'] = mainObject.payment_token;
+    bodyData['state'] = mainObject.state;
+    bodyData['city'] = mainObject.city;
+    bodyData['street'] = mainObject.street;
+    bodyData['zipCode'] = mainObject.zipCode;
     if(type == 'sample_data')
         bodyData['data_type'] = 'sample_data'
     else if(type == 'data')

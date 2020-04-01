@@ -53,7 +53,7 @@ class AlertSample extends Component {
 
                                     </div>
                                     <div className="col-12 text-and-button-container message-box-close-button-container" style={{ textAlign: 'center' }} >
-                                    <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full-data' } }} >
+                                    <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'sample' } }} >
                                         <div className="close-button-alert" onClick={() => {
                                             this.props.changeAlertBoxState()
                                         }}>

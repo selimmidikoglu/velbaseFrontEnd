@@ -54,11 +54,11 @@ class YoloTry extends Component {
   }
 
   render() {
-    console.log("alert or not ", this.props)
+    console.log("TOP LIMIT ", this.props.fetchReducer.topLimit)
     return (
 
       <div style={{ width: '100%', height: '100%'}} ref={node => { this.node = node; }} onClick={() => this.handleClick()}>
-        <div className="top-limit-alert-container" hidden={!this.props.fetchReducer.alertOrNot}><TopLimitAlert/></div>
+        <div className="top-limit-alert-container" hidden={!this.props.fetchReducer.topLimit}><TopLimitAlert/></div>
         <NavigationComponent/>
         <div className="container custom-container" style={{ pointerEvents: this.props.fetchReducer.conditionForSpinner.divPointerEvents, paddingLeft: '50px', paddingRight: '50px', paddingTop: '40px' }}>
         
