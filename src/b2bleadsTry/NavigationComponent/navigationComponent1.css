@@ -1,27 +1,41 @@
 .navigation-top-container{
     height: 90px;
     //background-image: linear-gradient(to right, #E61575 , #2B3079); 
-    background-color:whitesmoke;
+    background-color:inherit;
     padding-right:40px;
-    position:inherit;
+    //position:inherit;
     display: flex;
     flex-direction: row;
-    //width :100%;
+    width :100%;
+    
 } 
-
+@media screen and (max-width:993px){
+    .logo-container{
+        margin-left:0px !important;
+    }
+}
 .logo-container{
     flex:1;
-    max-width:100px;
-    padding-left:40px;
-    margin-top: 10px;
+    height: 90px;
+    //max-width:100px;
+    //padding-left:40px;
+    //margin-top: 10px;
     align-items: center;
-    justify-content: center;
+    padding-top: 20px;
+    margin-left: 100px;
+    
 }
 .navigation-buttons-container{
     flex:2;
+    height: 90px;
+    
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
 }
 .navigation-with-button-container{
-    flex:2;
+    flex:4;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -53,7 +67,8 @@ li a {
     font-size: 18px;
 }
 .download-navigation-button{
-    border-radius: 5px;
+    border-radius: 50px;
+    height: 50px;
     background-color: #FCBD17;
     display: flex;
     align-items: center;
@@ -71,7 +86,7 @@ li a:hover {
     text-decoration: none;
 }
 .icon-bars{
-    color:white;
+    color:#E61575;
     font-size: 25px;
 }
 .navigation-main-button-container{
@@ -81,11 +96,12 @@ li a:hover {
 .navigation-dropdown-menu{
     position: relative;
     z-index: 10000;
-    background-color: #2B3079;
+    background-color: white;
     display:flex;
     flex-direction: column-reverse;
+    position: inherit;
     height:200px;
-    width:100px;
-    margin-top:247px;
-    margin-right: -40px;
+    width:110px;
+    margin-top:322px;
+    margin-right: 0px;
 }

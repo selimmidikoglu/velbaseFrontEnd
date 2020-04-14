@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import './navigationComponent1.css'
-import IconComponentColored from '../DumbComponents/IconComponent/iconComponentColored'
+import './navigationComponent.css'
+import IconComponent from '../DumbComponents/IconComponent/iconComponent'
 import { Link } from 'react-router-dom'
 export default class NavigationComponent extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ export default class NavigationComponent extends Component {
     }
 
     updatePredicate() {
-        this.setState({ isDesktop: window.innerWidth > 840 });
+        this.setState({ isDesktop: window.innerWidth > 711 });
     }
     openMenu(){
         this.setState({opened: !this.state.opened})
@@ -31,9 +31,9 @@ export default class NavigationComponent extends Component {
     render() {
         const isDesktop = this.state.isDesktop;
         return (
-            <div className="container navigation-top-container" style={{width: '100%'}} >
+            <div className="navigation-top-container" style={{iwidth: '100%'}} >
                 <div className="logo-container">
-                    <IconComponentColored color = "st1"  style={{margin:'auto',display:'block'}}/>
+                    <IconComponent />
                 </div>
                 {isDesktop?(
                     <div className="navigation-buttons-container">
