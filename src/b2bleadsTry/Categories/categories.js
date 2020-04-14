@@ -49,7 +49,7 @@ class Categories extends Component {
                     {this.props.defaultCategories.map((category, index) => {
                         return(
                             <div className="row category-box">
-                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{this.capitilizeCategory(category.category_name)}</label></div>
+                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{this.capitilizeCategory(category.category_name)}, {category.sic_code}</label></div>
                                 <div className="col-2" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
@@ -71,7 +71,7 @@ class Categories extends Component {
                     {this.props.matchedCategories.map((category, index) => {
                         return (
                         <div className="row category-box">
-                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{this.capitilizeCategory(category.category_name)}</label></div>
+                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{this.capitilizeCategory(category.category_name)}, {category.sic_code}</label></div>
                                 <div className="col-2" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
@@ -90,7 +90,7 @@ class Categories extends Component {
                     {this.props.defaultCategories.map((category, index) => {
                         return (
                             <div className="row category-box">
-                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{this.capitilizeCategory(category.category_name)}</label></div>
+                                <div className="col-10" style={{ textAlign: 'left' }}><label className="category-name">{this.capitilizeCategory(category.category_name)}, {category.sic_code}</label></div>
                                 <div className="col-2" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
                                     onClick={(event) => {
                                         this.props.setSpinner()

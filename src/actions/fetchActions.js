@@ -28,6 +28,7 @@ export const SET_SPINNER = 'SET_SPINNER'
 export const getDefaultCategoriesAndStates = url => {
     return dispatch => {
         fetch(url).then(data => data.json()).then(data => {
+            console.log(data)
             let temp = [];
             for (let i = 0; i < data.states.length; i++) {
                 const element = data.states[i];

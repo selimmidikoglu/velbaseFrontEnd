@@ -8,7 +8,12 @@ import Hand from './Main03_1.png'
 import Target from './Main03_2.png'
 import Arrow from './Main03_3.png'
 import Illus from './Main03_0.png'
+import IllusPng from '../DumbComponents/IconComponent/hero-image.png'
 import IconComponentColored from '../DumbComponents/IconComponent/iconComponentColored'
+import AimIcon from '../DumbComponents/IconComponent/AimIcon'
+import SelectIcon from '../DumbComponents/IconComponent/SelectIcon'
+import TargetIcon from '../DumbComponents/IconComponent/TargetIcon'
+import BackgroundLogo from '../DumbComponents/IconComponent/BackgroundLogo'
 export default class HomeComponent extends Component {
     constructor(props) {
         super(props);
@@ -66,7 +71,7 @@ export default class HomeComponent extends Component {
                                 </div>
                             </div>
                             <div className="col-sm-12 col-md-12 col-lg-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <img src={Illus} style={{ width: '400px', height: '400px' }} />
+                                <img src={IllusPng} style={{ width: '400px', height: '400px' }} />
                             </div>
 
                         </div>
@@ -82,17 +87,17 @@ export default class HomeComponent extends Component {
                     <div className="row">
 
                         <div className="col-4 direction-text-containers">
-                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><img src={Hand} style={{ width: '100px', height: '100px' }}></img></div>
+                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><SelectIcon/></div>
                             <div className="center-direction-text"><label className="home-page-small-text">Select the type of</label></div>
                             <div className="center-direction-text"><label className="home-page-small-text">leads you need</label></div>
                         </div>
                         <div className="col-4 direction-text-containers">
-                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><img src={Target} style={{ width: '100px', height: '100px' }}></img></div>
+                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><AimIcon/></div>
                             <div className="center-direction-text"><label className="home-page-small-text">Narrow your selection </label></div>
                             <div className="center-direction-text"><label className="home-page-small-text">to a specific demographic</label></div>
                         </div>
                         <div className="col-4 direction-text-containers">
-                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><img src={Arrow} style={{ width: '100px', height: '100px' }}></img></div>
+                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><TargetIcon/></div>
                             <div className="center-direction-text"><label className="home-page-small-text">Get your leads </label></div>
                             <div className="center-direction-text"><label className="home-page-small-text">delivered to your email</label></div>
                         </div>
@@ -133,7 +138,7 @@ export default class HomeComponent extends Component {
                         </Link>
                     </div>
                     <div className="row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <IconComponentColored color="st2" />
+                        <BackgroundLogo/>
                     </div>
 
 
