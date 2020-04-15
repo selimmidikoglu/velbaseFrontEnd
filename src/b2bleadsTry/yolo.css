@@ -1,4 +1,6 @@
-
+body{
+    background-color: #fff;
+}
 @import url('https://fonts.googleapis.com/css?family=Chivo|Jaldi&display=swap');
 
 
@@ -82,7 +84,7 @@
 }
 
 body{
-    background-color: #F2F2F2;
+    //background-color: #F2F2F2;
     //overflow-y: hidden;
     position: relative;
 }
@@ -135,7 +137,7 @@ body{
 @media (max-width: 450px ) and (min-width:0px){
     .container {
     max-width: 1200px !important;
-    padding:0px !important;
+    //padding:0px !important;
     margin:0px !important;
     }
 }

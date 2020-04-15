@@ -22,7 +22,7 @@ export default class NavigationComponent extends Component {
     }
 
     updatePredicate() {
-        this.setState({ isDesktop: window.innerWidth > 711 });
+        this.setState({ isDesktop: window.innerWidth > 1000});
     }
     openMenu(){
         this.setState({opened: !this.state.opened})

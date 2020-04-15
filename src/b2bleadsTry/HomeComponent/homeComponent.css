@@ -2,18 +2,31 @@
     background-image: linear-gradient(to right,#2B3079, #E61575); 
 }
 @media screen and (max-width:993px){
-    .home-page-bs-container{
-        margin-left:-90px !important;
+    .home-text-container{
+        //margin-left:-80px !important;
     }
+   
 }
 @media screen and (min-width:993px){
+    .home-text-container{
+        margin-left:-80px !important;
+        padding-left:100px;
+    }
+    
+    
     .home-page-bs-container{
         //margin-left:40px !important;
     }
 }
+.home-page-small-text{
+    display: block;
+    font-family: Gilmer-Regular;
+    font-size: 16px;
+    color:gray;
+}
 .home-text-container{
     //margin-left: 10%;
-    padding-left:100px;
+    
     padding-top:100px;
     padding-bottom: 100px 
 }
@@ -44,11 +57,13 @@
     //text-shadow: 2px 2px #2B3079;
 }
 .center-direction-text{
+    
     display:flex;
     align-items: center;
     justify-content: center;
 }
 .direction-text-containers{
+    height:'auto';
     padding:40px;
     display: flex;
     flex-direction: column;
@@ -56,12 +71,7 @@
     justify-content: center;
 
 }
-.home-page-small-text{
-    display: block;
-    font-family: Gilmer-Regular;
-    font-size: 16px;
-    color:gray;
-}
+
 
 .home-page-small-text-question{
     display: block;
@@ -132,9 +142,7 @@
 }
 .footer-link-container{
     height: 100px;
-    border-bottom-width: 1px;
-    border-bottom-color: white;
-    border-bottom-style: solid;
+    //max-width: 110px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,7 +151,7 @@
 .footer-links-desing{
     font-family: Gilmer-Regular;
     color:white;
-    font-size: 20px;
+    font-size: 16px;
 
 
 }
@@ -158,6 +166,25 @@
 
 @media screen and (max-width:993px){
     .footer-links-desing{
-        font-size: 14px !important;
+        font-size: 12px !important;
     }
+}
+.illus-image{
+    width: 400px;
+     height: 400px;
+}
+@media screen and (max-width:993px){
+    .illus-image{
+        width: 300px;
+         height: 300px;
+    }
+    .center-direction-text{
+        padding-left: 10px;
+        
+    }
+    
+}
+footer{
+    position:'absolute';
+    bottom:0;
 }

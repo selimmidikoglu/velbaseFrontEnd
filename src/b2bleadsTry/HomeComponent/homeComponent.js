@@ -14,6 +14,7 @@ import AimIcon from '../DumbComponents/IconComponent/AimIcon'
 import SelectIcon from '../DumbComponents/IconComponent/SelectIcon'
 import TargetIcon from '../DumbComponents/IconComponent/TargetIcon'
 import BackgroundLogo from '../DumbComponents/IconComponent/BackgroundLogo'
+import FooterComponent from '../FooterComponent/footerComponent';
 export default class HomeComponent extends Component {
     constructor(props) {
         super(props);
@@ -40,7 +41,7 @@ export default class HomeComponent extends Component {
                 <div className="fluid-container home-page-bs-container colored-texts" >
                     <div className="container">
                         <div className="row " >
-                            <div className="col-sm-12 col-md-12 col-lg-6 home-text-container">
+                            <div className="col-sm-12 col-md-8 col-lg-6 home-text-container">
                                 <div className=" col-sm-8 col-md-10 col-lg-12">
                                     <header className="home-page-main-header">Ready to grow your business?</header>
                                     <label className="home-page-sub-header">We can help!</label>
@@ -70,15 +71,15 @@ export default class HomeComponent extends Component {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="col-sm-12 col-md-12 col-lg-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <img src={IllusPng} style={{ width: '400px', height: '400px' }} />
+                            <div className="col-sm-12 col-md-4 col-lg-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <img class="illus-image" src={IllusPng} />
                             </div>
 
                         </div>
 
                     </div>
                 </div>
-                <div className="container" style={{ height: '400px', backgroundColor: 'white', paddingTop: '20px', marginTop: 0, marginBottom: 0 }}>
+                <div className="container" style={{ backgroundColor: 'white', paddingTop: '20px', marginTop: 0, marginBottom: 0 }}>
                     <div className="row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '50px', marginBottom: '40px' }}>
                         <label className="home-page-small-text-question">
                             Want to see how easy our process
@@ -86,18 +87,18 @@ export default class HomeComponent extends Component {
                     </div>
                     <div className="row">
 
-                        <div className="col-4 direction-text-containers">
-                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><SelectIcon/></div>
+                        <div className="col-sm-12 col-md-4 direction-text-containers">
+                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><SelectIcon /></div>
                             <div className="center-direction-text"><label className="home-page-small-text">Select the type of</label></div>
                             <div className="center-direction-text"><label className="home-page-small-text">leads you need</label></div>
                         </div>
-                        <div className="col-4 direction-text-containers">
-                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><AimIcon/></div>
+                        <div className="col-sm-12 col-md-4 direction-text-containers">
+                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><AimIcon /></div>
                             <div className="center-direction-text"><label className="home-page-small-text">Narrow your selection </label></div>
                             <div className="center-direction-text"><label className="home-page-small-text">to a specific demographic</label></div>
                         </div>
-                        <div className="col-4 direction-text-containers">
-                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><TargetIcon/></div>
+                        <div className="col-sm-12 col-md-4 direction-text-containers">
+                            <div className="center-direction-text direction-image-container" style={{ marginBottom: '10px' }}><TargetIcon /></div>
                             <div className="center-direction-text"><label className="home-page-small-text">Get your leads </label></div>
                             <div className="center-direction-text"><label className="home-page-small-text">delivered to your email</label></div>
                         </div>
@@ -138,19 +139,19 @@ export default class HomeComponent extends Component {
                         </Link>
                     </div>
                     <div className="row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <BackgroundLogo/>
+                        <BackgroundLogo />
                     </div>
 
 
                 </div>
-                <div className="container" style={{ height: '100px', backgroundColor: 'white', paddingTop: '20px', marginTop: '20px' }}>
+                <div className="container" style={{ height: 'auto', backgroundColor: 'white', paddingTop: '20px', marginTop: '20px',padding:'20 px' }}>
                     <div className="row">
-                        <div className="col-md-6 col-sm-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+                        <div className="col-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
                             <label className="home-page-small-text-question">
                                 Ready to get started?
                         </label>
                         </div>
-                        <div className="col-md-6 col-sm-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                        <div className="col-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                             <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
                                 <div className="discover-leads-button" style={{ margin: 'auto' }}>
 
@@ -160,43 +161,7 @@ export default class HomeComponent extends Component {
                             </Link></div>
                     </div>
                 </div>
-                <div className="fluid-container" style={{ height: '200px', backgroundColor: 'rgb(29,45,64)', }}>
-                    <div className="container">
-                        <div className="row" style={{ height: '100px' }}>
-                            <div className="col-4" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', borderBottomWidth: '1px', borderBottomColor: 'white', borderBottomStyle: 'solid' }}>
-                                <IconComponentColored color="st0" />
-                            </div>
-                            <div className="col-2 footer-link-container" >
-                                <Link style={{ textDecoration: 'none' }} to={{ pathname: "/home", state: { section: 'full_data' } }} >
-                                    <label className="footer-links-desing">Home</label>
-                                </Link>
-                            </div>
-                            <div className="col-2 footer-link-container" >
-                                <Link style={{ textDecoration: 'none' }} to={{ pathname: "/aboutus", state: { section: 'full_data' } }} >
-                                    <label className="footer-links-desing">About</label>
-                                </Link>
-                            </div>
-                            <div className="col-2 footer-link-container" >
-                                <Link style={{ textDecoration: 'none' }} to={{ pathname: "/questions", state: { section: 'full_data' } }} >
-                                    <label className="footer-links-desing">Questions</label>
-                                </Link>
-                            </div>
-                            <div className="col-2 footer-link-container" >
-                                <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
-                                    <label className="footer-links-desing">Download</label>
-                                </Link>
-                            </div>
-                        </div>
-                        <div className="row" style={{ heigth: '100px', display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
-                            <div className="col-6" style={{ height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                                <label className="footer-links-desing" style={{ fontSize: '13px' }}>CopyRights @ Velbase 2020</label>
-                            </div>
-                            <div className="col-6" style={{ height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                                <label className="footer-links-desing" style={{ fontSize: '13px' }}>CopyRights @ Velbase 2020</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <FooterComponent/>
             </div>
         )
     }

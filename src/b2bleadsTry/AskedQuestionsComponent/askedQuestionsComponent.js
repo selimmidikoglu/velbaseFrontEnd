@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './askedQuestionsComponent.css'
 import NavigationComponent from '../NavigationComponent/navigationComponent';
+import FooterComponent from '../FooterComponent/footerComponent';
 let questions = [
     {
         question: 'Do I need leads?',
@@ -95,6 +96,7 @@ class AskedQuestionsComponent extends Component {
                         ))}
                     </div>
                 </div>
+                <FooterComponent/>
             </div>
         )
     }
