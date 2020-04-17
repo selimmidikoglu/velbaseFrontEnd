@@ -36,7 +36,7 @@ export default class HomeComponent extends Component {
     }
     render() {
         return (
-            <div style={{ backgroundColor: 'white' }}>
+            <div style={{ backgroundColor: 'white',minHeight:'100%', margin: '0 auto -150px' }}>
                 <NavigationComponent />
                 <div className="fluid-container home-page-bs-container colored-texts" >
                     <div className="container">

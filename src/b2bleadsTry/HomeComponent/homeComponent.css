@@ -140,35 +140,7 @@
     cursor: pointer;
     
 }
-.footer-link-container{
-    height: 100px;
-    //max-width: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-}
-.footer-links-desing{
-    font-family: Gilmer-Regular;
-    color:white;
-    font-size: 16px;
 
-
-}
-.footer-links-desing:hover{
-    font-family: Gilmer-Regular;
-    color:#E61575;
-    font-size: 20px;
-    cursor: pointer;
-
-
-}
-
-@media screen and (max-width:993px){
-    .footer-links-desing{
-        font-size: 12px !important;
-    }
-}
 .illus-image{
     width: 400px;
      height: 400px;
@@ -183,8 +155,4 @@
         
     }
     
-}
-footer{
-    position:'absolute';
-    bottom:0;
 }

@@ -5,7 +5,7 @@ import FooterComponent from '../FooterComponent/footerComponent'
 class Aboutuscomponent extends Component {
     render() {
         return (
-            <div style={{ backgroundColor: 'white' }}>
+            <div style={{ backgroundColor: 'white',minHeight:'100%', bottom:'0', margin: '0 auto -00px'}}>
                 <NavigationComponent />
                 <div className="container" style={{height:'100%'}}>
                     <div className="row">
@@ -32,7 +32,9 @@ class Aboutuscomponent extends Component {
                         </div>
                     </div>
                 </div>
+                <div style={{position:'fixed',bottom:'0px',right:'0',left:'0'}}>
                 <FooterComponent/>
+                </div>
             </div>
         )
     }

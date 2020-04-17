@@ -79,7 +79,7 @@ let questions = [
 class AskedQuestionsComponent extends Component {
     render() {
         return (
-            <div>
+            <div style={{ backgroundColor: 'white',minHeight:'100%', margin: '0 auto -150px' }}>
                 <NavigationComponent/>
                 <div className="container">
                     <div className="row">

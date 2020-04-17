@@ -28,7 +28,7 @@ export default class IconComponentColored extends Component {
     render() {
         return (
             <svg version="1.1" id="katman_1" xmlns="http://www.w3.org/2000/svg"  xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                viewBox="0 0 357 80" style={{ enableBackground: 'new 0 0 357 80;' }}  space="preserve" width={this.state.logoSize} height={this.props.height}>
+                viewBox="0 0 357 80" style={{ enableBackground: 'new 0 0 357 80;' }}  space="preserve" width={this.props.heightCondition?this.props.width:this.state.logoSize} height={this.props.height}>
                 <path class={this.props.color} d="M111.17,41.9c0,1.75-0.18,3.5-0.55,5.25l-0.05,0.31c-0.13,0.73-0.76,1.26-1.5,1.26h-34.4
                 c-1,0-1.72,0.94-1.48,1.91c1.38,5.39,5.92,8.22,12.55,8.22c4.25,0,7.6-1.14,10.05-3.81c0.3-0.32,0.71-0.52,1.15-0.52h8.6
                 c1.19,0,1.93,1.32,1.29,2.33c-4.64,7.39-12.68,11.95-22.47,11.95c-13.26,0-22.85-8.47-22.85-21.65c0-14.46,11.61-26.25,26.9-26.25

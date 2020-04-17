@@ -27,7 +27,7 @@ class AlertDone extends Component {
                             <div className="message-box">
                                 <div className="row">
                                     <div className="col-12 text-and-button-container message-box-logo-container">
-                                        <IconComponentColored />
+                                        <IconComponentColored color="st1" />
                                     </div>
                                     <div className="col-12 message-box-main-header-container" style={{ textAlign: 'center' }}>
 
@@ -41,7 +41,7 @@ class AlertDone extends Component {
                                                     <div className="close-text-container">
                                                         <h6 className="message-text">We will be sending your data to your email address.
                                                         There will be random created zip file and inside that you will find data folder. You can reach you .csv file inside that data folder after unzipping.
-                                                 If you need any custom data please contact us. We do not let online filtering and retrieving of more than 500k data.</h6>
+                                                 If you need any custom data please contact us. We do not let online filtering and retrieving of data priced more than 10.000$.</h6>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
