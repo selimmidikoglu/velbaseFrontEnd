@@ -44,7 +44,7 @@ export default class FooterComponent extends Component {
                             <label className="footer-links-desing" style={{ fontSize: '13px' }}>CopyRights @ Velbase 2020</label>
                         </div>
                         <div className="col-6" style={{ height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                            <label className="footer-links-desing" style={{ fontSize: '13px' }}>CopyRights @ Velbase 2020</label>
+                            <label className="footer-links-desing" style={{ fontSize: '13px' }}>Privacy Policy-Terms & Conditions</label>
                         </div>
                     </div>
                 </div>

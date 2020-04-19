@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import './askedQuestionsComponent.css'
 import NavigationComponent from '../NavigationComponent/navigationComponent';
 import FooterComponent from '../FooterComponent/footerComponent';
+import { SlideDown } from 'react-slidedown'
+import { Link } from 'react-router-dom'
+
+import 'react-slidedown/lib/slidedown.css'
 let questions = [
     {
         question: 'Do I need leads?',
@@ -31,7 +35,7 @@ let questions = [
         consumers for your product."
     },
     {
-        question:"How will I know it works?",
+        question: "How will I know it works?",
         answer: "Velbase uses current market trends to ensure that your consumers are top-of-the-line \
         quality. We’ve invested our time to ensure that your leads are market-specific and up-to-date, \
         including double checking our data from multiple sources, so that our data is fresh and \
@@ -74,29 +78,95 @@ let questions = [
         …and many more! The best way to see if we can help you generate a laser-targeted lead list is \
         to type your specific industry, product, or service into our category search. You’ll find a full, \
         comprehensive list of the best leads to utilize for your business!"
+    },
+    {
+        question: "What is the best practice for contacting leads after I acquire them?",
+        answer: "Never sit on lead! Be sure to call the prospect as soon as possible once you've \
+         received their full information. If a lead is unavailable or not home at the time of contact(if using phone) \
+          ensure that you note to call them back on the next cycle "
     }
 ]
+let whichQuestion = [false, false, false, false, false, false, false]
 class AskedQuestionsComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            whichQuestion: [false, false, false, false, false, false, false]
+        }
+    }
     render() {
         return (
-            <div style={{ backgroundColor: 'white',minHeight:'100%', margin: '0 auto -150px' }}>
-                <NavigationComponent/>
-                <div className="container">
+            <div style={{ backgroundColor: 'white', minHeight: '100%', margin: '0 auto -150px' }}>
+                <NavigationComponent />
+                <div className="fluid-container main-header-container-asked-questions">
+                    <label className="main-header-asked-questions-text">Frequently Asked Questions</label>
+                </div>
+                <div className="container" style={{}}>
                     <div className="row">
-                        <div className="col-12 main-header-container-asked-questions">
-                            <label className="main-header-asked-questions-text">Frequently Asked Questions</label>
-                        </div>
-                        {questions.map((row) => (
+
+                        {questions.map((row, index) => (
                             <div className="col-12 question-row-container">
-                                <label className="col-12 question-text">{row.question}</label>
-                                {row.answer.split('\n').map((item,index)=> (
-                                    <label className="col-12 answer-text" key={index}>{item}</label>
-                                ))}
+                                 <hr class="divider" style={{ color: 'gray' }}></hr>
+                                <label className="col-12 question-text" style={{ marginBottom: '25px', textAlign: 'left', marginTop: '25px' }} onClick={() => {
+
+                                    let whichQuestion = this.state.whichQuestion
+                                    console.log(whichQuestion)
+                                    for (let i = 0; i < this.state.whichQuestion.length; i++) {
+                                        if (i == index)
+                                            this.state.whichQuestion[i] == false ? whichQuestion[i] = true : whichQuestion[i] = false
+                                        else
+                                            whichQuestion[i] = false
+
+                                    }
+                                    this.setState({ whichQuestion })
+                                }}>{row.question}</label>
+                                <SlideDown closed={!this.state.whichQuestion[index]} style={{ width: '100%' }}>
+                                    {row.answer.split('\n').map((item, index) => (
+                                        <label className="col-12 answer-text" key={index}>{item}</label>
+                                    ))}
+                                </SlideDown>
+                               
                             </div>
+
                         ))}
                     </div>
                 </div>
-                <FooterComponent/>
+                <div className="fluid-container" style={{ height:'150px',backgroundColor: '#e6e6e6',marginBottom:'100px' }}>
+                    <div className="container" style={{  paddingTop: '20px',  }}>
+                        <div className="row" style={{}}>
+                            <div className="col-6" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', flexDirection: 'column' }}>
+                                <label style={{ color: '#2B3079', fontFamily: 'Gilmer-Heavy', fontSize: '15px', marginBottom: '-15px' }}>
+                                    Still got questions?
+                            </label>
+                                <br />
+                                <label style={{ fontSize: '13px' }}>
+                                    Feel free to contact us!
+                            </label>
+                            </div>
+                            <div className="col-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                                <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
+                                    <button type="button" className="btn btn-primary contact-us-button"
+                                        style={{
+                                            display: 'block',
+                                            borderStyle: 'none',
+                                            fontColor: 'white',
+                                            fontFamily: 'Gilmer-Regular',
+                                            fontSize: '16px',
+                                            backgroundColor: '#FCBD17',
+                                            borderRadius: '20px',
+
+                                        }}
+                                    >Contact Us</button>
+                                    {/*<button type="button" className="discover-leads-button" style={{ margin: 'auto' }}>
+
+                                    <label className="discover-leads-button-text" >Start Now</label>
+
+                                    </button>*/}
+                                </Link></div>
+                        </div>
+                    </div>
+                </div>
+                <FooterComponent />
             </div>
         )
     }
