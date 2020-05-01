@@ -30,26 +30,23 @@ class EmpFilter extends Component {
         if(count !== 1){
             emp_count = 
             <div className = "row every-filter-container">
-                <div  className="col-12" style={{marginBottom:'5px',textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 className="categories-header-filter-text-1">Employee Count</h2></div>
+                 <div  className="filters-common-header-container"><span className="categories-header-filter-text-1">Employee Count</span></div>
                 {this.props.totalFilters.scaleEmployeeCount.map((scaleEmpCount,index) => {
                     if(scaleEmpCount === true && index !== 0)
                         return (
-                            <div className= "col-12" style={{width:'100%',marginTop:'3px'}}> 
-                                <div className = "col-10 col-md-8 col-lg-11 filter-info-container">
-                                    <div className = "col-md-10 state-text-container">
+                                <div className = "category-filter-con">
+                                    asdasd
+                                    <div className = "filter-info-container">
                                         <span className= "category-text-span">{employeeArray[index].text}</span>
                                     </div>
-                                    <div className="col-2 col-md-4 col-lg-1 category-remove-button-con">
-                                        <div>
+                                    <div className="   category-remove-button-con">
                                             <button  className="close-button" onClick={(event) => {
                                                 this.props.setSpinner()
                                                 this.props.update_other_filter(true,'employee_count',index)
                                                 this.props.getTotalData(this.props.totalFilters,apiUrl)
                                             }} ></button>
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         )
                 })}
             </div>

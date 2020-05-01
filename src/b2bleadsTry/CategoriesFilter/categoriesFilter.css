@@ -25,13 +25,13 @@
 .category-text-span{
     color:#000;
     vertical-align:middle;
-    font-size: 20px;
+    font-size: 16px;
     font-family: Gilmer-Regular;
 
 }
 @media screen and (min-width: 992px){
     .category-text-span{
-        font-size: 15px;
+        font-size: 13px;
     }
     .categories-header-filter-text-1 {
         font-size: 16px;

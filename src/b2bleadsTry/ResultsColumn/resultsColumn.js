@@ -20,7 +20,7 @@ import { setSpinner, getTotalData, alert_top_limit } from '../../actions/fetchAc
 import { Link } from 'react-router-dom'
 import './resultsColumn.css'
 import { apiUrl } from '../../consts/consts'
-
+const styleOthers = { display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }
 class ResultsColumn extends Component {
 
     render() {
@@ -36,7 +36,7 @@ class ResultsColumn extends Component {
                         <h1 style={{ display: 'block', color: '#2B3079', fontSize: 18, fontFamily: 'Gilmer-Heavy' }} className="dataCount" >Total Price: </h1>
                         <h1 style={{ display: 'block', color: '#455A64', fontSize: 18, fontFamily: 'Gilmer-Heavy' }} className="dataCount" >{this.props.totalCount * 9 / 100}$</h1>
                     </div>
-                    <Link style={{ textDecoration: 'none' }} to={this.props.totalCount < 6 || this.props.totalCount > 111111 ? { pathname: "/leads", state: { section: 'full_data' } } : { pathname: "/second", state: { section: 'full_data' } }}
+                    <Link className="col-12" style={{ textDecoration: 'none' }} to={this.props.totalCount < 6 || this.props.totalCount > 111111 ? { pathname: "/leads", state: { section: 'full_data' } } : { pathname: "/second", state: { section: 'full_data' } }}
                         onClick={() => {
                             if (this.props.totalCount < 6 || this.props.totalCount > 111111)
                                 this.props.alert_top_limit()
@@ -60,9 +60,9 @@ class ResultsColumn extends Component {
 
 
                 <div className="row filters-new-container">
-                    <div className="col-12" style={{display: 'flex', alignItems: 'center', justifyContent: 'center',textAlign:'center',  backgroundColor: 'rgb(115, 119, 167)',borderTopRightRadius:'5px',borderTopLeftRadius:'5px'}}>
+                    <div className="col-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', backgroundColor: 'rgb(115, 119, 167)', borderTopRightRadius: '5px', borderTopLeftRadius: '5px' }}>
 
-                       <span className="filters-header">Filters</span><br />
+                        <span className="filters-header">Filters</span><br />
                     </div>
                     <CategoriesFilter />
                     <StatesFilter />
@@ -75,76 +75,36 @@ class ResultsColumn extends Component {
                 </div>
 
                 <div className="row count-of-other-data" hidden={this.props.totalCount !== 0 ? false : true}>
-
-                    <div className="col-12">
-                        <div className="row">
-                            <div className="col-6">
-                                <h1 className="other-params-text">Facebook:</h1>
-                            </div>
-                            <div className="col-6">
-                                <h1 className="other-params-data-text">{this.props.countFacebook}</h1>
-                            </div>
-                        </div>
+                    <div className="col-12" style={{marginBottom:'10px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', backgroundColor: 'rgb(115, 119, 167)', borderTopRightRadius: '5px', borderTopLeftRadius: '5px' }}>
+                        <span className="filters-header">Filters</span><br />
                     </div>
-                    <div className="col-12">
-                        <div className="row">
-                            <div className="col-6">
-                                <h1 className="other-params-text">Twitter:</h1>
-                            </div>
-                            <div className="col-6">
-                                <h1 className="other-params-data-text">{this.props.countTwitter}</h1>
-                            </div>
-                        </div>
+                    <div className="col-12" style={styleOthers}>
+                        <h1 className="other-params-text">Facebook:</h1>
+                        <h1 className="other-params-data-text" style={{ marginLeft: '10px' }}>{this.props.countFacebook}</h1>
                     </div>
-                    <div className="col-12">
-                        <div className="row">
-                            <div className="col-6">
-                                <h1 className="other-params-text">Email:</h1>
-                            </div>
-                            <div className="col-6">
-                                <h1 className="other-params-data-text">{this.props.countEmail}</h1>
-                            </div>
-                        </div>
+                    <div className="col-12" style={styleOthers}>
+                        <h1 className="other-params-text">Twitter:</h1>
+                        <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countTwitter}</h1>
                     </div>
-                    <div className="col-12">
-                        <div className="row">
-                            <div className="col-6">
-                                <h1 className="other-params-text">Website:</h1>
-                            </div>
-                            <div className="col-6">
-                                <h1 className="other-params-data-text">{this.props.countWebsite}</h1>
-                            </div>
-                        </div>
+                    <div className="col-12" style={styleOthers}>
+                        <h1 className="other-params-text">Email:</h1>
+                        <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countEmail}</h1>
                     </div>
-                    <div className="col-12">
-                        <div className="row">
-                            <div className="col-6">
-                                <h1 className="other-params-text">Fax:</h1>
-                            </div>
-                            <div className="col-6">
-                                <h1 className="other-params-data-text">{this.props.countFax}</h1>
-                            </div>
-                        </div>
+                    <div className="col-12" style={styleOthers}>
+                        <h1 className="other-params-text">Website:</h1>
+                        <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countWebsite}</h1>
                     </div>
-                    <div className="col-12">
-                        <div className="row">
-                            <div className="col-6">
-                                <h1 className="other-params-text">bbb_accredited:</h1>
-                            </div>
-                            <div className="col-6">
-                                <h1 className="other-params-data-text">{this.props.countBBB}</h1>
-                            </div>
-                        </div>
+                    <div className="col-12" style={styleOthers}>
+                        <h1 className="other-params-text">Fax:</h1>
+                        <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countFax}</h1>
                     </div>
-                    <div className="col-12">
-                        <div className="row">
-                            <div className="col-6">
-                                <h1 className="other-params-text">Reviewed:</h1>
-                            </div>
-                            <div className="col-6">
-                                <h1 className="other-params-data-text">{this.props.countReviews}</h1>
-                            </div>
-                        </div>
+                    <div className="col-12" style={styleOthers}>
+                        <h1 className="other-params-text">bbb_accredited:</h1>
+                        <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countBBB}</h1>
+                    </div>
+                    <div className="col-12" style={styleOthers}>
+                        <h1 className="other-params-text">Reviewed:</h1>
+                        <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countReviews}</h1>
                     </div>
 
 

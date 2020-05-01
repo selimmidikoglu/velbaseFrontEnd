@@ -7,9 +7,9 @@ class OtherFilters extends Component {
     render() {
         return (
             <div className="row" style={{marginTop:'20px'}}>
-                <div className="col-xl-6 col-md-12" style={{display:'flex',alignItems:'center',justifyContent:'center'}}><AnnEmpRange/></div>
-                <div className="col-xl-6 col-md-12" style={{display:'flex',alignItems:'center',justifyContent:'center'}}><EmpRange/></div>
-                <div className="col-xl-6 col-md-12" style={{display:'flex',alignItems:'center',justifyContent:'center'}}><FieldFilters/></div>
+                <div className=" col-12" style={{display:'flex',alignItems:'center',justifyContent:'center'}}><AnnEmpRange/></div>
+                <div className=" col-12" style={{display:'flex',alignItems:'center',justifyContent:'center'}}><EmpRange/></div>
+                <div className=" col-12" style={{display:'flex',alignItems:'center',justifyContent:'center'}}><FieldFilters/></div>
             </div>
         );
     }

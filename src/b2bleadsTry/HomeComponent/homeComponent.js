@@ -39,7 +39,7 @@ export default class HomeComponent extends Component {
             <div style={{ backgroundColor: 'white',minHeight:'100%', margin: '0 auto -150px' }}>
                 <NavigationComponent />
                 <div className="fluid-container home-page-bs-container colored-texts" >
-                    <div className="container">
+                    <div className="container" style={{marginTop:'0px'}}>
                         <div className="row " >
                             <div className="col-sm-12 col-md-8 col-lg-6 home-text-container">
                                 <div className=" col-sm-8 col-md-10 col-lg-12">
