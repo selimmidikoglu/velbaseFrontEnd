@@ -64,7 +64,7 @@ input[type='range']::-webkit-slider-thumb::before {
 }
 .ann-revenue-header-text {
   padding-top: 5px;
-  color: #708065;
+  color: rgb(115, 119, 167);
   font-family: Gilmer-Regular;
   font-size: 20px;
  

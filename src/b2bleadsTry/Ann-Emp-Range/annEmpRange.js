@@ -93,7 +93,7 @@ class AnnEmpRange extends Component {
 
         return (
             <div className="row" style={{ width: '100%', height: 'auto', backgroundColor: 'white', padding: '10px', borderRadius: '10px', backgroundColor: 'whitesmoke', borderColor: 'whitesmoke', borderStyle: 'solid', borderWidth: '2px', marginTop: '10px' }}>
-                <div className="col-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="col-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
                     <h1 className="ann-revenue-header-text">Annual Revenue</h1>
                 </div>
                 <div class="col-12 multi-range" style={{ width: 'inherit', backgroundColor: this.props.totalFilters.scaleAnnualRevenue.last == 0?'white':'whitesmoke'}}>

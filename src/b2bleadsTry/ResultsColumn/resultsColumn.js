@@ -60,7 +60,7 @@ class ResultsColumn extends Component {
 
 
                 <div className="row filters-new-container">
-                    <div className="col-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', backgroundColor: 'rgb(115, 119, 167)', borderTopRightRadius: '5px', borderTopLeftRadius: '5px' }}>
+                    <div className="col-12" style={{height:'40px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', backgroundColor: 'rgb(115, 119, 167)', borderTopRightRadius: '5px', borderTopLeftRadius: '5px' }}>
 
                         <span className="filters-header">Filters</span><br />
                     </div>
@@ -75,7 +75,7 @@ class ResultsColumn extends Component {
                 </div>
 
                 <div className="row count-of-other-data" hidden={this.props.totalCount !== 0 ? false : true}>
-                    <div className="col-12" style={{marginBottom:'10px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', backgroundColor: 'rgb(115, 119, 167)', borderTopRightRadius: '5px', borderTopLeftRadius: '5px' }}>
+                    <div className="col-12" style={{height:'40px',marginBottom:'10px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', backgroundColor: 'rgb(115, 119, 167)', borderTopRightRadius: '5px', borderTopLeftRadius: '5px' }}>
                         <span className="filters-header">Filters</span><br />
                     </div>
                     <div className="col-12" style={styleOthers}>
