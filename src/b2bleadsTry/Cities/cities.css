@@ -1,9 +1,32 @@
 .city-text{
-    color:gray;
-    font-family: 'Chivo', sans-serif;
+    color:black;
+    font-family: Gilmer-Regular;
     font-size: 13px;
     margin-left: 5px;
-    display: list-item;          /* This has to be "list-item"                                               */
-    list-style-type: square;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
+    /* display: list-item;          */
+    list-style-type: disc;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
     list-style-position: outside;
+}
+.city-checkbox-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 16px;
+}
+.city-party-text-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 7px;
+}
+.styles-checkbox:hover{
+    background-color: #FCBD17;
+    background-color: rgb(115, 119, 167);
+    border-radius: 2px;
+
+}
+@media screen and (max-width : 790px){
+    .city-text{
+        font-size: 11px;
+    }
 }

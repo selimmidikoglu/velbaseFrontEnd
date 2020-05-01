@@ -23,9 +23,8 @@ class States extends Component {
             return (
                 this.props.matchedStates.map((state, index) => {
                     return (
-                        <div key={index} className="row styles-checkbox">
-                                <div className ="col-9 col-sm-9 col-md-8 col-lg-10" style={{textAlign: 'left' }}><label className="state-text">{state.state} </label></div>
-                                <div className ="col-3 col-sm-3 col-md-4 col-lg-2" ><input type="checkbox" key={index} className="option-input checkbox" defaultChecked={false} 
+                        <div key={index} className="row styles-checkbox" style={{marginTop:'5px'}}>
+                            <div className ="state-part-checkbox-container" ><input type="checkbox" key={index} className="option-input checkbox" defaultChecked={false} 
                                     checked={this.props.totalFilters.states[state.abbreviation]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
@@ -38,6 +37,8 @@ class States extends Component {
                                         console.log("lanet gelsin",this.props.totalFilters.states)
                                         
                                     }} /></div>
+                                <div className ="state-party-text-container" style={{textAlign: 'left' }}><span className="state-text">{state.state} </span></div>
+                                
                         </div>
                     )
 

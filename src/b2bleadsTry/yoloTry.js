@@ -65,10 +65,10 @@ class YoloTry extends Component {
           {this.props.fetchReducer.conditionForSpinner.runSpinner ? (<Spinner />) : null}
           <div className="row ">
             
-            <div className="col-xl-8 col-md-7 col-sm-12 main-filters-container">
+            <div className="col-xl-8 col-md-7 col-sm-6 col-xs-12 main-filters-container">
               <div className="row">
                 <div className="col-12 search-box-nav-container">
-                  <div className="row navbar1-container" style={{paddingTop:'10px'}} >
+                  <div className="row navbar1-container">
                     <div className="col-4 category-nav-button" style={{ backgroundColor: this.props.chooseSearchReducer.buttonCategory }}
                       onClick={() => this.props.chooseOtherSearch("category")}>
                       <div>
@@ -92,7 +92,7 @@ class YoloTry extends Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-12 search-box-container" style={{backgroundColor:'#FCBD17',height:this.props.chooseSearchReducer.otherFiltersHidden === false?'0px': 'auto'}}><SearchBar /></div>
+                    <div className="col-12 search-box-container" style={{height:this.props.chooseSearchReducer.otherFiltersHidden === false?'0px': 'auto'}}><SearchBar /></div>
                   </div>
 
 
@@ -105,7 +105,7 @@ class YoloTry extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-xl-4 col-md-5 col-sm-12 results-container"><ResultsColumns /></div>
+            <div className="col-xl-4 col-md-5 col-sm-6 col-xs-12 results-container"><ResultsColumns /></div>
           </div>
         </div>
       </div>

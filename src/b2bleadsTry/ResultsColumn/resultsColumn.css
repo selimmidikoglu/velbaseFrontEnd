@@ -1,8 +1,33 @@
 .result-inner-box{
     border-radius: 7px;
-    padding:40px;
-    background-color:#4A52BF;
+    /*padding:40px;*/
+    //background-color:#4A52BF;
     //background-image: linear-gradient(to right, #E61575 , #2B3079);
+    padding:0px;
+    
+}
+.count-and-price-container{
+    margin-left: 10px;
+    padding-top:10px;
+    padding-bottom:10px;
+    border-radius: 7px;
+    background-color:  rgba(43,48,121,0.0);
+    -webkit-box-shadow: -1px -1px 6px 2px rgba(181,179,181,0.53);
+    -moz-box-shadow: -1px -1px 6px 2px rgba(181,179,181,0.53);
+    box-shadow: -1px -1px 6px 2px rgba(181,179,181,0.53);
+    margin-top:0;
+    margin-bottom:10px;
+}
+.filters-new-container{
+    margin-left: 10px;
+    padding-bottom:10px;
+    border-radius: 7px;
+    background-color:  rgba(43,48,121,0.0);
+    -webkit-box-shadow: -1px -1px 6px 2px rgba(181,179,181,0.53);
+    -moz-box-shadow: -1px -1px 6px 2px rgba(181,179,181,0.53);
+    box-shadow: -1px -1px 6px 2px rgba(181,179,181,0.53);
+    margin-top:0;
+    margin-bottom:10px;
 }
 .locations-container{
    margin-top: 0;
@@ -24,12 +49,12 @@
     color:white;
 }
 .data-button {
-	background-color:#E94A40;
-	border-radius:6px;
+	background-color:#FCBD17;
+	border-radius:20px;
 	display:inline-block;
 	cursor:pointer;
     margin-top: 10px;
-    width: 100%;
+    width: 60%;
 
 }
 .data-button:hover {
@@ -49,7 +74,7 @@
 }
 .filters-header{
     font-family: Gilmer-Regular;
-    color: rgb(252,189,23);
+    color: white;
     font-size:20px;
     width:100%;
 }

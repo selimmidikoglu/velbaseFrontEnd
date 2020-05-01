@@ -17,15 +17,15 @@ class CategoriesFilter extends Component {
         if(Object.keys(this.props.totalFilters.categories).length !== 0){
             categories = 
             <div className="row every-filter-container">
-                <div  className="col-12" style={{marginBottom:'5px',textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 className="categories-header-filter-text-1">Categories</h2></div>
+                <div  className="filters-common-header-container"><span className="categories-header-filter-text-1">Categories</span></div>
                 {Object.keys(this.props.totalFilters.categories).map((category,index) => {
                     return (
-                        <div className="col-12" style={{width:'100%',marginTop:'3px'}}> 
-                            <div className="row category-filter-con">
-                                <div className="col-10 col-md-8 col-lg-11 filter-info-container" >
+                        
+                            <div className="category-filter-con">
+                                <div className="filter-info-container" >
                                    <span className="category-text-span">{category}</span>
                                 </div>
-                                <div className="col-2 col-md-4 col-lg-1 category-remove-button-con">
+                                <div className=" category-remove-button-con">
                                     
                                         <button  className="close-button" href="/" onClick={(event) => {
                                         this.props.setSpinner()
@@ -35,7 +35,7 @@ class CategoriesFilter extends Component {
                                     
                                 </div>
                             </div>
-                        </div>
+                        
                     )
                 })}
             </div>

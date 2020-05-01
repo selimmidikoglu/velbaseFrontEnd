@@ -1,14 +1,47 @@
+.category-name-box-container {
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  margin-left: 10px;
+  text-align: left;
+}
 .category-name {
-    color:gray;
-    font-family: Gilmer-Regular;
-    font-size: 13px;
-    font-optical-sizing: 13px;
-    display: list-item;          /* This has to be "list-item"                                               */
-    list-style-type: disc;       /* See https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type     */
-    list-style-position: inside;
-    font-weight: 'bold';
-    
+  color: #000;
+  font-family: Gilmer-Regular;
+  font-size: 13px;
+  font-optical-sizing: 13px; /* This has to be "list-item"                                               */
+  list-style-type: disc;
+  list-style-position: inside;
+  font-weight: 'bold';
 }
-.category-box:hover{
-    background-color: #FCBD17;
+.checkbox-categories-container {
+    margin-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 20px;
+  height: 100%
 }
+.category-box:hover {
+  background-color: #fcbd17;
+  background-color: rgb(115, 119, 167);
+  border-radius: 2px;
+  
+  
+}
+.category-box{
+    margin-top: 5px;
+}
+
+@media screen and (max-width: 473px) {
+  .category-name {
+    font-size: 10px;
+  }
+}
+@media screen and (min-width: 473px) and (max-width : 711px) {
+    .category-name {
+      font-size: 10.58px;
+    }
+  }

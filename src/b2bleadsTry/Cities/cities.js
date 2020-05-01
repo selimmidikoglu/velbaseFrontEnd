@@ -19,9 +19,8 @@ class Cities extends Component {
             return (
                 this.props.matchedCities.map((city, index) => {
                     return (
-                        <div key={index} className=" row styles-checkbox">
-                                <div className="col-9 col-sm-9 col-md-8 col-lg-10" style={{ textAlign: 'left' }}><label className="state-text">{city.city}{ ', '  + city.state} </label></div>
-                                <div classname="col-3 col-sm-3 col-md-4 col-lg-2" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.cities[city.city]}
+                        <div key={index} className="row styles-checkbox" style={{marginTop:'5px'}}>
+                                <div className="city-checkbox-container" ><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.cities[city.city]}
                                     onClick={(event) => {
                                         this.props.setSpinner()
                                         this.props.insertChoosenCities(event, "cities", city.state, city.city)
@@ -29,7 +28,8 @@ class Cities extends Component {
                                         this.props.setSpinner()
                                         this.props.getTotalData(this.props.totalFilters,apiUrl)
                                         
-                                    }} /></div></div>
+                                    }} /></div>
+                                <div className="city-party-text-container" style={{ textAlign: 'left' }}><span className="city-text">{city.city}{ ', '  + city.state} </span></div>
                         </div>
                     )
 

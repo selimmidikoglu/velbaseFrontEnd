@@ -23,7 +23,7 @@
   -o-appearance: none;
   appearance: none;
   position: relative;
-  top: 5px;
+  /*top: 5px;*/
   right: 0;
   bottom: 0;
   left: 0;
@@ -31,8 +31,9 @@
   width: 15px;
   transition: all 0.15s ease-out 0s;
   border-radius: 0rem;
-  background: #cbd1d8;
-  border: none;
+  /*background: #cbd1d8;*/
+  background-color: white;
+  border: 1px black solid;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -40,12 +41,14 @@
   outline: none;
   position: relative;
   z-index: 1000;
+  border-radius: 2px;
 }
 .option-input:hover {
   background: #343d46;
 }
 .option-input:checked {
   background: #FCBD17;
+  border: 0px black solid;
 }
 .option-input:checked::before {
   height: 15px;
@@ -53,9 +56,10 @@
   position: absolute;
   content: '✔';
   display: inline-block;
-  font-size: 16.66667px;
+  font-size: 14.66667px;
   text-align: center;
   line-height: 15px;
+  border: 0px black solid;
 }
 @media screen and (max-width:776px){
   .option-input:checked::before {
@@ -67,13 +71,14 @@
     font-size: 13.66667px;
     text-align: center;
     line-height: 15px;
+    border: none;
     
   }
   .option-input:checked::after {
     color:'FFFFFF'
   }
 }
-//.option-input:checked::after {
+/*.option-input:checked::after {
   -webkit-animation: click-wave 0.65s;
   -moz-animation: click-wave 0.65s;
   animation: click-wave 0.65s;
@@ -82,7 +87,9 @@
   display: block;
   position: relative;
   z-index: 100;
-}
+  border: 0px black solid;
+  
+}*/
 .option-input.radio {
   border-radius: 50%;
 }

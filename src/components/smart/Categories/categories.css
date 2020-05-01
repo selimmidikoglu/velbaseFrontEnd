@@ -14,6 +14,7 @@
     border-radius: 4px;
     outline: none;
     color: #9DBFAF;
+    font-family: Gilmer-Regular;
   }
   
   .searchTerm:focus{
