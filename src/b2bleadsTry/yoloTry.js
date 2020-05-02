@@ -60,7 +60,7 @@ class YoloTry extends Component {
       <div style={{ width: '100%', height: '100%'}} ref={node => { this.node = node; }} onClick={() => this.handleClick()}>
         <div className="top-limit-alert-container" hidden={!this.props.fetchReducer.topLimit}><TopLimitAlert/></div>
         <NavigationComponent/>
-        <div className="container custom-container" style={{ pointerEvents: this.props.fetchReducer.conditionForSpinner.divPointerEvents, paddingLeft: '50px', paddingRight: '50px', paddingTop: '40px' }}>
+        <div className="container custom-container" style={{ pointerEvents: this.props.fetchReducer.conditionForSpinner.divPointerEvents,/* paddingLeft: '50px', paddingRight: '50px',*/ paddingTop: '40px' }}>
         
           {this.props.fetchReducer.conditionForSpinner.runSpinner ? (<Spinner />) : null}
           <div className="row ">

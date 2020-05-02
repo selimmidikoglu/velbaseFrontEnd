@@ -24,7 +24,7 @@ input[type='range']::-webkit-slider-thumb {
   height: 18px;
   width: 18px;
   border-radius: 18px;
-  background-color: #FCBD17;
+  background-color: #0056b3;
   position: relative;
   margin: 5px 0;
   /* Add some margin to ensure box shadow is shown */

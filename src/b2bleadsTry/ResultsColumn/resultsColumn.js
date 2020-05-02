@@ -76,7 +76,7 @@ class ResultsColumn extends Component {
 
                 <div className="row count-of-other-data" hidden={this.props.totalCount !== 0 ? false : true}>
                     <div className="col-12" style={{height:'40px',marginBottom:'10px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', backgroundColor: 'rgb(115, 119, 167)', borderTopRightRadius: '5px', borderTopLeftRadius: '5px' }}>
-                        <span className="filters-header">Filters</span><br />
+                        <span className="filters-header">File Contains</span><br />
                     </div>
                     <div className="col-12" style={styleOthers}>
                         <h1 className="other-params-text">Facebook:</h1>

@@ -96,31 +96,27 @@ class AnnEmpRange extends Component {
                 <div className="col-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
                     <h1 className="ann-revenue-header-text">Annual Revenue</h1>
                 </div>
-                <div class="col-12 multi-range" style={{ width: 'inherit', backgroundColor: this.props.totalFilters.scaleAnnualRevenue.last == 0?'white':'whitesmoke'}}>
+                <div class="col-12 multi-range" style={{ width: 'inherit', backgroundColor: this.props.totalFilters.scaleAnnualRevenue.last == 0 ? 'white' : 'whitesmoke' }}>
 
                     <input type="range" min="0" max="9" value={this.state.valueFirst} step="1" id="upper" disabled={this.props.totalFilters.scaleAnnualRevenue.last !== 0}
                         onChange={(e) => this.changeAnnRevenueList(e, "first")} />
                     <input type="range" step="1 " min="0" max="9" value={this.state.valueLast} id="lower" disabled={this.props.totalFilters.scaleAnnualRevenue.last !== 0}
                         onChange={(e) => this.changeAnnRevenueList(e, "last")} />
                 </div>
-                <div className="col-12 lock-icon" style = {{backgroundColor: this.props.totalFilters.scaleAnnualRevenue.last == 0?'white':'whitesmoke'}}  >
+                <div className="col-12 lock-icon" style={{ backgroundColor: this.props.totalFilters.scaleAnnualRevenue.last == 0 ? 'white' : 'whitesmoke' }}  >
                     <div className="row">
                         <div className="col-10"></div>
                         <div className="col-2">
-                            {this.props.totalFilters.scaleAnnualRevenue.last == 0?(<i className="fa fa-unlock"></i>):(<i className="fa fa-lock"></i>)}</div>
+                            {this.props.totalFilters.scaleAnnualRevenue.last == 0 ? (<i className="fa fa-unlock"></i>) : (<i className="fa fa-lock"></i>)}</div>
                     </div>
                 </div>
                 <div className="col-12 ann-revenue-list">
 
 
                     <div className="row">
-                        <div className="col-md-10 col-sm-8">
-                            <h1 className="annual-revenue-data-text">{this.state.recentValues[0]}  -  {this.state.recentValues.length > 1 ? this.state.recentValues[this.state.recentValues.length - 1] : null}</h1>
-                        </div>
-                        <div className="col-md-2 col-sm-4">
-                            <div><input type="checkbox" className="option-input checkbox" checked={this.props.totalFilters.scaleAnnualRevenue.last !== 0}
 
-
+                        <div className="col-12" style={{ float: 'left', display: 'flex', alignItems: 'center' }}>
+                            <input type="checkbox" className="option-input checkbox" checked={this.props.totalFilters.scaleAnnualRevenue.last !== 0}
                                 onClick={(event) => {
 
                                     this.props.setSpinner()
@@ -138,14 +134,16 @@ class AnnEmpRange extends Component {
                                         this.props.add_no_annual_revenue()
                                     }
                                     this.props.getTotalData(this.props.totalFilters, apiUrl)
-                                }} /></div>
+                                }} />
+
+                            <div style={{ height: '100%', alignItems: 'center', marginLeft: '10px' }}>
+                                <span className="annual-revenue-data-text">{this.state.recentValues[0]}  -  {this.state.recentValues.length > 1 ? this.state.recentValues[this.state.recentValues.length - 1] : null}</span>
+                            </div>
                         </div>
                     </div>
-                    <div className="row" hidden = {this.props.totalFilters.scaleAnnualRevenue.last == 0}>
-                        <div className="col-md-10 col-sm-8">
-                            <h1 className="annual-revenue-data-text">Include businesses with no annual-revenue</h1>
-                        </div>
-                        <div className="col-md-2 col-sm-4">
+                    <div className="row" hidden={this.props.totalFilters.scaleAnnualRevenue.last == 0}>
+
+                        <div className="col-12" style={{ float: 'left', display: 'flex', alignItems: 'center' }}>
                             <div><input type="checkbox" className="option-input checkbox" checked={this.props.totalFilters.noAnnualRevenue}
 
 
@@ -153,17 +151,19 @@ class AnnEmpRange extends Component {
 
                                     this.props.setSpinner()
                                     this.props.add_no_annual_revenue()
-                                    setTimeout(() => this.props.getTotalData(this.props.totalFilters,apiUrl),200)
-                                    
+                                    setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
+
                                 }} /></div>
+
+                            <div style={{ height: '100%', alignItems: 'center', marginLeft: '10px' }}>
+                                <h1 className="annual-revenue-data-text">Include businesses with no annual-revenue</h1>
+                            </div>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-10 col-sm-8">
-                            <h1 className="annual-revenue-data-text">Annual Revenue Exists Or Not (Default)</h1>
-                        </div>
-                        <div className="col-md-2 col-sm-4">
-                            <div><input type="checkbox" className="option-input checkbox" checked={this.props.totalFilters.scaleAnnualRevenue.last === 0}
+
+                        <div className="col-12" style={{ float: 'left', display: 'flex', alignItems: 'center' }}>
+                            <input type="checkbox" className="option-input checkbox" checked={this.props.totalFilters.scaleAnnualRevenue.last === 0}
 
 
                                 onClick={(event) => {
@@ -178,7 +178,11 @@ class AnnEmpRange extends Component {
                                         this.props.update_other_filter(true, 'annual_revenue', { first: 0, last: 0 })
                                     }
                                     this.props.getTotalData(this.props.totalFilters, apiUrl)
-                                }} /></div>
+                                }} />
+                        
+                            <div style={{ height: '100%', alignItems: 'center', marginLeft: '10px' }}>
+                                <h1 className="annual-revenue-data-text">Annual Revenue Exists Or Not (Default)</h1>
+                            </div>
                         </div>
                     </div>
                 </div>
