@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 import './PaymentOrEmailPage.css'
 //url
 import { apiUrl } from '../consts/consts'
+import NavigationComponent from './NavigationComponent/navigationComponent';
 let valueArray = [
     "0",
     "10.000$",
@@ -119,8 +120,10 @@ class PaymentOrEmailPage extends Component {
     }
     }
     render() {
-        let backgroundColorTemplate = this.state.templateNav ? '#E61575' : 'whitesmoke'
-        let backgroundColorPayment = this.state.paymentNav ? '#E61575' : 'whitesmoke'
+        let backgroundColorTemplate = this.state.templateNav ? '#7377a7' : 'whitesmoke'
+        // let backgroundColorPayment = this.state.paymentNav ? '#E61575' : 'whitesmoke'
+        let backgroundColorPayment = this.state.paymentNav ? '#7377a7' : 'whitesmoke'
+
         let colorTemplate = this.state.templateNav ? 'white' : 'gray'
         let colorPayment = this.state.paymentNav ? 'white' : 'gray'
         let hiddenCardInfos = !this.state.paymentNav
@@ -190,10 +193,11 @@ class PaymentOrEmailPage extends Component {
                     </div>
                 </div>
         let mainPayment = (
-
-            <div className={this.props.alertOrNot !== true ?"container custom-payment-container":"container"} style={{ pointerEvents: this.props.conditionForSpinner.divPointerEvents }}>
+            <div className="fluid-container">
+                <NavigationComponent/>
+                <div className={this.props.alertOrNot !== true ?"container custom-payment-container":"container"} style={{pointerEvents: this.props.conditionForSpinner.divPointerEvents }}>
                 
-                <IconComponentColored/>
+                {/* <div className="row"><IconComponentColored color="st1"/></div> */}
                 {this.props.conditionForSpinner.runSpinner ? (<Spinner />) : null}
                 
                 <div className="row" style={backgroundStyle} >
@@ -218,7 +222,7 @@ class PaymentOrEmailPage extends Component {
                                 <label className="header-location-payment" style={{ color: colorPayment }}>Send full data</label>
                             </div>
 
-                            <div className="col-md-12 col-sm-12" style={{ height: '50px', borderTopColor: '#E61575', borderTopWidth: '5px', borderTopStyle: 'solid' }}>
+                            <div className="col-md-12 col-sm-12" style={{ height: '50px', borderTopColor: '#7377a7', borderTopWidth: '5px', borderTopStyle: 'solid' }}>
                                 <input className="input_text_style" type="text" placeholder="Full Name*" required value={this.props.totalFilters.name} onChange={(event) => this.props.set_customer_info(event.target.value, 'name')}>
                                 </input>
                             </div>
@@ -310,6 +314,7 @@ class PaymentOrEmailPage extends Component {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         )
         return (

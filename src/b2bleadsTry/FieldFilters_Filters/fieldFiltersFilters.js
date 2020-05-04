@@ -15,52 +15,46 @@ class FieldFiltersFilters extends Component {
         let filters = null
         filters =
             <div className="row every-filter-container">
-                <div className="col-12" style={{marginBottom:'5px',textAlign:'center',alignItems:'center',justifyContent:'center'}}><h2 className="categories-header-filter-text-1">Field Filters</h2></div>
-                <div className="col-12" style={{width:'100%',marginTop:'3px'}} hidden={!this.props.totalFilters.hasPhone1}> 
-                    <div className="row category-filter-con">
-                        <div className="col-10 col-md-8 col-lg-11 filter-info-container"  hidden={!this.props.totalFilters.hasPhone1}>
-                            <span className="category-text-span">Has Phone</span>
-                        </div>
-                        <div className="col-2 col-md-4 col-lg-1 category-remove-button-con"  hidden={!this.props.totalFilters.hasPhone1}>
-                                <button className="close-button" onClick={(event) => {
-                                    this.props.setSpinner()
-                                    this.props.update_other_filter(true, 'phone', null)
-                                    setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
-                                }} ></button>
-                        </div>
+                <div className="filters-common-header-container" ><span className="categories-header-filter-text-1">Field Filters</span></div>
+                <div className="category-filter-con" hidden={!this.props.totalFilters.hasPhone1}>
+                    <div className="filter-info-container" hidden={!this.props.totalFilters.hasPhone1}>
+                        <span className="category-text-span">Has Phone</span>
                     </div>
-                </div>  
-                <div className="col-12" style={{width:'100%',marginTop:'3px'}} hidden={!this.props.totalFilters.hasEmail1}> 
-                    <div className="row category-filter-con">    
-                        <div className="col-10 col-md-8 col-lg-11 filter-info-container" hidden={!this.props.totalFilters.hasEmail1}>
-                            <span className="category-text-span">Has Email</span>
-                        </div>
-                        <div className="col-2 col-md-4 col-lg-1 category-remove-button-con" hidden={!this.props.totalFilters.hasEmail1}>
-                                <button className="close-button" onClick={(event) => {
-                                    this.props.setSpinner()
-                                    this.props.update_other_filter(true, 'email', null)
-                                    setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
-                                }} ></button>
-                        </div>
+                    <div className="category-remove-button-con" hidden={!this.props.totalFilters.hasPhone1}>
+                        <button className="close-button" onClick={(event) => {
+                            this.props.setSpinner()
+                            this.props.update_other_filter(true, 'phone', null)
+                            setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
+                        }} ></button>
                     </div>
                 </div>
-                <div className="col-12" style={{width:'100%',marginTop:'3px'}} hidden={!this.props.totalFilters.hasWebsite}> 
-                    <div className="row category-filter-con">
-                        <div className="col-10 col-md-8 col-lg-11 filter-info-container" hidden={!this.props.totalFilters.hasWebsite}>
+                <div className="category-filter-con" hidden={!this.props.totalFilters.hasEmail1}>
+                    <div className="filter-info-container" hidden={!this.props.totalFilters.hasEmail1}>
+                        <span className="category-text-span">Has Email</span>
+                    </div>
+                    <div className=" category-remove-button-con" hidden={!this.props.totalFilters.hasEmail1}>
+                        <button className="close-button" onClick={(event) => {
+                            this.props.setSpinner()
+                            this.props.update_other_filter(true, 'email', null)
+                            setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
+                        }} ></button>
+                    </div>
+
+                </div>
+                <div className="category-filter-con"  hidden={!this.props.totalFilters.hasWebsite}>
+                        <div className="filter-info-container" hidden={!this.props.totalFilters.hasWebsite}>
                             <span className="category-text-span">Has Website</span>
                         </div>
-                        <div className="col-2 col-md-4 col-lg-1 category-remove-button-con"  hidden={!this.props.totalFilters.hasWebsite}>
-                                <button className="close-button" onClick={(event) => {
-                                    this.props.setSpinner()
-                                    this.props.update_other_filter(true, 'website', null)
-                                    setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
-                                }} ></button>
+                        <div className="category-remove-button-con" hidden={!this.props.totalFilters.hasWebsite}>
+                            <button className="close-button" onClick={(event) => {
+                                this.props.setSpinner()
+                                this.props.update_other_filter(true, 'website', null)
+                                setTimeout(() => this.props.getTotalData(this.props.totalFilters, apiUrl), 200)
+                            }} ></button>
                         </div>
-                    </div> 
-                </div>               
+                </div>
             </div>
-        if(!(this.props.totalFilters.hasEmail1 || this.props.totalFilters.hasPhone1 ||this.props.totalFilters.hasWebsite))
-        {
+        if (!(this.props.totalFilters.hasEmail1 || this.props.totalFilters.hasPhone1 || this.props.totalFilters.hasWebsite)) {
             filters = null
         }
         return (

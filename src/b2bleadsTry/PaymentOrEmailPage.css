@@ -158,7 +158,7 @@
 
 @media (min-width: 1240px){
     .custom-payment-container {
-        margin-top:100px;
+        margin-top:30px;
         max-width: 1000px !important;
 }}
 @media (max-width: 1240px) and (min-width:450px){

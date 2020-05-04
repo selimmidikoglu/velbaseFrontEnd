@@ -30,7 +30,7 @@ class FieldFilters extends Component {
                 <div className="col-12" style={{height: '25%',marginBottom:'10px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', verticalAlign: 'center' }}>
                     <h1 className="ann-revenue-header-text">Field Filters</h1>
                 </div>
-                <div className="col-12"  style={{height: '25%'}}>
+                <div className="col-12" >
                     <div className="" style={{float:'left',display:'flex',alignItems:'center',justifyContent:'center'}}><input type="checkbox" key={'hasPhone'} className="option-input checkbox" checked={this.props.totalFilters.hasPhone1}
                         onClick={() => {
                             this.props.setSpinner()
