@@ -27,6 +27,7 @@ export const SET_SPINNER = 'SET_SPINNER'
 // GETTING RANDOM CATEGORY AND  ALL STATES maybe later cities and zip
 export const getDefaultCategoriesAndStates = url => {
     return dispatch => {
+        console.log("yo")
         fetch(url).then(data => data.json()).then(data => {
             console.log(data)
             let temp = [];
@@ -239,7 +240,7 @@ export const changeStateColumn = (event) => {
 }
 
 export const insertChoosenStates = (event,type,id,state,abbreviation) => {
-    console.log("girdi")
+    console.log(type,id,state,abbreviation)
     return {
         type: INSERT_CHOOSEN_STATES,
         payload: {

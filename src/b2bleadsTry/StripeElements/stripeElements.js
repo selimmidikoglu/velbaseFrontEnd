@@ -32,7 +32,7 @@ class CheckoutForm extends Component {
       type: 'card',
       card: cardElement,
     });*/
-    const { error, token } = await stripe.createToken(cardElement, { name: 'Selim' });
+    const { error, token } = await stripe.createToken(cardElement, { name: this.props.totalFilters.name, address_city: this.props.totalFilters.city, address_zipCode: this.props.totalFilters.zipCode , address_state: this.props.totalFilters.state });
 
     if (error) {
       console.log('[error]', error);
