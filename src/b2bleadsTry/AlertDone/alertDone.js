@@ -15,6 +15,7 @@ import IconComponentColored from '../DumbComponents/IconComponent/iconComponentC
 class AlertDone extends Component {
 
     render() {
+        console.log(this.props)
         return (
 
             <div className="alert-box">
@@ -40,11 +41,14 @@ class AlertDone extends Component {
                                                 <div className="col-12">
                                                     <div className="close-text-container">
                                                         <h6 className="message-text">We will be sending your data to your email address.
-                                                        There will be random created zip file and inside that you will find data folder. You can reach you .csv file inside that data folder after unzipping.
-                                                 If you need any custom data please contact us. We do not let online filtering and retrieving of data priced more than 10.000$.</h6>
+                                                        There will be zip file created with random file name and inside that you will find your csv files after unzipping.
+                                                        If you need any custom data please contact us. We do not let online filtering and retrieving of data priced more than 10.000$.</h6>
                                                     </div>
                                                 </div>
                                                 <div className="col-12">
+                                                    <div className="close-text-container">
+                                                        <h6 className="message-text" >Your order id: {this.props.orderId} </h6>
+                                                    </div>
                                                     <div className="close-text-container">
                                                         <h6 className="message-text" >Best Regards  </h6>
                                                     </div>

@@ -33,6 +33,7 @@
 }
 .category-box{
     margin-top: 5px;
+    border-radius: 3px;
 }
 
 @media screen and (max-width: 473px) {

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // Components
 import SearchBar from './searchBar/searchBar'
 import Categories from './Categories/categories'
+import CategoriesContainer from './Categories/categoriesContainer'
 import Locations from './Locations/locations'
 import ResultsColumns from './ResultsColumn/resultsColumn'
 import AnnEmp from './Ann-Emp/ann_emp'
@@ -101,7 +102,7 @@ class YoloTry extends Component {
               </div>
               <div className="row bottom-part">
                 <div className="col-12 categories-locations-container" style={{ overflowY: this.props.chooseSearchReducer.overflowYMain,backgroundColor:'white'}}>
-                  {!this.props.chooseSearchReducer.categoryHidden ? (<Categories />) : (!this.props.chooseSearchReducer.locationHidden?(<Locations/>):(<OtherFilters/>))}
+                  {!this.props.chooseSearchReducer.categoryHidden ? (<CategoriesContainer />) : (!this.props.chooseSearchReducer.locationHidden?(<Locations/>):(<OtherFilters/>))}
                 </div>
               </div>
             </div>

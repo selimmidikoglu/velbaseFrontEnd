@@ -1,11 +1,15 @@
+import { apiUrl } from "../consts/consts";
+
 export const FETCH_DEFAULT_CATEGORIES_AND_STATES ='FETCH_DEFAULT_CATEGORIES_AND_STATES';
 export const FETCH_MATCHED_CATEGORIES = 'FETCH_MATCHED_CATEGORIES';
+export const FETCH_SUB_MATCHED_CATEGORIES  =  'FETCH_SUB_MATCHED_CATEGORIES';
 export const FETCH_TOTAL_DATA = 'FETCH_TOTAL_DATA'
 export const CHANGE_SEARCH_KEY_CATEGORIES = 'CHANGE_SEARCH_KEY_CATEGORIES';
 export const CHANGE_STATES_COLUMN = 'CHANGE_STATES_COLUMN'
 export const FETCH_CITIES_IN_STATE = 'FETCH_CITIES_IN_STATE'
 export const FETCH_ZIPCODES_IN_CITY = 'FETCH_ZIPCODES_IN_CITY'
 export const INSERT_CHOOSEN_CATEGORIES = 'INSERT_CHOOSEN_CATEGORIES'
+export const INSERT_PARENT_CATEGORIES = ' INSERT_PARENT_CATEGORIES'
 export const INSERT_CHOOSEN_STATES = 'INSERT_CHOOSEN_STATES'
 export const INSERT_CHOOSEN_CITIES = 'INSERT_CHOOSEN_CITIES'
 export const INSERT_CHOOSEN_ZIPCODES = 'INSERT_CHOOSEN_ZIPCODES'
@@ -38,7 +42,7 @@ export const getDefaultCategoriesAndStates = url => {
             dispatch({
                 type: FETCH_DEFAULT_CATEGORIES_AND_STATES,
                 payload: {
-                    defaultCategories: data.categories,
+                    parentCategories: data.categories,
                     defaultStates: temp,
                     matchedStates : temp
                 },
@@ -142,6 +146,7 @@ export const send_temp_email = (mainObject,url,totalCount,type) => {
             dispatch({
                 type: SEND_TEMP_EMAIL,
                 payload:{
+                   orderId: data.orderId,
                    message: 'Done',
                    alertOrNot : true,
                    conditionForSpinner : {
@@ -231,6 +236,31 @@ export const getMatchedCategories = (url,searchKeyCategories) => {
     }
 
 }
+export const getMatchedSubCategories = (url,sic_code) => {
+    if(sic_code != 0)
+        return dispatch => {
+            fetch(url + "?searchKey=" + sic_code)
+            .then(data => data.json())
+            .then(data => {
+                console.log(data.matchedSubCategories)
+                dispatch({
+                    type: FETCH_SUB_MATCHED_CATEGORIES,
+                    payload: {
+                        matchedSubCategories: data.matchedSubCategories,
+                    },
+                });
+            });
+        }
+    else{
+        return{
+            type:FETCH_SUB_MATCHED_CATEGORIES,
+            payload: {
+                matchedSubCategories: [],
+            },
+        }
+    }
+
+}
 // RENDER STATES COLUMN DEPENDING ON THE SEARCH KEYWORD
 export const changeStateColumn = (event) => {
     return {
@@ -263,7 +293,19 @@ export const insertChoosenCategories = (event,type,id,category) => {
             category: category
         }
     }
-}  
+}
+export const insertParentCategories = (event,type,id,category) => {
+    console.log("girdi")
+    return {
+        type: INSERT_PARENT_CATEGORIES,
+        payload: {
+            checked: event.target.checked,
+            type:type,
+            id:id,
+            category: category
+        }
+    }
+}
 export const getCitiesInState = (url,type,states) => {
     if(type === 'states'){
         if(Object.keys(states).length === 0){ 

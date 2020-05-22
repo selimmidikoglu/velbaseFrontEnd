@@ -1,0 +1,89 @@
+
+var nodemailer = require("nodemailer");
+var EmailTemplate = require('email-templates').EmailTemplate;
+var transporter = nodemailer.createTransport({
+  service: 'Yandex',
+  auth: {
+    user: 'info@velbase.com',
+    pass: 'Velbase345'
+  }
+});
+
+let sendEmailTempFullData = transporter.templateSender(
+  new EmailTemplate('./templates/fullDataEmailTemplate'), {
+  from: '"Velbase Business Solutions"info@velbase.com'
+})
+let sendEmailTempSampleData = transporter.templateSender(
+  new EmailTemplate('./templates/sampleDataEmailTemplate'), {
+  from: '"Velbase Business Solutions"info@velbase.com'
+})
+function sendEmailFullData(dataUrl, email) {
+  sendEmailTempFullData({
+    to: email,
+    subject: "Velbase Data",
+    from:"Velbase"
+  },{
+    dataUrl : dataUrl,
+    backgroundImage: "https://images.pexels.com/photos/373076/pexels-photo-373076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+  },function(err, info){
+    if (err) {
+      console.log(err)
+    } else {
+        console.log('Link sent\n'+ JSON.stringify(info));
+    }
+  })
+}
+function sendEmailSampleData(dataUrl, email) {
+  sendEmailTempSampleData({
+    from:'Velbase',
+    to: email,
+    subject: "Velbase Sample Data",
+    attachments: {
+      filename : dataUrl + '.csv',
+      path: '/home/runcloud/webapps/velbase/sampledata/' + dataUrl + '/' + dataUrl + '.csv'
+    }
+  },{
+    dataUrl : dataUrl,
+    backgroundImage: "https://images.pexels.com/photos/373076/pexels-photo-373076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+  },function(err, info){
+    if (err) {
+      console.log(err)
+    } else {
+        console.log('Link sent\n'+ JSON.stringify(info));
+    }
+  })
+}
+
+/*function sendEmail(dataUrl, email) {
+
+  var mailOptionsAll = {
+    from: 'selim.midikoglu@gmail.com',
+    to: email,
+    subject: 'Data Template by Velbase',
+    template: 'index'
+  };
+  transporter.sendMail(mailOptionsAll, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+}
+function sendEmailTemp(dataUrl, email) {
+  var mailOptionsAll = {
+    from: 'selim.midikoglu@gmail.com',
+    to: email,
+    subject: 'Data Template by Velbase',
+    text: '<h1>Here is template data <h1></br>' + dataUrl
+  };
+  transporter.sendMail(mailOptionsAll, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+}*/
+
+module.exports = {sendEmailFullData,sendEmailSampleData}

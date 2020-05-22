@@ -1,0 +1,74 @@
+var express = require('express');
+var router = express.Router();
+const keys = require('./config/epirts')
+
+//stripe 
+const stripe = require("stripe")(keys.secret);
+let monthsObj = {
+  'January': 1,
+  'February': 2,
+  'March': 3,
+  'April': 4,
+  'May': 5,
+  'June': 6,
+  'July': 7,
+  'August': 8,
+  'September': 9,
+  'October': 10,
+  'November': 11,
+  'December':12
+}
+
+function createCardTokenAndPay(object){
+  /*stripe.tokens.create(
+    {
+      card: {
+        number: object.card_number,
+        exp_month: monthsObj[object.exp_month],
+        exp_year: object.exp_year,
+        cvc: object.cvc,
+      },
+    },
+    function(err, token) {
+      if(err){
+        throw err;
+      }
+      //console.log(token)
+      stripe.charges.create(
+        {
+          amount: object.amount,
+          currency: 'usd',
+          source: token.id,
+          description: 'asd',
+        },
+        function(err, charge) {
+          if(err) throw err;
+          //console.log(charge)
+        }
+      );
+    }
+  );*/
+ 
+      stripe.charges.create(
+        {
+          amount: object.amount,
+          currency: 'usd',
+          source: object.token,
+          description: 'Velbase data payment',
+          receipt_email: object.email
+        },
+        function(err, charge) {
+          if(err) throw err;
+          //console.log(charge)
+        }
+      );
+ 
+}
+
+
+module.exports = createCardTokenAndPay;
+
+
+
+
+

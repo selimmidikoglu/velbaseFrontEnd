@@ -57,7 +57,7 @@ class Locations extends Component {
                         <h6 style={{ fontSize: '12px', color: 'white', marginTop: '5px' }}>Select city first, type key zipCode, click Enter or search button!</h6>
                     </div>
                 </div>*/}
-                <div className="col-6 mh-75 overflow-auto state-container container-scroll">
+                <div className="col-6  overflow-auto state-container container-scroll">
 
                     <States /></div>
                 <div className="col-6 city-container container-scroll">

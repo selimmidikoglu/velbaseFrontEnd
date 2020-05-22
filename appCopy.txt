@@ -1,0 +1,825 @@
+var express = require('express');
+/*var fs = require('fs')
+var https = require('https')
+var http = require('http')*/
+var cors = require('cors')
+const mysql = require('mysql')
+const bodyParser = require('body-parser')
+//const spawn = require("child_process").spawn;
+const writeToFile = require('./writeToFile')
+const randomString = require('./randomStringGenerator')
+var writeToFileAll = writeToFile.writeToFileAll
+var writeToFileTemp = writeToFile.writeToFileTemp
+
+//console.log(stripeRoute)
+const keys = require('./config/epirts')
+//stripe 
+//const stripe = require("stripe")(keys.secret);
+let sic_codes = []
+let businesses = []
+// create connection
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'velbase',
+    password: '3XXa8d5It3Sfe8JlCvRHuojlvXLfiIwp',
+    database: 'velbase'
+
+})
+
+db.connect((err) => {
+    if (err) {
+        throw err
+    }
+    console.log('MYSQL connected');
+})
+const app = express();
+
+// support parsing of application/json type post data
+app.use(bodyParser.json());
+app.use(cors())
+app.use(express.static('data'))
+app.use(express.static('sampledata'))
+//app.use('/files', express.static('./templateOutputs'))
+app.use(express.static("public"));
+app.use('/filesFull', express.static('./data'))
+app.use('/sampledata', express.static('./sampledata'))
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true }));
+/*app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});*/
+
+app.get('/',(req,res,next) => {
+  
+console.log("Somehting came1");
+res.send('hello\n');
+})
+app.get('/getLessCategories', (req, res, next) => {
+    console.log("geliyor")
+    //sql = "SELECT category_name FROM sic_match AS r1 JOIN(SELECT CEIL(RAND() * (SELECT MAX(id) FROM sic_match)) AS id) AS r2 WHERE r1.id >= r2.id and sic_code LIKE '%0000' ORDER BY r1.id ASC LIMIT 100"
+    sql = "SELECT category_name,sic_code FROM sic_match ORDER BY count_category DESC LIMIT 50 "
+    db.query(sql, (err, result) => {
+        if (err)
+            res.status(201).json({
+                err: err,
+                message: "Can not connect to database"
+            })
+        else {
+            //selectState = "SELECT DISTINCT state FROm zipCodes ORDER BY state ASC"
+            //console.log(result)
+            selectState = "SELECT  state,abbreviation FROM statesFullName ORDER BY state ASC"
+            db.query(selectState, (err, resultStates) => {
+                if (err) {
+                    res.status(201).json({
+                        err: err,
+                        message: "Can not connect to database"
+                    })
+                }
+                else {
+                    res.status(200).json({
+                        categories: result,
+                        states: resultStates
+                    })
+                }
+            })
+        }
+    })
+})
+app.post('/getCitiesInState', (req, res) => {
+    whereClause = ""
+    states = req.body.states;
+    for (let i = 0; i < states.length; i++) {
+        if (i != states.length - 1)
+            whereClause += "state = " + mysql.escape(states[i]) + " OR ";
+        else {
+            whereClause += "state = " + mysql.escape(states[i])
+        }
+    }
+    sql = "SELECT DISTINCT city, state FROM zipCodes WHERE " + whereClause + " ORDER BY city ASC";
+    db.query(sql, (err, results) => {
+        //console.log(results)
+        if (err) {
+            res.status(201).json({
+                err: err,
+                message: "Can not retrieve the data from database"
+            })
+        }
+        else {
+            let cities = results.map(result => result.city + result.state)
+            res.status(200).json({
+                cities: results
+            })
+        }
+    })
+})
+app.post('/getZipCodesInCities', (req, res) => {
+    let whereClause = ""
+    cities = req.body.cities;
+
+    console.log(cities)
+    for (let i = 0; i < cities.length; i++) {
+        if (i != cities.length - 1)
+            whereClause += "(city = " + mysql.escape(cities[i][0]) + " AND state=" + mysql.escape(cities[i][1]) + ") OR ";
+        else {
+            whereClause += "(city = " + mysql.escape(cities[i][0]) + " AND state=" + mysql.escape(cities[i][1]) + ")"
+        }
+    }
+    sql = "SELECT DISTINCT zipCode, city FROM zipCodes WHERE " + whereClause + " ORDER BY zipCode ASC";
+    console.log(sql)
+    db.query(sql, (err, results) => {
+        //console.log(results)
+        if (err) {
+            res.status(201).json({
+                err: err,
+                message: "Can not retrieve the data from database"
+            })
+        }
+        else {
+            let zipCodes = results.map(result => result.zipCode + result.city)
+            res.status(200).json({
+                zipCodes: results
+            })
+        }
+    })
+})
+app.get('/getLocationSearch', (req, res) => {
+    console.log(req.query.searchKey)
+    searchKey = req.query.searchKey
+    if (!searchKey.match(/^\d/)) {
+        console.log("hopp")
+        sql = `select DISTINCT stateFullName,city,state from zipCodes where ` + ' city like ' + mysql.escape('' + req.query.searchKey + '%') + ' or state like ' + mysql.escape('' + req.query.searchKey + '%') + ' or stateFullName like ' + mysql.escape('' + req.query.searchKey + '%') + ' group by stateFullName'
+
+    }
+    else
+        sql = `select zipCode,city,state from zipCodes where zipCode like` + mysql.escape('%' + req.query.searchKey + '%') + ' or city like ' + mysql.escape('%' + req.query.searchKey + '%') + ' or state like ' + mysql.escape('%' + req.query.searchKey + '%') + ''
+    console.log(sql)
+    console.log(searchKey)
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.log(err)
+            res.status(201).json({
+                err: 'Can not connect to db'
+            })
+        }
+        else {
+            res.status(200).json(result)
+        }
+    })
+})
+app.get('/getMatchCategories', (req, res) => {
+    searchKey = req.query.searchKey
+    sql = `select DISTINCT category_name,sic_code,count_category from sic_match where category_name like` + mysql.escape('%' + req.query.searchKey + '%') + ' or sic_code like ' + mysql.escape('%' + req.query.searchKey + '%') + ' ORDER BY count_category DESC'
+    console.log(sql)
+    console.log(searchKey)
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.log(err)
+            res.status(201).json({
+                err: 'Can not connect to db'
+            })
+        }
+        else {
+            res.status(200).json({
+                categories: result
+            })
+        }
+    })
+})
+app.post('/getData', (req, res, next) => {
+    console.log("geldi")
+    let totalWhereString = ""
+    let categoriesStr = ""
+    let sic_codeStr = ""
+    let categoriesStrIn = ""
+    //console.log(req.body)
+    const params = {
+        categories: req.body.categories,
+        cities: req.body.cities,
+        states: req.body.states,
+        zipCodes: req.body.zipCodes,
+        hasPhone1: req.body.hasPhone1,
+        hasPhone2: req.body.hasPhone2,
+        hasPhone3: req.body.hasPhone3,
+        hasWebsite: req.body.hasWebsite,
+        hasEmail1: req.body.hasEmail1,
+        hasEmail2: req.body.hasEmail2,
+        hasEmail3: req.body.hasEmail3,
+        hasHours: req.body.hasHours,
+        founded: req.body.founded,
+        hasContact: req.body.hasContact,
+        hasOwner: req.body.hasOwner,
+        hasFax: req.body.hasFax,
+        bbb_rating: req.body.bbb_rating,
+        bbb_accredited: req.body.bbb_accredited,
+        biz_chained: req.body.biz_chained,
+        hasFacebook: req.body.hasFacebook,
+        hasTwitter: req.body.hasTwitter,
+        isAdvertised: req.body.isAdvertised,
+        decimalRating: req.body.decimalRating,
+        hasReviews: req.body.hasReviews,
+        lat: req.body.lat,
+        lon: req.body.lon,
+        overAllRate: req.body.overAllRate,
+        scaleAnnualRevenue: req.body.scaleAnnualRevenue,
+        noAnnualRevenue: req.body.noAnnualRevenue,
+        noEmployeeCount: req.body.noEmployeeCount,
+        scaleEmployeeCount: req.body.scaleEmployeeCount
+
+    }
+    if (params['hasEmail1'] !== 'undefined')
+        totalWhereString += (params['hasEmail1'] ? " hasEmail1=1 AND " : "")
+    if (params['hasWebsite'] != 'undefined')
+        totalWhereString += (params['hasWebsite'] ? " hasWebsite=1 AND " : "")
+    /*if (params['hasHours'] != 'undefined')
+        totalWhereString += (params['hasHours'] ? " hasHours=1 AND " : "")
+    if (params['hasContact'] != 'undefined')
+        totalWhereString += (params['hasContact'] ? " hasContact=1 AND " : "")
+    if (params['hasOwner'] != 'undefined')
+        totalWhereString += (params['hasOwner'] ? " hasOwner=1 AND " : "")
+    if (params['hasFax'] != 'undefined')
+        totalWhereString += (params['hasFax'] ? " hasFax=1 AND " : "")
+    if (params['hasFacebook'] != 'undefined')
+        totalWhereString += (params['hasFacebook'] ? " hasFacebook=1 AND " : "")
+    if (params['hasTwitter'] != 'undefined')
+        totalWhereString += (params['hasTwitter'] ? " hasTwitter=1 AND " : "")
+    if (params['hasReviews'] != 'undefined')
+        totalWhereString += (params['hasReviews'] ? " hasReviews=1 AND " : "")
+    if (params['isAdvertised'] != 'undefined')
+        totalWhereString += (params['isAdvertised'] ? " isAdvertised=1 AND " : "")
+    if (params['bbb_accredited'] != 'undefined')
+        totalWhereString += (params['bbb_accredited'] ? " bbb_accredited=1 AND " : "")
+    if (params['biz_chained'] != 'undefined')
+        totalWhereString += (params['biz_chained'] ? " biz_chained=1 AND " : "")*/
+
+    if (params['scaleAnnualRevenue'].length !== 0) {
+        let tempScaleAnnualRevenue = "scaleAnnualRevenue IN("
+        params['scaleAnnualRevenue'].forEach((element, index) => {
+            if (index !== params['scaleAnnualRevenue'].length - 1)
+                tempScaleAnnualRevenue += element.toString() + ","
+            else {
+                if (params['noAnnualRevenue']) {
+                    tempScaleAnnualRevenue += element.toString() + ") OR "
+                    tempScaleAnnualRevenue = "(" + tempScaleAnnualRevenue + "scaleAnnualRevenue IS NULL) AND "
+                }
+                else
+                    tempScaleAnnualRevenue += element.toString() + ") AND "
+                console.log(tempScaleAnnualRevenue)
+            }
+        });
+        if (tempScaleAnnualRevenue !== "scaleAnnualRevenue IN(")
+            totalWhereString += tempScaleAnnualRevenue
+    }
+    if (params['scaleEmployeeCount'].length !== 0) {
+        let tempScaleEmployeeCount = "scaleEmployeeCount IN("
+        params['scaleEmployeeCount'].forEach((element, index) => {
+            if (index !== params['scaleEmployeeCount'].length - 1)
+                tempScaleEmployeeCount += element.toString() + ","
+            else {
+                if (params['noEmployeeCount']) {
+                    tempScaleEmployeeCount += element.toString() + ") OR "
+                    tempScaleEmployeeCount = "(" + tempScaleEmployeeCount + "scaleEmployeeCount IS NULL) AND "
+                }
+                else
+                    tempScaleEmployeeCount += element.toString() + ") AND "
+                console.log(tempScaleEmployeeCount)
+            }
+        });
+        if (tempScaleEmployeeCount !== "scaleEmployeeCount IN(")
+            totalWhereString += tempScaleEmployeeCount
+    }
+    if (params['states'].length !== 0) {
+        let tempStateWithCity = "(";
+        let statesWithCities = []
+        if (params['cities'].length !== 0) {
+            if (params['zipCodes'].length !== 0) {
+                for (let i = 0; i < params['cities'].length; i++) {
+                    //params['cities'][i];
+                    for (let j = 0; j < params['zipCodes'].length; j++) {
+                        //params['zipCodes'][j];
+                        if (params['cities'][i].city === params['zipCodes'][j].city) {
+                            params['cities'][i].zipCode = params['zipCodes'][j].zipCode
+                        }
+                    }
+                }
+            }
+            for (let i = 0; i < params['cities'].length; i++) {
+                if (params['states'].includes(params['cities'][i].state)) {
+                    statesWithCities.push(params['cities'][i])
+                    var index = params['states'].indexOf(params['cities'][i].state);
+                    if (index > -1) {
+                        params['states'].splice(index, 1);
+                    }
+                }
+                else {
+                    statesWithCities.push(params['cities'][i])
+                }
+            }
+
+
+            statesWithCities.forEach((element, index) => {
+                let zipCodeText = ""
+                let or_and = params['states'].length === 0 ? " AND " : " OR "
+                if (index !== statesWithCities.length - 1) {
+                    if ('zipCode' in element) {
+                        console.log("zip var")
+                        zipCodeText = " AND  zipCode=" + mysql.escape(element.zipCode)
+                    }
+                    tempStateWithCity += "(state=" + mysql.escape(element.state) + " AND city=" + mysql.escape(element.city) + zipCodeText + ") OR "
+
+                }
+                else {
+                    if ('zipCode' in element) {
+                        console.log("zip var")
+                        zipCodeText = "AND  zipCode=" + mysql.escape(element.zipCode)
+                    }
+                    tempStateWithCity += "(state=" + mysql.escape(element.state) + " AND city=" + mysql.escape(element.city) + zipCodeText + "))" //+ or_and
+                }
+            });
+        }
+        let tempStates = "state IN("
+        params['states'].forEach((element, index) => {
+            if (index !== params['states'].length - 1)
+                tempStates += mysql.escape(element) + ","
+            else
+                tempStates += mysql.escape(element) + ")"
+        });
+        if (tempStateWithCity !== "(" && tempStates !== "state IN(")
+            totalWhereString += "(" + tempStateWithCity + " OR " + tempStates + ") AND "
+        if (tempStateWithCity !== "(" && tempStates === "state IN(")
+            totalWhereString += tempStateWithCity + " AND "
+        if (tempStateWithCity === "(" && tempStates !== "state IN(")
+            totalWhereString += tempStates + " AND "
+    }
+    //COPY 1
+    if (params['categories'].length !== 0) {
+        let tempCategories = "category_name IN("
+        params['categories'].forEach((element, index) => {
+            if (index !== params['categories'].length - 1)
+                tempCategories += mysql.escape(element) + ","
+            else
+                tempCategories += mysql.escape(element) + ")"
+        });
+        if (tempCategories !== "category_name IN(")
+            categoriesStrIn += tempCategories
+    }
+    console.log("SELECT sic_code FROM sic_match WHERE " + categoriesStrIn)
+
+
+    let sql = "SELECT COUNT(*) FROM index_table WHERE ";
+    console.log(sql + totalWhereString)
+    let strIn = "("
+    if (params['categories'].length !== 0) {
+        let totalCount = 0
+        let facebookCount = 0
+        let twitterCount = 0
+        let bbb_accreditedCount = 0
+        let emailsCount = 0
+        let faxsCount = 0
+        let websitesCount = 0
+        categorySql = "SELECT sic_code FROM sic_match WHERE " + categoriesStrIn
+        console.log(categorySql)
+        db.query(categorySql, (err, result) => {
+            if (err) throw err;
+            for (var elem in result) {
+                if (elem != result.length - 1)
+                    sic_codeStr += "sic_code=" + mysql.escape(result[elem].sic_code) + " OR "
+                else
+                    sic_codeStr += "sic_code=" + mysql.escape(result[elem].sic_code)
+            }
+            let fetchSql = "SELECT business_id FROM business_to_sic WHERE " + sic_codeStr
+            //console.log(fetchSql)
+            db.query(fetchSql, (err, result) => {
+                if (err) throw err;
+                ;
+                if (result.length == 0) {
+                    res.status(200).json({
+                        totalCount: 0
+                    })
+                    return;
+                }
+                for (var i = 0; i < result.length; ++i) {
+                    strIn += result[i].business_id.toString() + ","
+                }
+                strIn += result[result.length - 1].business_id.toString() + ")"
+                query1 = "SELECT COUNT(*) AS totalCount, " +
+                    "COUNT(CASE WHEN hasFacebook=1 THEN 1 END) AS countFacebook," +
+                    "COUNT(CASE WHEN hasTwitter=1 THEN 1 END) AS countTwitter," +
+                    "COUNT(CASE WHEN bbb_accredited=1 THEN 1 END) AS countBBB, " +
+                    "COUNT(CASE WHEN hasFax=1 THEN 1 END) AS countFax," +
+                    "COUNT(CASE WHEN hasReviews=1 THEN 1 END) AS countReviews," +
+                    "COUNT(CASE WHEN hasEmail1=1 THEN 1 END) AS countEmail," +
+                    "COUNT(CASE WHEN hasWebsite=1 THEN 1 END) AS countWebsite " +
+                    "FROM index_table WHERE " + totalWhereString + " business_id IN " + strIn
+                query = "SELECT COUNT(*) FROM index_table WHERE " + totalWhereString + " business_id IN " + strIn
+                console.log("SELECT COUNT(*) FROM index_table WHERE " + totalWhereString)
+                console.log(totalWhereString)
+                db.query(query1, (err, result) => {
+                    if (err) throw err;
+                    //console.log(result)
+                    res.status(200).json({
+                        totalCount: result[0]['totalCount'],
+                        countFacebook: result[0]['countFacebook'],
+                        countTwitter: result[0]['countTwitter'],
+                        countBBB: result[0]['countBBB'],
+                        countFax: result[0]['countFax'],
+                        countReviews: result[0]['countReviews'],
+                        countEmail: result[0]['countEmail'],
+                        countWebsite: result[0]['countWebsite']
+                    })
+                })
+            })
+        })
+    }
+    else if (totalWhereString.endsWith('OR ') || totalWhereString.endsWith('AND ')) {
+        totalWhereString = totalWhereString.substring(0, totalWhereString.length - 4)
+        query1 = "SELECT COUNT(*) AS totalCount, " +
+            "COUNT(CASE WHEN hasFacebook=1 THEN 1 END) AS countFacebook," +
+            "COUNT(CASE WHEN hasTwitter=1 THEN 1 END) AS countTwitter," +
+            "COUNT(CASE WHEN bbb_accredited=1 THEN 1 END) AS countBBB, " +
+            "COUNT(CASE WHEN hasFax=1 THEN 1 END) AS countFax," +
+            "COUNT(CASE WHEN hasReviews=1 THEN 1 END) AS countReviews," +
+            "COUNT(CASE WHEN hasEmail1=1 THEN 1 END) AS countEmail," +
+            "COUNT(CASE WHEN hasWebsite=1 THEN 1 END) AS countWebsite " + "FROM index_table WHERE " + totalWhereString
+        query = "SELECT COUNT(*) FROM index_table WHERE " + totalWhereString
+        console.log("abov", query1)
+        db.query(query1, (err, result) => {
+            if (err) throw err;
+            console.log(result)
+            res.status(200).json({
+                totalCount: result[0]['totalCount'],
+                countFacebook: result[0]['countFacebook'],
+                countTwitter: result[0]['countTwitter'],
+                countBBB: result[0]['countBBB'],
+                countFax: result[0]['countFax'],
+                countReviews: result[0]['countReviews'],
+                countEmail: result[0]['countEmail'],
+                countWebsite: result[0]['countWebsite']
+            })
+        })
+    }
+    else {
+        res.status(200).json({
+            totalCount: 0
+        })
+    }
+})
+app.post('/getDataAndSend', (req, res, next) => {
+    console.log("haydar")
+    let user_agent = req.get('user-agent')
+    let user_ip = req.connection.remoteAddress
+    user_ip = user_ip.slice(7, -1)
+    let totalWhereString = ""
+    let categoriesStr = ""
+    let sic_codeStr = ""
+    let categoriesStrIn = ""
+    console.log(req.body)
+    let paymentObj = {
+        token: req.body.token,
+        user_agent: user_agent,
+        user_ip: user_ip,
+        name: req.body.name,
+        company_name: req.body.company_name,
+        phone: req.body.phone,
+        email: req.body.email,
+        address: req.body.address,
+        card_number: req.body.card_number,
+        exp_month: req.body.exp_month,
+        exp_year: req.body.exp_year,
+        cvc: req.body.cvc,
+        description: 'Charge for ' + req.body.name + ' ' + req.body.surname,
+        amount: req.body.totalPrice,
+        address: req.body.address,
+        state: req.body.state,
+        city: req.body.city,
+        street: req.body.street,
+        zipCode: req.body.zipCode
+    }
+    //console.log(paymentObj)
+    const params = {
+        data_type: req.body.data_type,
+        categories: req.body.categories,
+        cities: req.body.cities,
+        states: req.body.states,
+        zipCodes: req.body.zipCodes,
+        hasPhone1: req.body.hasPhone1,
+        hasPhone2: req.body.hasPhone2,
+        hasPhone3: req.body.hasPhone3,
+        hasWebsite: req.body.hasWebsite,
+        hasEmail1: req.body.hasEmail1,
+        hasEmail2: req.body.hasEmail2,
+        hasEmail3: req.body.hasEmail3,
+        hasHours: req.body.hasHours,
+        founded: req.body.founded,
+        hasContact: req.body.hasContact,
+        hasOwner: req.body.hasOwner,
+        hasFax: req.body.hasFax,
+        bbb_rating: req.body.bbb_rating,
+        bbb_accredited: req.body.bbb_accredited,
+        biz_chained: req.body.biz_chained,
+        hasFacebook: req.body.hasFacebook,
+        hasTwitter: req.body.hasTwitter,
+        isAdvertised: req.body.isAdvertised,
+        decimalRating: req.body.decimalRating,
+        hasReviews: req.body.hasReviews,
+        lat: req.body.lat,
+        lon: req.body.lon,
+        overAllRate: req.body.overAllRate,
+        scaleAnnualRevenue: req.body.scaleAnnualRevenue,
+        noAnnualRevenue :req.body.noAnnualRevenue,
+        noEmployeeCount: req.body.noEmployeeCount,
+        scaleEmployeeCount: req.body.scaleEmployeeCount
+
+    }
+    //console.log(params)
+    if (params['hasEmail1'] !== 'undefined')
+        totalWhereString += (params['hasEmail1'] ? " hasEmail1=1 AND " : "")
+    if (params['hasWebsite'] != 'undefined')
+        totalWhereString += (params['hasWebsite'] ? " hasWebsite=1 AND " : "")
+    if (params['hasHours'] != 'undefined')
+        totalWhereString += (params['hasHours'] ? " hasHours=1 AND " : "")
+    if (params['hasContact'] != 'undefined')
+        totalWhereString += (params['hasContact'] ? " hasContact=1 AND " : "")
+    if (params['hasOwner'] != 'undefined')
+        totalWhereString += (params['hasOwner'] ? " hasOwner=1 AND " : "")
+    if (params['hasFax'] != 'undefined')
+        totalWhereString += (params['hasFax'] ? " hasFax=1 AND " : "")
+    if (params['hasFacebook'] != 'undefined')
+        totalWhereString += (params['hasFacebook'] ? " hasFacebook=1 AND " : "")
+    if (params['hasTwitter'] != 'undefined')
+        totalWhereString += (params['hasTwitter'] ? " hasTwitter=1 AND " : "")
+    if (params['hasReviews'] != 'undefined')
+        totalWhereString += (params['hasReviews'] ? " hasReviews=1 AND " : "")
+    if (params['isAdvertised'] != 'undefined')
+        totalWhereString += (params['isAdvertised'] ? " isAdvertised=1 AND " : "")
+    if (params['bbb_accredited'] != 'undefined')
+        totalWhereString += (params['bbb_accredited'] ? " bbb_accredited=1 AND " : "")
+    if (params['biz_chained'] != 'undefined')
+        totalWhereString += (params['biz_chained'] ? " biz_chained=1 AND " : "")
+
+    if (params['scaleAnnualRevenue'].length !== 0) {
+        let tempScaleAnnualRevenue = "scaleAnnualRevenue IN("
+        params['scaleAnnualRevenue'].forEach((element, index) => {
+            if (index !== params['scaleAnnualRevenue'].length - 1)
+                tempScaleAnnualRevenue += element.toString() + ","
+            else {
+                if (params['noAnnualRevenue']) {
+                    tempScaleAnnualRevenue += element.toString() + ") OR "
+                    tempScaleAnnualRevenue = "(" + tempScaleAnnualRevenue + "scaleAnnualRevenue IS NULL) AND "
+                }
+                else
+                    tempScaleAnnualRevenue += element.toString() + ") AND "
+                console.log(tempScaleAnnualRevenue)
+            }
+        });
+        if (tempScaleAnnualRevenue !== "scaleAnnualRevenue IN(")
+            totalWhereString += tempScaleAnnualRevenue
+    }
+    if (params['scaleEmployeeCount'].length !== 0) {
+        let tempScaleEmployeeCount = "scaleEmployeeCount IN("
+        params['scaleEmployeeCount'].forEach((element, index) => {
+            if (index !== params['scaleEmployeeCount'].length - 1)
+                tempScaleEmployeeCount += element.toString() + ","
+            else {
+                if (params['noEmployeeCount']) {
+                    tempScaleEmployeeCount += element.toString() + ") OR "
+                    tempScaleEmployeeCount = "(" + tempScaleEmployeeCount + "scaleEmployeeCount IS NULL) AND "
+                }
+                else
+                    tempScaleEmployeeCount += element.toString() + ") AND "
+                console.log(tempScaleEmployeeCount)
+            }
+        });
+        if (tempScaleEmployeeCount !== "scaleEmployeeCount IN(")
+            totalWhereString += tempScaleEmployeeCount
+    }
+    if (params['states'].length !== 0) {
+        let tempStateWithCity = "(";
+        let statesWithCities = []
+        if (params['cities'].length !== 0) {
+            if (params['zipCodes'].length !== 0) {
+                for (let i = 0; i < params['cities'].length; i++) {
+                    //params['cities'][i];
+                    for (let j = 0; j < params['zipCodes'].length; j++) {
+                        //params['zipCodes'][j];
+                        if (params['cities'][i].city === params['zipCodes'][j].city) {
+                            params['cities'][i].zipCode = params['zipCodes'][j].zipCode
+                        }
+                    }
+                }
+            }
+            for (let i = 0; i < params['cities'].length; i++) {
+                if (params['states'].includes(params['cities'][i].state)) {
+                    statesWithCities.push(params['cities'][i])
+                    var index = params['states'].indexOf(params['cities'][i].state);
+                    if (index > -1) {
+                        params['states'].splice(index, 1);
+                    }
+                }
+                else {
+                    statesWithCities.push(params['cities'][i])
+                }
+            }
+
+
+            statesWithCities.forEach((element, index) => {
+                let zipCodeText = ""
+                let or_and = params['states'].length === 0 ? " AND " : " OR "
+                if (index !== statesWithCities.length - 1) {
+                    if ('zipCode' in element) {
+                        console.log("zip var")
+                        zipCodeText = " AND  zipCode=" + mysql.escape(element.zipCode)
+                    }
+                    tempStateWithCity += "(state=" + mysql.escape(element.state) + " AND city=" + mysql.escape(element.city) + zipCodeText + ") OR "
+
+                }
+                else {
+                    if ('zipCode' in element) {
+                        console.log("zip var")
+                        zipCodeText = "AND  zipCode=" + mysql.escape(element.zipCode)
+                    }
+                    tempStateWithCity += "(state=" + mysql.escape(element.state) + " AND city=" + mysql.escape(element.city) + zipCodeText + "))" //+ or_and
+                }
+            });
+
+        }
+        let tempStates = "state IN("
+        params['states'].forEach((element, index) => {
+            if (index !== params['states'].length - 1)
+                tempStates += mysql.escape(element) + ","
+            else
+                tempStates += mysql.escape(element) + ")"
+        });
+        if (tempStateWithCity !== "(" && tempStates !== "state IN(")
+            totalWhereString += "(" + tempStateWithCity + " OR " + tempStates + ") AND "
+        if (tempStateWithCity !== "(" && tempStates === "state IN(")
+            totalWhereString += tempStateWithCity + " AND "
+        if (tempStateWithCity === "(" && tempStates !== "state IN(")
+            totalWhereString += tempStates + " AND "
+    }
+    //COPY 1
+    if (params['categories'].length !== 0) {
+        let tempCategories = "category_name IN("
+        params['categories'].forEach((element, index) => {
+            if (index !== params['categories'].length - 1)
+                tempCategories += mysql.escape(element) + ","
+            else
+                tempCategories += mysql.escape(element) + ")"
+        });
+        if (tempCategories !== "category_name IN(")
+            categoriesStrIn += tempCategories
+    }
+    //sending done response before going in action
+    let stmt = 'SELECT MAX(order_id) FROM logs';
+    db.query(stmt, (err, result) => {
+        if (err) throw err;
+        console.log("ORDER_ID",result)
+    })
+    res.status(200).json({
+        message: 'done'
+    })
+    //------------------------------------------
+    console.log("SELECT sic_code FROM sic_match WHERE " + categoriesStrIn)
+
+
+    let sql = "SELECT COUNT(*) FROM index_table WHERE ";
+    console.log(sql + totalWhereString)
+    let strIn = "("
+    if (params['categories'].length !== 0) {
+
+        categorySql = "SELECT sic_code FROM sic_match WHERE " + categoriesStrIn
+        console.log(categorySql)
+        db.query(categorySql, (err, result) => {
+            if (err) throw err;
+            for (var elem in result) {
+                if (elem != result.length - 1)
+                    sic_codeStr += "sic_code=" + mysql.escape(result[elem].sic_code) + " OR "
+                else
+                    sic_codeStr += "sic_code=" + mysql.escape(result[elem].sic_code)
+            }
+            let fetchSql = "SELECT business_id FROM business_to_sic WHERE " + sic_codeStr
+            //console.log(fetchSql)
+            db.query(fetchSql, (err, result) => {
+                if (err) throw err;
+                if (result.length == 0) {
+                    res.status(200).json({
+                        totalCount: 0
+                    })
+                    return;
+                }
+                for (var i = 0; i < result.length; ++i) {
+                    strIn += result[i].business_id.toString() + ","
+                }
+                strIn += result[result.length - 1].business_id.toString() + ")"
+                query1 = "SELECT business_id FROM index_table WHERE " + totalWhereString + " business_id IN " + strIn
+                console.log(totalWhereString)
+                db.query(query1, (err, result) => {
+                    if (err) throw err;
+                    let allBusinessIds = "("
+                    for (let i = 0; i < result.length; i++) {
+                        if (i !== result.length - 1)
+                            allBusinessIds += result[i].business_id + ","
+                        else
+                            allBusinessIds += result[i].business_id + ")"
+                    }
+                    let lastQuery = "SELECT * FROM final_businesses WHERE id IN" + allBusinessIds;
+                    db.query(lastQuery, (err, result) => {
+
+                        if (err) throw err;
+
+                        if (params.data_type == 'sample_data') {
+                            let randomFileName = randomString(10)
+                            writeToFileTemp(result, paymentObj, randomFileName);
+                            //'INSERT INTO logs(order_id,full_name,company_name ,phone,email,state,city,street,zipCode,retrieve_type,ip,time,file_name,user_agent) VALUES("' + randomFileName + '","' + req.body.full_name + '","' + req.body.company_name + '","' + req.body.email + '","' + req.body.phone + '","' + req.body.state + '","' + req.body.city + '","' + req.body.street + '","' + req.body.zipCode + '","sample","' + user_ip + '","' + randomFileName + '","' + user_agent + '")'
+                            let stmt = 'INSERT INTO logs(order_id,full_name,company_name ,phone,email,state,city,street,zipCode,retrieve_type,ip,file_name,user_agent) VALUES("' + randomFileName + '","' + req.body.name + '","' + req.body.company_name + '","' + req.body.phone + '","' + req.body.email + '","' + req.body.state + '","' + req.body.city + '","' + req.body.street + '","' + req.body.zipCode + '","sample","' + user_ip + '","' + randomFileName + '","' + user_agent + '")'
+
+                            console.log(stmt)
+                            db.query(stmt, (err, result) => {
+                                if (err) throw err;
+                                console.log(result)
+                            })
+                        }
+                        else {
+                            let randomFileName = randomString(10)
+                            writeToFileAll(result, paymentObj, randomFileName);
+                            let stmt = 'INSERT INTO logs(order_id,full_name,company_name ,phone,email,state,city,street,zipCode,retrieve_type,ip,file_name,user_agent) VALUES("' + randomFileName + '","' + req.body.name + '","' + req.body.company_name + '","' + req.body.phone + '","' + req.body.email + '","' + req.body.state + '","' + req.body.city + '","' + req.body.street + '","' + req.body.zipCode + '","full_data","' + user_ip + '","' + randomFileName + '","' + user_agent + '")'
+                            console.log(stmt)
+                            db.query(stmt, (err, result) => {
+                                if (err) throw err;
+                                console.log(result)
+                            })
+                        }
+
+
+                    })
+
+                })
+            })
+        })
+    }
+    else if (totalWhereString.endsWith('OR ') || totalWhereString.endsWith('AND ')) {
+        totalWhereString = totalWhereString.substring(0, totalWhereString.length - 4)
+        query = "SELECT business_id FROM index_table WHERE " + totalWhereString
+
+        db.query(query, (err, result) => {
+            if (err) throw err;
+            console.log(result)
+            let allBusinessIds = "("
+            for (let i = 0; i < result.length; i++) {
+                if (i !== result.length - 1)
+                    allBusinessIds += result[i].business_id + ","
+                else
+                    allBusinessIds += result[i].business_id + ")"
+            }
+            let lastQuery = "SELECT * FROM final_businesses WHERE id IN" + allBusinessIds;
+            db.query(lastQuery, (err, result) => {
+                //console.log(result)
+                if (err) throw err;
+                if (params.data_type == 'sample_data') {
+                    let randomFileName = randomString(10)
+                    writeToFileTemp(result, paymentObj, randomFileName);
+                    let stmt = 'INSERT INTO logs(order_id,full_name,company_name ,phone,email,state,city,street,zipCode,retrieve_type,ip,file_name,user_agent) VALUES("' + randomFileName + '","' + req.body.name + '","' + req.body.company_name + '","' + req.body.phone + '","' + req.body.email + '","' + req.body.state + '","' + req.body.city + '","' + req.body.street + '","' + req.body.zipCode + '","sample","' + user_ip + '","' + randomFileName + '","' + user_agent + '")'
+                    console.log(stmt)
+                    db.query(stmt, (err, result) => {
+                        if (err) throw err;
+                        console.log(result)
+                    })
+                }
+                else {
+                    console.log("buraya geldi")
+                    let randomFileName = randomString(10)
+                    writeToFileAll(result, paymentObj, randomFileName);
+                    let stmt = 'INSERT INTO logs(order_id,full_name,company_name ,phone,email,state,city,street,zipCode,retrieve_type,ip,file_name,user_agent) VALUES("' + randomFileName + '","' + req.body.name + '","' + req.body.company_name + '","' + req.body.phone + '","' + req.body.email + '","' + req.body.state + '","' + req.body.city + '","' + req.body.street + '","' + req.body.zipCode + '","full_data","' + user_ip + '","' + randomFileName + '","' + user_agent + '")'
+                    console.log(stmt)
+                    db.query(stmt, (err, result) => {
+                        if (err) throw err;
+                        console.log(result)
+                    })
+                }
+                /*res.status(200).json({
+                    message: 'done'
+                })*/
+            })
+        })
+    }
+    else {
+        res.status(200).json({
+            totalCount: 0
+        })
+    }
+})
+app.listen(8080, () => {
+    console.log("app is running on port 8080")
+})
+/*http.createServer(app).listen(8080,()=> console.log("New http server served."))
+https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+}, app)
+.listen('8443', () => {
+    console.log('Server started on port 3000')
+})*/
+
