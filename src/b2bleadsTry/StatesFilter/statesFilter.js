@@ -17,14 +17,12 @@ class StatesFilter extends Component {
             if(!stateHolder.includes(data.state))
                 stateHolder.push(data.state)
         })
-        console.log(stateHolder)
         let states = null
         if(Object.keys(this.props.totalFilters.states).length > stateHolder.length){
             states = 
             <div className = "row every-filter-container" >
                 <div  className="filters-common-header-container"><span className="categories-header-filter-text-1">States</span></div>
                 {Object.keys(this.props.totalFilters.states).map((state,index) => {
-                    console.log(this.props.totalFilters.states[state])
                     if(!stateHolder.includes(this.props.totalFilters.states[state].abbreviation)){
                         return (
                             

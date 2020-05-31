@@ -12,7 +12,6 @@ import { apiUrl } from '../../consts/consts'
 class CitiesFilter extends Component {
 
     render() {
-        console.log(this.props.totalFilters.cities)
         let cities = null
         if (Object.keys(this.props.totalFilters.cities).length !== 0) {
             cities =

@@ -42,7 +42,8 @@ export const getDefaultCategoriesAndStates = url => {
             dispatch({
                 type: FETCH_DEFAULT_CATEGORIES_AND_STATES,
                 payload: {
-                    parentCategories: data.categories,
+                    //parentCategories: data.categories,
+                    defaultCategories: data.categories,
                     defaultStates: temp,
                     matchedStates : temp
                 },
@@ -236,10 +237,23 @@ export const getMatchedCategories = (url,searchKeyCategories) => {
     }
 
 }
-export const getMatchedSubCategories = (url,sic_code) => {
-    if(sic_code != 0)
+export const getMatchedSubCategories = (url,categories) => {
+    
+    if(Object.keys(categories) != 0)
+    {
+        var sic_codes = []
+        Object.keys(categories).forEach((element,index) => {
+            sic_codes.push(categories[element].sic_code)
+        })
         return dispatch => {
-            fetch(url + "?searchKey=" + sic_code)
+            fetch(url,{
+                method:"POST",
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({sic_codes:sic_codes})
+            })
             .then(data => data.json())
             .then(data => {
                 console.log(data.matchedSubCategories)
@@ -247,10 +261,12 @@ export const getMatchedSubCategories = (url,sic_code) => {
                     type: FETCH_SUB_MATCHED_CATEGORIES,
                     payload: {
                         matchedSubCategories: data.matchedSubCategories,
+                        
                     },
                 });
             });
         }
+    }
     else{
         return{
             type:FETCH_SUB_MATCHED_CATEGORIES,
@@ -282,7 +298,7 @@ export const insertChoosenStates = (event,type,id,state,abbreviation) => {
         }
     }
 }
-export const insertChoosenCategories = (event,type,id,category) => {
+export const insertChoosenCategories = (event,type,id,category,sic_code) => {
     console.log("girdi")
     return {
         type: INSERT_CHOOSEN_CATEGORIES,
@@ -290,11 +306,12 @@ export const insertChoosenCategories = (event,type,id,category) => {
             checked: event.target.checked,
             type:type,
             id:id,
-            category: category
+            category: category,
+            sic_code : sic_code
         }
     }
 }
-export const insertParentCategories = (event,type,id,category) => {
+export const insertParentCategories = (event,type,id,category,sic_code) => {
     console.log("girdi")
     return {
         type: INSERT_PARENT_CATEGORIES,
@@ -302,7 +319,8 @@ export const insertParentCategories = (event,type,id,category) => {
             checked: event.target.checked,
             type:type,
             id:id,
-            category: category
+            category: category,
+            sic_code: sic_code
         }
     }
 }

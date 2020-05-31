@@ -48,11 +48,11 @@ class SubCategories extends Component {
                 <div className="col-12" style={{ marginTop: '10px' }}>
                     {this.props.matchedSubCategories.map((category, index) => {
                         return (
-                            <div className="row category-box">
-                                <div className="checkbox-categories-container"  ><input type="checkbox" key={index} className="option-input checkbox" //checked={this.props.totalFilters.categories[category.category_name]}
+                            <div key = {index} className="row category-box">
+                                <div className="checkbox-categories-container"  ><input type="checkbox" key={index} className="option-input checkbox" checked={typeof this.props.totalFilters.categories[category.category_name] !== 'undefined'}
                                     onClick={(event) => {
                                         this.props.setSpinner()
-                                        this.props.insertChoosenCategories(event, "categories", index, category.category_name)
+                                        this.props.insertChoosenCategories(event, "categories", index, category.category_name, category.sic_code)
                                         console.log(this.props.totalFilters.categories)
                                         this.props.getTotalData(this.props.totalFilters, apiUrl)
                                     }} /></div>

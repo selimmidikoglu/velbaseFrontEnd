@@ -44,6 +44,7 @@ class Categories extends Component {
     }
 
     render() {
+        console.log(this.props.parentCategories)
         let categories = null
         if (typeof this.props.parentCategories !== 'undefined' && this.props.matchedCategories.length === 0) {
             categories = (
@@ -51,25 +52,26 @@ class Categories extends Component {
                     <div className="row" >
                         <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories</span>
                     </div>
-                    {this.props.parentCategories.map((category, index) => {
+                    {this.props.defaultCategories.map((category, index) => {
                         return (
-                            <div className="row category-box" /*style={{ backgroundColor: (this.props.parentCategories[category.category_name]) ? 'rgb(115, 119, 167)' : '' }}*/>
+                            <div key = {index} className="row category-box" /*style={{ backgroundColor: (this.props.parentCategories[category.category_name]) ? 'rgb(115, 119, 167)' : '' }}*/>
                                     
-                                <div className="checkbox-categories-container"  ><input type="checkbox" key={index} className="option-input checkbox" checked={this.state.whichCategory == category.sic_code}
+                                <div className="checkbox-categories-container"  ><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.parentCategories[category.category_name]}
                                     onClick={(event) => {
-                                        if(this.state.whichCategory != category.sic_code){
-                                            this.setState({whichCategory:category.sic_code})
+                                        
+                                        if(this.props.parentCategories[category.category_name] && !this.props.totalFilters.categories[category.category_name])
+                                        {
+                                            this.props.insertParentCategories(event, "categories", index, category.category_name,category.sic_code)
+                                            this.props.getMatchedSubCategories(apiUrl + 'getMatchedSubCategories', this.props.parentCategories)
                                         }
                                         else{
-                                            this.setState({whichCategory:0})
+                                            this.props.setSpinner()
+                                            this.props.insertChoosenCategories(event, "categories", index, category.category_name, category.sic_code)
+                                            this.props.insertParentCategories(event, "categories", index, category.category_name,category.sic_code)
+                                            this.props.getMatchedSubCategories(apiUrl + 'getMatchedSubCategories', this.props.parentCategories)
+                                            this.props.getTotalData(this.props.totalFilters, apiUrl)
                                         }
-                                        //this.props.setSpinner()
-                                        //this.props.insertChoosenCategories(event, "categories", index, category.category_name)
-                                        this.props.insertParentCategories(event, "categories", index, category.category_name)
-                                        //console.log(this.props.totalFilters.categories)
-                                        this.props.getMatchedSubCategories(apiUrl + 'getMatchedSubCategories', ((!this.props.parentCategories[category.category_name])?0: category.sic_code))
-                                        console.log(this.props.matchedSubCategories)
-                                       // this.props.getTotalData(this.props.totalFilters, apiUrl)
+                                        
                                     }} /></div> 
                                 <div className="category-name-box-container" >
                                     <span className="category-name"
@@ -101,16 +103,26 @@ class Categories extends Component {
                             <div className="row category-box" style={{width: '100%'}}>
                                 {category.sic_code.toString().substring(4,8) == '0000'?(<h1 style={{height:'6px',width:'6px',borderRadius:'3px',backgroundColor:'rgb(115, 119, 167)',alignSelf:'center'}}></h1>):
                                 <h1 style={{height:'6px',width:'6px',borderRadius:'3px',backgroundColor:'#fcbd17',alignSelf:'center'}}></h1>}
-                                <div className=" checkbox-categories-container" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name] || category.sic_code == this.state.whichCategory}
+                                <div className=" checkbox-categories-container" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name] || this.props.parentCategories[category.category_name]}
                                     onClick={(event) => {
                                         
                                         if(category.sic_code.toString().substring(4,8) == '0000'){
-                                            this.setState({whichCategory:category.sic_code})
-                                            this.props.getMatchedSubCategories(apiUrl + 'getMatchedSubCategories', category.sic_code)
+                                            if(this.props.parentCategories[category.category_name] && !this.props.totalFilters.categories[category.category_name])
+                                            {
+                                                this.props.insertParentCategories(event, "categories", index, category.category_name,category.sic_code)
+                                                this.props.getMatchedSubCategories(apiUrl + 'getMatchedSubCategories', this.props.parentCategories)
+                                            }
+                                            else{
+                                                this.props.setSpinner()
+                                                this.props.insertChoosenCategories(event, "categories", index, category.category_name, category.sic_code)
+                                                this.props.insertParentCategories(event, "categories", index, category.category_name,category.sic_code)
+                                                this.props.getMatchedSubCategories(apiUrl + 'getMatchedSubCategories', this.props.parentCategories)
+                                                this.props.getTotalData(this.props.totalFilters, apiUrl)
+                                            }
                                         }
                                         else{
                                             this.props.setSpinner()
-                                            this.props.insertChoosenCategories(event, "categories", index, category.category_name)
+                                            this.props.insertChoosenCategories(event, "categories", index, category.category_name, category.sic_code)
                                             this.props.getTotalData(this.props.totalFilters, apiUrl)
                                         }
                                             
@@ -131,7 +143,7 @@ class Categories extends Component {
             console.log("uce geldi")
             categories = (
                 <div className="col-12" style={{ marginTop: '10px' }}>
-                    {this.props.parentCategories.map((category, index) => {
+                    {this.props.defaultCategories.map((category, index) => {
                         return (
                             <div className="row category-box">
                                 <div className=" checkbox-categories-container" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}

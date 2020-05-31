@@ -6,6 +6,7 @@
   text-align: left;
 }
 .category-name {
+  display: inline-block;
   color: #000;
   font-family: Gilmer-Regular;
   font-size: 13px;

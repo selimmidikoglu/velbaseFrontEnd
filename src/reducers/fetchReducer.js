@@ -148,7 +148,9 @@ export const fetchReducer = (state = initialState, action) => {
         case FETCH_MATCHED_CATEGORIES:
             return { ...state, ...action.payload }
         case FETCH_SUB_MATCHED_CATEGORIES:
-            return { ...state, ...action.payload }
+            let tempMatchedSubCategories = action.payload.matchedSubCategories
+            
+            return { ...state,  matchedSubCategories : tempMatchedSubCategories }
         case FETCH_LOCATIONS:
             return { ...state, ...action.payload }
         case CHANGE_STATES_COLUMN:
@@ -223,8 +225,43 @@ export const fetchReducer = (state = initialState, action) => {
         case INSERT_CHOOSEN_CATEGORIES:
 
             let tempCategories = state.totalFilters.categories
-            if (action.payload.category in tempCategories && tempCategories[action.payload.category].checked)
+            let sic_codes = []
+            console.log(action.payload)
+            let condition = false
+            if(Object.keys(tempCategories).length != 0){
+                for(let i=0;i< Object.keys(tempCategories).length;i++){
+                    let element = Object.keys(tempCategories)[i]
+                    if(tempCategories[element].sic_code.toString().substring(4,8) == '0000' && (tempCategories[element].sic_code.toString().substring(4,8) != action.payload.sic_code.toString().substring(4,8)) && (tempCategories[element].sic_code.toString().substring(0,4) == action.payload.sic_code.toString().substring(0,4)))
+                    {
+                        delete tempCategories[element]
+                        tempCategories[action.payload.category] = action.payload
+                        console.log("delete etmiş olabilir")
+                        condition = true
+                        
+                         
+                    }
+                    // sic_codes.push(tempCategories[element].sic_code
+                }
+            }
+            if(condition){
+                console.log("hemen dondurdu")
+
+                return {
+                    ...state,
+                    totalFilters: {
+                        ...state.totalFilters,
+                        categories: tempCategories
+                    },
+                }
+            }
+            
+            if (action.payload.category in tempCategories )
+            {
+                console.log("delete etmiş olabilir sonra")
+
                 delete tempCategories[action.payload.category]
+                console.log("BURAYA GİRDİ")
+            }
             else
                 tempCategories[action.payload.category] = action.payload
             return {
@@ -237,10 +274,15 @@ export const fetchReducer = (state = initialState, action) => {
         case INSERT_PARENT_CATEGORIES:
             console.log(action.payload)
             let tempCategories3 = state.parentCategories
-            if (action.payload.category in tempCategories3 && tempCategories3[action.payload.category].checked)
+            if (action.payload.category in tempCategories3 &&  (typeof tempCategories3[action.payload.category].checked !== 'undefined' || tempCategories3[action.payload.category].checked))
+            {
+                console.log("aha buraya")
                 delete tempCategories3[action.payload.category]
-            else
+            }
+            else{
+                console.log("yeni eklemeye girdi")
                 tempCategories3[action.payload.category] = action.payload
+            }
             return {
                 ...state,
                 parentCategories :tempCategories3

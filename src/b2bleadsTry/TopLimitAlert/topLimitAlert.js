@@ -19,7 +19,7 @@ class TopLimitAlert extends Component {
                         {this.props.totalCount < 6?<span className="data-count-alert-text">You have to retrieve at least 6 leads to proceed paid data</span>:null}
                     </div>
                     <div  className="top-limit-alert-rows">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={() => this.props.alert_top_limit()}
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={() => this.props.alert_top_limit()}
                             style={{backgroundColor:'#FCBD17',fontFamily:'Gilmer-Regular',borderWidth:'0px'}}
                         >Close</button>
                     </div>
