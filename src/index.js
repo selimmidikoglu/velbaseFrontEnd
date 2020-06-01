@@ -23,7 +23,9 @@ import CardForm from '../src/b2bleadsTry/StripeElements/stripeElements'
 import { Provider } from 'react-redux'
 //store
 import {store} from './store/store'
-
+if (process.env.NODE_ENV !== 'development') {
+    console.log = () => {}
+}
 ReactDOM.render(<Provider store={store}><MainRoute></MainRoute>,</Provider>, document.getElementById('root'));
 
 
