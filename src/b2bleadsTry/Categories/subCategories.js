@@ -44,19 +44,31 @@ class SubCategories extends Component {
     render() {
         let subCategories = null
         if (this.props.matchedSubCategories.length !== 0) {
+
             subCategories = (
                 <div className="col-12" style={{ marginTop: '10px' }}>
+                    <div className="category-name-box-container">
+                        <div className="row" >
+                            <span className="category-name" style={{ fontWeight: '800', color: 'rgb(115, 119, 167)' }}>Sub Categories</span>
+                        </div>
+                    </div>
                     {this.props.matchedSubCategories.map((category, index) => {
                         return (
-                            <div key = {index} className="row category-box">
-                                <div className="checkbox-categories-container"  ><input type="checkbox" key={index} className="option-input checkbox" checked={typeof this.props.totalFilters.categories[category.category_name] !== 'undefined'}
-                                    onClick={(event) => {
-                                        this.props.setSpinner()
-                                        this.props.insertChoosenCategories(event, "categories", index, category.category_name, category.sic_code)
-                                        console.log(this.props.totalFilters.categories)
-                                        this.props.getTotalData(this.props.totalFilters, apiUrl)
-                                    }} /></div>
-                                <div className="category-name-box-container"><span className="category-name">{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span></div>
+                            <div key={index} className="row category-box">
+                                <div className="checkbox-categories-container"  ></div>
+                                <div className="category-name-box-container">
+
+                                    <span className="category-name">
+                                        <input type="checkbox" key={index} className="option-input " style={{ position: 'block', marginBottom: '-2px' }} checked={typeof this.props.totalFilters.categories[category.category_name] !== 'undefined'}
+                                            onClick={(event) => {
+                                                this.props.setSpinner()
+                                                this.props.insertChoosenCategories(event, "categories", index, category.category_name, category.sic_code)
+                                                console.log(this.props.totalFilters.categories)
+                                                this.props.getTotalData(this.props.totalFilters, apiUrl)
+                                            }} />
+                                        <span className="category-name-inner-span" style={{ marginLeft: '10px' }}>{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span>
+                                    </span>
+                                </div>
 
                             </div>
                         );
@@ -70,12 +82,12 @@ class SubCategories extends Component {
                 <div className="col-12" style={{ marginTop: '10px' }}>
                     <div className="category-name-box-container">
                         <div className="row" >
-                            <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Sub Categories</span>
+                            <span className="category-name" style={{ fontWeight: '800', color: 'rgb(115, 119, 167)' }}>Sub Categories</span>
                         </div>
                         <div className="row" >
-                            <span className="category-name" style={{color:'red'}}>Select main category</span></div>
-                        </div>
-                        
+                            <span className="category-name" style={{ color: 'red' }}>Select main category</span></div>
+                    </div>
+
                 </div>
             )
         }

@@ -46,9 +46,9 @@ class Categories extends Component {
     render() {
         console.log(this.props.parentCategories)
         let categories = null
-        if (typeof this.props.parentCategories !== 'undefined' && this.props.matchedCategories.length === 0) {
+        if ((typeof this.props.parentCategories !== 'undefined' && this.props.matchedCategories.length === 0) || Object.keys(this.props.parentCategories).length > 0 ) {
             categories = (
-                <div className="col-12" style={{ marginTop: '10px' }}>
+                <div className="col-12" style={{ marginTop: '10px', }}>
                     <div className="row" >
                         <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories</span>
                     </div>
@@ -56,7 +56,14 @@ class Categories extends Component {
                         return (
                             <div key = {index} className="row category-box" /*style={{ backgroundColor: (this.props.parentCategories[category.category_name]) ? 'rgb(115, 119, 167)' : '' }}*/>
                                     
-                                <div className="checkbox-categories-container"  ><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.parentCategories[category.category_name]}
+                                {/* <div className="checkbox-categories-container"  >
+                                    </div>  */}
+                                <div className="category-name-box-container" >
+                               
+                                    <span className="category-name"
+                                        //style={{ color: (this.props.parentCategories[category.category_name]) ? 'white' : '' }}
+                                    >
+                                         <input type="checkbox" key={index} className="option-input" style={{position:'block', marginBottom:'-2px'}} checked={this.props.parentCategories[category.category_name]}
                                     onClick={(event) => {
                                         
                                         if(this.props.parentCategories[category.category_name] && !this.props.totalFilters.categories[category.category_name])
@@ -72,11 +79,7 @@ class Categories extends Component {
                                             this.props.getTotalData(this.props.totalFilters, apiUrl)
                                         }
                                         
-                                    }} /></div> 
-                                <div className="category-name-box-container" >
-                                    <span className="category-name"
-                                        //style={{ color: (this.props.parentCategories[category.category_name]) ? 'white' : '' }}
-                                    >{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span></div>
+                                    }} /><span className="category-name-inner-span" style={{marginLeft:'10px'}}>{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span></span></div>
 
                             </div>
                         );
@@ -101,9 +104,17 @@ class Categories extends Component {
                     {this.props.matchedCategories.map((category, index) => {
                         return (
                             <div className="row category-box" style={{width: '100%'}}>
-                                {category.sic_code.toString().substring(4,8) == '0000'?(<h1 style={{height:'6px',width:'6px',borderRadius:'3px',backgroundColor:'rgb(115, 119, 167)',alignSelf:'center'}}></h1>):
-                                <h1 style={{height:'6px',width:'6px',borderRadius:'3px',backgroundColor:'#fcbd17',alignSelf:'center'}}></h1>}
-                                <div className=" checkbox-categories-container" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name] || this.props.parentCategories[category.category_name]}
+                                
+                               
+                                    
+                                <div className=" category-name-box-container">
+                                
+                                    <span className="category-name">
+                                    {category.sic_code.toString().substring(4,8) == '0000'?(
+                                    <h1 style={{height:'6px',width:'6px',borderRadius:'3px',backgroundColor:'rgb(115, 119, 167)',alignSelf:'center',display:'inline-block',marginRight:'3px'}}></h1>)
+                                    :
+                                    (<h1 style={{height:'6px',width:'6px',borderRadius:'3px',backgroundColor:'#fcbd17',alignSelf:'center',display:'inline-block',marginRight:'3px'}}></h1>)}
+                                    <input type="checkbox" key={index} className="option-input" style={{position:'block', marginBottom:'-2px'}} checked={this.props.totalFilters.categories[category.category_name] || this.props.parentCategories[category.category_name]}
                                     onClick={(event) => {
                                         
                                         if(category.sic_code.toString().substring(4,8) == '0000'){
@@ -127,10 +138,9 @@ class Categories extends Component {
                                         }
                                             
                                         
-                                    }} /></div></div>
+                                    }} />
                                     
-                                <div className=" category-name-box-container">
-                                    <span className="category-name">{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span>
+                                    <span className="category-name-inner-span" style={{marginLeft:'10px'}}>{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span></span>
                         
                                 </div>
 
@@ -143,18 +153,37 @@ class Categories extends Component {
             console.log("uce geldi")
             categories = (
                 <div className="col-12" style={{ marginTop: '10px' }}>
+                    <div className="row" >
+                        <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories</span>
+                    </div>
                     {this.props.defaultCategories.map((category, index) => {
                         return (
-                            <div className="row category-box">
-                                <div className=" checkbox-categories-container" ><div><input type="checkbox" key={index} className="option-input checkbox" checked={this.props.totalFilters.categories[category.category_name]}
+                            <div key = {index} className="row category-box" /*style={{ backgroundColor: (this.props.parentCategories[category.category_name]) ? 'rgb(115, 119, 167)' : '' }}*/>
+                                    
+                                {/* <div className="checkbox-categories-container"  >
+                                    </div>  */}
+                                <div className="category-name-box-container" >
+                               
+                                    <span className="category-name"
+                                        //style={{ color: (this.props.parentCategories[category.category_name]) ? 'white' : '' }}
+                                    >
+                                         <input type="checkbox" key={index} className="option-input" style={{position:'block', marginBottom:'-2px'}} checked={this.props.parentCategories[category.category_name]}
                                     onClick={(event) => {
-                                        //this.props.setSpinner()
-                                        //this.props.insertChoosenCategories(event, "categories", index, category.category_name)
-                                        this.props.getMatchedSubCategories(apiUrl + 'getMatchedSubCategories', category.sic_code)
-                                        console.log(this.props.totalFilters.categories)
-                                        // this.props.getTotalData(this.props.totalFilters, apiUrl)
-                                    }} /></div></div>
-                                <div className=" category-name-box-container"><label className="category-name">{this.capitilizeCategory(category.category_name)}, {category.sic_code}</label></div>
+                                        
+                                        if(this.props.parentCategories[category.category_name] && !this.props.totalFilters.categories[category.category_name])
+                                        {
+                                            this.props.insertParentCategories(event, "categories", index, category.category_name,category.sic_code)
+                                            this.props.getMatchedSubCategories(apiUrl + 'getMatchedSubCategories', this.props.parentCategories)
+                                        }
+                                        else{
+                                            this.props.setSpinner()
+                                            this.props.insertChoosenCategories(event, "categories", index, category.category_name, category.sic_code)
+                                            this.props.insertParentCategories(event, "categories", index, category.category_name,category.sic_code)
+                                            this.props.getMatchedSubCategories(apiUrl + 'getMatchedSubCategories', this.props.parentCategories)
+                                            this.props.getTotalData(this.props.totalFilters, apiUrl)
+                                        }
+                                        
+                                    }} /><span className="category-name-inner-span" style={{marginLeft:'10px'}}>{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span></span></div>
 
                             </div>
                         );
@@ -163,7 +192,7 @@ class Categories extends Component {
             );
         }
         return (
-            <div style={{borderRightColor:'gray',borderRightWidth: '3px', borderRightStyle:'solid'}}>
+            <div style={{marginLeft : '0px',borderRightColor:'gray',borderRightWidth: '3px', borderRightStyle:'solid'}}>
                 {categories}
             </div>
         )

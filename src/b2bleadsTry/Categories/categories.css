@@ -1,29 +1,46 @@
 .category-name-box-container {
-  align-items: center;
+  display: table;
+  
+  margin-left: 5px;
+  /* align-items: center;
   justify-content: center;
   align-content: center;
-  margin-left: 10px;
-  text-align: left;
+  
+  text-align: left; */
+  
 }
 .category-name {
-  display: inline-block;
+  display: table;
   color: #000;
   font-family: Gilmer-Regular;
   font-size: 13px;
   font-optical-sizing: 13px; /* This has to be "list-item"                                               */
-  list-style-type: disc;
-  list-style-position: inside;
+  /* list-style-type: disc;
+  list-style-position: inside; */
+  font-weight: 'bold';
+  margin-top: 5px;
+ 
+  
+}
+.category-name-inner-span{
+  padding-bottom: 2px;
+  color: #000;
+  font-family: Gilmer-Regular;
+  font-size: 13px;
+  font-optical-sizing: 13px; /* This has to be "list-item"                                               */
+  /* list-style-type: disc;
+  list-style-position: inside; */
   font-weight: 'bold';
 }
 .checkbox-categories-container {
-    margin-top: 3px;
-  display: flex;
+  margin-top: 3px;
+  display: inline-block;
   align-items: center;
   justify-content: center;
   align-content: center;
   text-align: center;
-  width: 20px;
-  height: 100%
+  //width: 20px;
+  //height: 100%
 }
 .category-box:hover {
   background-color: #fcbd17;
@@ -31,19 +48,23 @@
   border-radius: 2px;
   
   
+  
 }
 .category-box{
     margin-top: 5px;
     border-radius: 3px;
+    width: 100%;
+
+      
 }
 
 @media screen and (max-width: 473px) {
-  .category-name {
+  .category-name-inner-span {
     font-size: 10px;
   }
 }
 @media screen and (min-width: 473px) and (max-width : 711px) {
-    .category-name {
+    .category-name-inner-span {
       font-size: 10.58px;
     }
   }
