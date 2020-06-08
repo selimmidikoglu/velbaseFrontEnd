@@ -44,14 +44,15 @@ class Categories extends Component {
     }
 
     render() {
-        console.log(this.props.parentCategories)
+        console.log(this.props.matchedCategories)
         let categories = null
-        if ((typeof this.props.parentCategories !== 'undefined' && this.props.matchedCategories.length === 0) || Object.keys(this.props.parentCategories).length > 0 ) {
+        if ((typeof this.props.parentCategories !== 'undefined' && this.props.matchedCategories.length === 0) || this.props.searchKeyCategories == '' /*Object.keys(this.props.parentCategories).length > 0*/ ) {
             categories = (
                 <div className="col-12" style={{ marginTop: '10px', }}>
                     <div className="row" >
                         <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories</span>
                     </div>
+                    
                     {this.props.defaultCategories.map((category, index) => {
                         return (
                             <div key = {index} className="row category-box" /*style={{ backgroundColor: (this.props.parentCategories[category.category_name]) ? 'rgb(115, 119, 167)' : '' }}*/>
@@ -156,6 +157,7 @@ class Categories extends Component {
                     <div className="row" >
                         <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories</span>
                     </div>
+                   
                     {this.props.defaultCategories.map((category, index) => {
                         return (
                             <div key = {index} className="row category-box" /*style={{ backgroundColor: (this.props.parentCategories[category.category_name]) ? 'rgb(115, 119, 167)' : '' }}*/>

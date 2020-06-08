@@ -78,14 +78,14 @@ class ResultsColumn extends Component {
                     <div className="col-12" style={{height:'40px',marginBottom:'10px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', backgroundColor: 'rgb(115, 119, 167)', borderTopRightRadius: '5px', borderTopLeftRadius: '5px' }}>
                         <span className="filters-header">File Contains</span><br />
                     </div>
-                    <div className="col-12" style={styleOthers}>
+                    {/* <div className="col-12" style={styleOthers}>
                         <h1 className="other-params-text">Facebook:</h1>
                         <h1 className="other-params-data-text" style={{ marginLeft: '10px' }}>{this.props.countFacebook}</h1>
                     </div>
                     <div className="col-12" style={styleOthers}>
                         <h1 className="other-params-text">Twitter:</h1>
                         <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countTwitter}</h1>
-                    </div>
+                    </div> */}
                     <div className="col-12" style={styleOthers}>
                         <h1 className="other-params-text">Email:</h1>
                         <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countEmail}</h1>
@@ -98,10 +98,10 @@ class ResultsColumn extends Component {
                         <h1 className="other-params-text">Fax:</h1>
                         <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countFax}</h1>
                     </div>
-                    <div className="col-12" style={styleOthers}>
+                    {/* <div className="col-12" style={styleOthers}>
                         <h1 className="other-params-text">bbb_accredited:</h1>
                         <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countBBB}</h1>
-                    </div>
+                    </div> */}
                     <div className="col-12" style={styleOthers}>
                         <h1 className="other-params-text">Reviewed:</h1>
                         <h1 className="other-params-data-text"  style={{ marginLeft: '10px' }}>{this.props.countReviews}</h1>

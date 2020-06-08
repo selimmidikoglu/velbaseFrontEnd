@@ -326,16 +326,16 @@ class PaymentOrEmailPage extends Component {
     }
 }
 const backgroundStyle = {
-    //backgroundColor: 'rgb(62, 126, 179)',
-    backgroundColor:'#4A52BF',
-    borderRadius: '5px'
+//backgroundColor: 'rgb(62, 126, 179)',
+backgroundColor:'#4A52BF',
+borderRadius: '5px'
 
 }
 const infoColumn = {
-    backgroundColor: 'white',
-    padding: '10px',
-    margin: '20px',
-    borderRadius: '5px'
+backgroundColor: 'white',
+padding: '10px',
+margin: '20px',
+borderRadius: '5px'
 }
 
 function mapStateToProps(state) {

@@ -26,6 +26,7 @@ export const CHANGE_ALERT_BOX_STATE = 'CHANGE_ALERT_BOX_STATE'
 export const ADD_NO_ANNUAL_REVENUE = 'ADD_NO_ANNUAL_REVENUE'
 export const ADD_NO_EMPLOYEE_COUNT = 'ADD_NO_EMPLOYEE_COUNT'
 export const ALERT_TOP_LIMIT = 'ALERT_TOP_LIMIT'
+export const BASIC_CONTACT = 'BASIC_CONTACT'
 //conditional action for UI like run spinner
 export const SET_SPINNER = 'SET_SPINNER'
 // GETTING RANDOM CATEGORY AND  ALL STATES maybe later cities and zip
@@ -636,5 +637,11 @@ export const add_no_employee_count = () => {
 export const alert_top_limit = () => {
     return {
         type: ALERT_TOP_LIMIT
+    }
+}
+export const basic_contact = (value) => {
+    return {
+        type: BASIC_CONTACT,
+        payload: value
     }
 }

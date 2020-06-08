@@ -25,6 +25,13 @@ class SearchBar extends Component {
       this.props.getMatchedCategories(apiUrl + "getMatchCategories", this.props.fetchReducer.searchKeyCategories)
     }
   }
+
+  searchAfterEntry = (event) => {
+    this.props.setSearchKeyCategories(event)
+    if(event.target.value.length > 3)
+      setTimeout(() => {      this.props.getMatchedCategories(apiUrl + "getMatchCategories", this.props.fetchReducer.searchKeyCategories)
+  })      
+  }
   getMatchLocations = (event) => {
     if (this.props.searchKeyLocations !== "" && this.props.searchKeyLocations.length > 2) {
       this.props.fetchLocations(apiUrl, this.props.fetchReducer.searchKeyLocations)
@@ -92,7 +99,7 @@ class SearchBar extends Component {
     let category_search = (
       <div className="row">
         <div className="col-12 search-bar"><input type="text" className="search-text" placeholder="Searh Category"
-          value={this.props.fetchReducer.searchKeyCategories} onKeyDown={(event) => this.handleKeyEnterCategories(event)} onChange={(event) => this.props.setSearchKeyCategories(event)} /></div>
+          value={this.props.fetchReducer.searchKeyCategories} onKeyDown={(event) => this.handleKeyEnterCategories(event)} onChange={(event) => this.searchAfterEntry(event)} /></div>
         <div className="col-12 search-results" hidden></div>
       </div>
     )

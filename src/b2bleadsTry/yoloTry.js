@@ -88,7 +88,7 @@ class YoloTry extends Component {
                       onClick={() => this.props.chooseOtherSearch("otherFilters")}>
                       <div>
                         <label className="header-leads-page"
-                          style={{ color: this.props.chooseSearchReducer.textColorOtherFilters }}>OtherFilters</label>
+                          style={{ color: this.props.chooseSearchReducer.textColorOtherFilters }}>Other Filters</label>
                       </div>
                     </div>
                   </div>

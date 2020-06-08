@@ -61,6 +61,11 @@ export default class NavigationComponent extends Component {
                                         <span className="navigation-div-text">About</span>
                                     </div>
                                 </Link>
+                                <Link style={{ textDecoration: 'none' }} to={{ pathname: "/contactus", state: { section: 'full_data' } }} >
+                                    <div className=" navigation-single-button">
+                                        <span className="navigation-div-text">Contact</span>
+                                    </div>
+                                </Link>
                                 <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
                                     <button className="botton navigation-single-button-download">
                                         <span className="navigation-div-text">Download</span>
@@ -109,6 +114,11 @@ export default class NavigationComponent extends Component {
                                             <Link style={{ textDecoration: 'none' }} to={{ pathname: "/aboutus", state: { section: 'full_data' } }} >
                                                 <div className=" navigation-single-button">
                                                     <span className="navigation-div-text">About</span>
+                                                </div>
+                                            </Link>
+                                            <Link style={{ textDecoration: 'none' }} to={{ pathname: "/contactus", state: { section: 'full_data' } }} >
+                                                <div className=" navigation-single-button">
+                                                    <span className="navigation-div-text">Contact</span>
                                                 </div>
                                             </Link>
                                             <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >

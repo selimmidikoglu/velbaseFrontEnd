@@ -27,6 +27,7 @@ import { CHANGE_ALERT_BOX_STATE } from '../actions/fetchActions'
 import { ADD_NO_ANNUAL_REVENUE } from '../actions/fetchActions'
 import { ADD_NO_EMPLOYEE_COUNT } from '../actions/fetchActions'
 import { ALERT_TOP_LIMIT } from '../actions/fetchActions'
+import { BASIC_CONTACT } from '../actions/fetchActions'
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -80,6 +81,7 @@ let initialState = {
     matchedLocations: {},
     alertOrNot: false,
     topLimit: false,
+    basicContact: true,
     totalFilters: {
         address: '',
         state: '',
@@ -532,6 +534,11 @@ export const fetchReducer = (state = initialState, action) => {
                     ...state,
                     topLimit: false
                 }
+        case BASIC_CONTACT:
+            return {
+                ...state, 
+                basicContact : action.payload.value
+            }
         default:
             return state;
     }
