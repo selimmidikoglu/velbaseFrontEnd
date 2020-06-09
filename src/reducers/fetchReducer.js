@@ -28,6 +28,9 @@ import { ADD_NO_ANNUAL_REVENUE } from '../actions/fetchActions'
 import { ADD_NO_EMPLOYEE_COUNT } from '../actions/fetchActions'
 import { ALERT_TOP_LIMIT } from '../actions/fetchActions'
 import { BASIC_CONTACT } from '../actions/fetchActions'
+import { CHANGE_ASKED_QUESTION } from '../actions/fetchActions'
+import { SEND_CONTACT_EMAIL } from '../actions/fetchActions'
+import { CONTACT_DONE } from '../actions/fetchActions'
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -82,6 +85,8 @@ let initialState = {
     alertOrNot: false,
     topLimit: false,
     basicContact: true,
+    askedQuestion : '',
+    contactDone : false,
     totalFilters: {
         address: '',
         state: '',
@@ -538,6 +543,22 @@ export const fetchReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 basicContact : action.payload.value
+            }
+        case CHANGE_ASKED_QUESTION:
+            return {
+                ...state,
+                askedQuestion: action.payload
+            }
+        case SEND_CONTACT_EMAIL:
+            return {
+                ...state,
+                ...action.payload,
+                contactDone: true
+            }
+        case CONTACT_DONE:
+            return {
+                ...state,
+                contactDone: action.payload.value
             }
         default:
             return state;

@@ -44,9 +44,21 @@
     border-style: none;
 }
 .smaller-contact{
-    padding-right: 100px;
-    padding-left:100px;
     width: 800px;
-    margin:0;
-    padding:auto
+    margin:auto
+  
+}
+@media screen and ( max-width: 778px) and (min-width: 500px){
+    .smaller-contact{
+        width: 400px;
+        margin:auto
+      
+    }
+}
+@media screen and ( max-width: 499px) and (min-width: 0px){
+    .smaller-contact{
+        width: 300px;
+        margin:auto
+      
+    }
 }

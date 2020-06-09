@@ -22,7 +22,11 @@ class TopLimitAlert extends Component {
                     </div>
                     <div  className="top-limit-alert-rows" style={{display:'flex',alignItems:'center',justifyContent:'space-between', marginTop:'10px'}}>
                     <Link style={{ textDecoration: 'none' }} to={{ pathname: "/contactus", state: { section: 'full_data' } }} >
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={() => this.props.alert_top_limit()}
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal" 
+                        onClick={() => {
+                            this.props.alert_top_limit()
+                            this.props.basic_contact(false)
+                        }}
                             style={{fontFamily:'Gilmer-Regular', outline:'none'}}
                         >Contact Now</button>
                     </Link>

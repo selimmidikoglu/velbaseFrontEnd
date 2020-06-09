@@ -27,6 +27,9 @@ export const ADD_NO_ANNUAL_REVENUE = 'ADD_NO_ANNUAL_REVENUE'
 export const ADD_NO_EMPLOYEE_COUNT = 'ADD_NO_EMPLOYEE_COUNT'
 export const ALERT_TOP_LIMIT = 'ALERT_TOP_LIMIT'
 export const BASIC_CONTACT = 'BASIC_CONTACT'
+export const CHANGE_ASKED_QUESTION = 'CHANGE_ASKED_QUESTION'
+export const SEND_CONTACT_EMAIL = 'SEND_CONTACT_EMAIL'
+export const CONTACT_DONE = 'CONTACT_DONE'
 //conditional action for UI like run spinner
 export const SET_SPINNER = 'SET_SPINNER'
 // GETTING RANDOM CATEGORY AND  ALL STATES maybe later cities and zip
@@ -643,5 +646,87 @@ export const basic_contact = (value) => {
     return {
         type: BASIC_CONTACT,
         payload: value
+    }
+}
+export const change_asked_question = (value) => {
+    return {
+        type: CHANGE_ASKED_QUESTION,
+        payload: value
+    }
+}
+
+export const send_contact_email = (mainObject,url,totalCount, askedQuestion) => {
+    let bodyData = {}
+    let mainKeys = Object.keys(mainObject)
+    let mainValues = Object.keys(mainObject)
+    
+    bodyData['askedQuestion'] = askedQuestion
+    bodyData['name'] = mainObject.name;
+    bodyData['company_name'] = mainObject.company_name;
+    bodyData['email'] = mainObject.email;
+    bodyData['address'] = mainObject.address;
+    bodyData['phone'] = mainObject.phone;
+    bodyData['totalPrice'] = totalCount * 9;
+    bodyData['state'] = mainObject.state;
+    bodyData['city'] = mainObject.city;
+    bodyData['street'] = mainObject.street;
+    bodyData['zipCode'] = mainObject.zipCode;
+    for (let i = 0; i < mainKeys.length; i++) {
+        const element = mainObject[mainKeys[i]];
+        if(typeof element == "boolean"){
+            bodyData[mainKeys[i]] = element
+        }
+        else if(Number.isInteger(element)){
+            bodyData[mainKeys[i]] = element
+        }
+        else{
+            //categoriesupdate_other_filter
+            if(mainKeys[i] == "categories" && Object.keys(element).length != 0){
+                let categoryKeys = Object.keys(element);
+                bodyData[mainKeys[i]] = categoryKeys
+            }
+            else if(mainKeys[i] == "states" && Object.keys(element).length != 0){
+                let statesKeys = Object.keys(element);
+                bodyData[mainKeys[i]] = statesKeys
+            }
+            else if(mainKeys[i] == "cities" && Object.keys(element).length != 0){
+                let citiesHolder = []
+                let citiesKeys = Object.keys(element);
+                for (let i = 0; i < citiesKeys.length; i++) {
+                    citiesHolder.push({city:citiesKeys[i],state:element[citiesKeys[i]].state})
+                    
+                }
+                bodyData[mainKeys[i]] = citiesHolder
+            }   
+        }
+        
+        
+    }
+    return dispatch => {
+        fetch(url + 'getContactAndSendMail',{
+            method:"POST",
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(bodyData)
+        })
+        .then(data => data.json())
+        .then(data => {
+            console.log(data)
+            dispatch({
+                type: SEND_CONTACT_EMAIL,
+                payload:{
+                   message: 'Done',
+                   
+                }
+            })
+        })    
+    }
+}
+export const contact_done = (value) => {
+    return {
+        type: CONTACT_DONE,
+        payload : value
     }
 }
