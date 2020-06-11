@@ -21,7 +21,7 @@ class ContactUsComponent extends Component {
         }
     }
     checkBeforeSubmit = () => {
-        if (this.props.totalFilters.name === '' || this.props.totalFilters.company_name === '' || this.props.totalFilters.email === '') {
+        if (this.props.totalFilters.name === '' || this.props.totalFilters.email === '') {
             alert('please fill required fields')
             return;
         }
