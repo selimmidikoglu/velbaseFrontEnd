@@ -81,6 +81,7 @@
     z-index: 2000;
 
     margin-top: 20px;
+    
 }
 .card_info_header_container{
     margin-top: 20px;
@@ -88,6 +89,7 @@
     align-items: center;
     justify-content: center;
     margin-bottom: -10px;
+    
 }
 .card_info_header{
     font-family: Gilmer-Regular;

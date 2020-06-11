@@ -130,17 +130,20 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-}
-.discover-leads-button:hover{
-    background-color: #E61575;
-}
-.discover-leads-button-text{
+    border: none;
+    outline: none;
+    font-family: Gilmer-Regular;
+    color: whitesmoke;
+    cursor: pointer;
     font-size: 20px;
     font-family: Gilmer-Regular;
     color: whitesmoke;
     cursor: pointer;
-    
 }
+.discover-leads-button:hover{
+    background-color: #E61575;
+}
+
 
 .illus-image{
     width: 400px;

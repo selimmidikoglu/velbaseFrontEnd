@@ -31,6 +31,11 @@ export default class FooterComponent extends Component {
                                             </Link>
                                         </div>
                                         <div className=" footer-link-container" >
+                                            <Link style={{ textDecoration: 'none' }} to={{ pathname: "/contactUs", state: { section: 'full_data' } }} >
+                                                <label className="footer-links-desing">Contact</label>
+                                            </Link>
+                                        </div>
+                                        <div className=" footer-link-container" >
                                             <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
                                                 <label className="footer-links-desing">Download</label>
                                             </Link>

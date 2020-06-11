@@ -146,8 +146,8 @@ class PaymentOrEmailPage extends Component {
                         return (
                             <div className="col-12" style={{ height: 'auto' }}>
                                 <div className="row" style={{ marginTop: '5px', placeContent: 'center' }}>
-                                    <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                                        <h1 className="state-text-filter" style={{ color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{this.props.totalFilters.states[state].state}</h1>
+                                    <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: 'auto', margin: 0 }}>
+                                        <h1 className="state-text-filter" style={{display:'list-item',listStyle: 'circle' ,color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{this.props.totalFilters.states[state].state}</h1>
                                     </div>
 
                                 </div>
@@ -164,8 +164,8 @@ class PaymentOrEmailPage extends Component {
                     return (
                         <div className="col-12" style={{ height: 'auto' }}>
                             <div className="row" style={{ marginTop: '5px' }}>
-                                <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                                    <h1 className="city-text-filter" style={{ color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{city}</h1>
+                                <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: 'auto', margin: 0 }}>
+                                    <h1 className="city-text-filter" style={{display:'list-item',listStyle: 'circle', color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{city}</h1>
                                 </div>
                             </div>
                         </div>
@@ -256,10 +256,10 @@ class PaymentOrEmailPage extends Component {
                                 <input className="input_text_style" type="Zip Code" placeholder="Zip Code" value={this.props.totalFilters.zipCode} onChange={(event) => this.props.set_customer_info(event.target.value, 'zipCode')}>
                                 </input>
                             </div>
-                            <div className="col-md-12 col-sm-12">
+                            {/* <div className="col-md-12 col-sm-12">
                                 <input className="input_text_style" type="address" placeholder="Address Description" value={this.props.totalFilters.address} onChange={(event) => this.props.set_customer_info(event.target.value, 'address')}>
                                 </input>
-                            </div>
+                            </div> */}
 
                             <div className="col-md-12 col-sm-12" hidden={hiddenCardInfos} style={{marginTop:'20px'}}>
                                 
@@ -294,8 +294,8 @@ class PaymentOrEmailPage extends Component {
                                     return (
                                         <div className="col-12" style={{ width: '100%', marginTop: '5px' }}>
                                             <div className="row">
-                                                <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: '20px', margin: 0 }}>
-                                                    <div style={{ height: '100%', display: 'flex', textAlign: 'left' }}><h1 style={{ color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{category}</h1></div>
+                                                <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: 'auto', margin: 0 }}>
+                                                    <div style={{listStyleType:'', height: '100%', display: 'flex', textAlign: 'left' }}><h1 style={{ display:'list-item',listStyle: 'circle',color: 'gray', fontSize: '13px',fontFamily:'Gilmer-Regular' }}>{category}</h1></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -312,6 +312,10 @@ class PaymentOrEmailPage extends Component {
                                 {annual_revenue}
                                 {this.props.totalFilters.scaleEmployeeCount.last !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Employee Count</h1></div>) : null}
                                 {employee_count}
+                                {this.props.totalFilters.hasPhone1 !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Phone</h1></div>) : null}
+                                {this.props.totalFilters.hasEmail1 !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Email</h1></div>) : null}
+                                {this.props.totalFilters.hasWebsite.last !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Phone</h1></div>) : null}
+                                
                             </div>
                         </div>
                     </div>

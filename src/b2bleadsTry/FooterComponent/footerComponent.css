@@ -12,7 +12,7 @@
     font-family: Gilmer-Regular;
     color:white;
     font-size: 14px;
-    text-decoration: underline;
+    //text-decoration: underline;
     text-underline-position: below;
    
 
@@ -21,7 +21,7 @@
 .footer-links-desing:hover{
     font-family: Gilmer-Regular;
     color:#E61575;
-    font-size: 20px;
+    //font-size: 20px;
     cursor: pointer;
 
 

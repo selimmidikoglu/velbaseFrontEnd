@@ -66,7 +66,7 @@ class SubCategories extends Component {
                                                 console.log(this.props.totalFilters.categories)
                                                 this.props.getTotalData(this.props.totalFilters, apiUrl)
                                             }} />
-                                        <span className="category-name-inner-span" style={{ marginLeft: '10px' }}>{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span>
+                                        <span className="category-name-inner-span" style={{ marginLeft: '10px' }}>{this.capitilizeCategory(category.category_name)} [{category.sic_code}]</span>
                                     </span>
                                 </div>
 

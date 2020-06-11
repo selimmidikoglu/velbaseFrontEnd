@@ -54,8 +54,6 @@ let questions = [
         Categories: Hairdressers, Unisex Hair Salons, Hair Care Products, Hair Dressing School, Beauty \
         Shops \
         Locations: North Dakota \n \
-        Annual Revenue: $0-250,000\ \
-        Employee Count: 0-100 \n \
         Field Filters: Has Website \n \
         \n \
         Results: 286 leads \n \

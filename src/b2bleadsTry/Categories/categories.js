@@ -80,7 +80,7 @@ class Categories extends Component {
                                             this.props.getTotalData(this.props.totalFilters, apiUrl)
                                         }
                                         
-                                    }} /><span className="category-name-inner-span" style={{marginLeft:'10px'}}>{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span></span></div>
+                                    }} /><span className="category-name-inner-span" style={{marginLeft:'10px'}}>{this.capitilizeCategory(category.category_name)} [{category.sic_code}]</span></span></div>
 
                             </div>
                         );
@@ -141,7 +141,7 @@ class Categories extends Component {
                                         
                                     }} />
                                     
-                                    <span className="category-name-inner-span" style={{marginLeft:'10px'}}>{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span></span>
+                                    <span className="category-name-inner-span" style={{marginLeft:'10px'}}>{this.capitilizeCategory(category.category_name)} [{category.sic_code}]</span></span>
                         
                                 </div>
 
@@ -185,7 +185,7 @@ class Categories extends Component {
                                             this.props.getTotalData(this.props.totalFilters, apiUrl)
                                         }
                                         
-                                    }} /><span className="category-name-inner-span" style={{marginLeft:'10px'}}>{this.capitilizeCategory(category.category_name)}, {category.sic_code}</span></span></div>
+                                    }} /><span className="category-name-inner-span" style={{marginLeft:'10px'}}>{this.capitilizeCategory(category.category_name)} [{category.sic_code}]</span></span></div>
 
                             </div>
                         );

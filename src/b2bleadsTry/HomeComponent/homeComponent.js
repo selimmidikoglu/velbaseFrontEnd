@@ -63,11 +63,11 @@ export default class HomeComponent extends Component {
                             </div>*/}
                                 <div className="col-12">
                                     <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
-                                        <div className="discover-leads-button">
+                                        <button className="discover-leads-button">
 
-                                            <label className="discover-leads-button-text">Get Started</label>
+                                            Get Started
 
-                                        </div>
+                                        </button>
                                     </Link>
                                 </div>
                             </div>
@@ -131,11 +131,11 @@ export default class HomeComponent extends Component {
 
                     <div className="row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100px' }}>
                         <Link style={{ textDecoration: 'none' }} to={{ pathname: "/questions", state: { section: 'full_data' } }} >
-                            <div className="discover-leads-button" style={{ marginTop: '-10px' }}>
+                            <button className="discover-leads-button" style={{ marginTop: '-10px' }}>
 
-                                <label className="discover-leads-button-text">Read More</label>
+                                Read More
 
-                            </div>
+                            </button>
                         </Link>
                     </div>
                     <div className="row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -153,11 +153,11 @@ export default class HomeComponent extends Component {
                         </div>
                         <div className="col-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
                             <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
-                                <div className="discover-leads-button" style={{ margin: 'auto' }}>
+                                <button className="discover-leads-button" style={{ margin: 'auto' }}>
 
-                                    <label className="discover-leads-button-text" >Start Now</label>
+                                    Start Now
 
-                                </div>
+                                </button>
                             </Link></div>
                     </div>
                 </div>
