@@ -16,7 +16,7 @@ class Locations extends Component {
     render() {
         return (
             <div className="row locations-container" style={{zIndex:-1}}>
-                <div className="col-6 locations-header-box">
+                <div className={Object.keys(this.props.totalFilters.states).length != 0?"col-6 locations-header-box":"col-12 locations-header-box"}>
                 
                     <div className="wrap">
                         <div className="search">
@@ -25,7 +25,7 @@ class Locations extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-6 locations-header-box">
+                <div className="col-6 locations-header-box" hidden = {Object.keys(this.props.totalFilters.states).length == 0}>
                    
                     <div className="wrap">
                         <div className="search" >
