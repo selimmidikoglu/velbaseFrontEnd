@@ -201,11 +201,11 @@ export const fetchLocations = (url,searchKeyLocations) => {
                 
             }
             for(var i=0;i<locations.length;i++){
-                if(locations[i].stateFullName.toLowerCase().startsWith(searchKeyLocations.toLowerCase()) || locations[i].state.toLowerCase().startsWith(searchKeyLocations.toLowerCase())){
+                if(locations[i].stateFullName.toLowerCase().includes(searchKeyLocations.toLowerCase()) || locations[i].state.toLowerCase().includes(searchKeyLocations.toLowerCase())){
 
                     locationsObj.states.push({stateFullName:locations[i].stateFullName,state:locations[i].state})
                 }
-                else if(locations[i].city.toLowerCase().startsWith(searchKeyLocations.toLowerCase())){
+                else if(locations[i].city.toLowerCase().includes(searchKeyLocations.toLowerCase())){
                     locationsObj.cities.push({city:locations[i].city,state:locations[i].state,stateFullName:locations[i].stateFullName})
                 }
 
