@@ -42,13 +42,15 @@
   //width: 20px;
   //height: 100%
 }
-.category-box:hover {
-  background-color: #fcbd17;
-  background-color: rgb(115, 119, 167);
-  border-radius: 2px;
-  
-  
-  
+@media screen and (min-width:500px){
+  .category-box:hover {
+    background-color: #fcbd17;
+    background-color: rgb(115, 119, 167);
+    border-radius: 2px;
+    
+    
+    
+}
 }
 .category-box{
     margin-top: 5px;

@@ -50,7 +50,8 @@ class Categories extends Component {
             categories = (
                 <div className="col-12" style={{ marginTop: '10px', }}>
                     <div className="row" >
-                        <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories</span>
+                        <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories [sic4]</span>
+                        
                     </div>
                     
                     {this.props.defaultCategories.map((category, index) => {
@@ -94,11 +95,13 @@ class Categories extends Component {
             categories = (
                 <div className="col-12" style={{ marginTop: '10px',width: '100%' }}>
                     {this.props.matchedCategories[0].sic_code.toString().substring(4,8) == '0000'?(
-                        <div className="row category-box" style={{backgroundColor:'rgb(115, 119, 167)', borderRadius: '10px', padding: '10px',marginRight: '10px'}}>
-                        <i class="fa fa-exclamation-circle" aria-hidden="true" style={{marginRight: '5px',color: '#fcbd17'}}> </i>
-                        <span className="category-name" style={{fontWeight:800, color: '#fcbd17'}}>You can open sub categories of below categories </span><br/>
-                        <span className="category-name" style={{fontWeight:800, color: '#fcbd17'}}>which end with ...0000 Sic code or you can filter data</span>
-                        <span className="category-name" style={{fontWeight:800, color: '#fcbd17'}}> with sub categories below</span>
+                        <div className="row category-box" style={{backgroundColor:'whitesmoke', borderRadius: '10px', padding: '10px',marginRight: '10px'}}>
+                        
+                        <div>
+                        <i class="fa fa-exclamation-circle" aria-hidden="true" style={{marginRight: '5px',color: 'gray'}}> </i>
+                        <h1 className="category-name" style={{fontWeight:800, color: 'rgb(115, 119, 167)'}}>Main Category [sic4]</h1>
+                        <h1 className="category-name" style={{fontWeight:800, color: '#fcbd17'}}>Sub Category [sic8]</h1>
+                        </div>
                         </div>
                     ):null}
 
@@ -112,9 +115,10 @@ class Categories extends Component {
                                 
                                     <span className="category-name">
                                     {category.sic_code.toString().substring(4,8) == '0000'?(
-                                    <h1 style={{height:'6px',width:'6px',borderRadius:'3px',backgroundColor:'rgb(115, 119, 167)',alignSelf:'center',display:'inline-block',marginRight:'3px'}}></h1>)
+                                        <div style={{height:'6px',width:'6px',borderRadius:'3px',backgroundColor:'rgb(115, 119, 167)',alignSelf:'center',display:'inline-block',marginRight:'3px',marginBottom:'3px'}}></div>
+                                  )
                                     :
-                                    (<h1 style={{height:'6px',width:'6px',borderRadius:'3px',backgroundColor:'#fcbd17',alignSelf:'center',display:'inline-block',marginRight:'3px'}}></h1>)}
+                                    (<div style={{height:'6px',width:'6px',borderRadius:'3px',backgroundColor:'#fcbd17',alignSelf:'center',display:'inline-block',marginRight:'3px',marginBottom:'3px'}}></div>)}
                                     <input type="checkbox" key={index} className="option-input" style={{position:'block', marginBottom:'-2px'}} checked={this.props.totalFilters.categories[category.category_name] || this.props.parentCategories[category.category_name]}
                                     onClick={(event) => {
                                         
@@ -155,7 +159,7 @@ class Categories extends Component {
             categories = (
                 <div className="col-12" style={{ marginTop: '10px' }}>
                     <div className="row" >
-                        <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories</span>
+                        <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories [sic4]</span>
                     </div>
                    
                     {this.props.defaultCategories.map((category, index) => {
@@ -194,7 +198,7 @@ class Categories extends Component {
             );
         }
         return (
-            <div style={{marginLeft : '0px',borderRightColor:'gray',borderRightWidth: '3px', borderRightStyle:'solid'}}>
+            <div style={{marginLeft : '0px'}}>
                 {categories}
             </div>
         )
