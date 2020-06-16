@@ -312,9 +312,9 @@ class PaymentOrEmailPage extends Component {
                                 {annual_revenue}
                                 {this.props.totalFilters.scaleEmployeeCount.last !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Employee Count</h1></div>) : null}
                                 {employee_count}
-                                {this.props.totalFilters.hasPhone1 !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Phone</h1></div>) : null}
-                                {this.props.totalFilters.hasEmail1 !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Email</h1></div>) : null}
-                                {this.props.totalFilters.hasWebsite.last !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Phone</h1></div>) : null}
+                                {this.props.totalFilters.hasPhone1  ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Phone</h1></div>) : null}
+                                {this.props.totalFilters.hasEmail1  ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Email</h1></div>) : null}
+                                {this.props.totalFilters.hasWebsite.last  ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Website</h1></div>) : null}
                                 
                             </div>
                         </div>
