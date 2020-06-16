@@ -50,7 +50,7 @@ class Categories extends Component {
             categories = (
                 <div className="col-12" style={{ marginTop: '10px', }}>
                     <div className="row" >
-                        <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories [sic4]</span>
+                        <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories [SIC4]</span>
                         
                     </div>
                     
@@ -99,8 +99,8 @@ class Categories extends Component {
                         
                         <div>
                         <i class="fa fa-exclamation-circle" aria-hidden="true" style={{marginRight: '5px',color: 'gray'}}> </i>
-                        <h1 className="category-name" style={{fontWeight:800, color: 'rgb(115, 119, 167)'}}>Main Category [sic4]</h1>
-                        <h1 className="category-name" style={{fontWeight:800, color: '#fcbd17'}}>Sub Category [sic8]</h1>
+                        <h1 className="category-name" style={{fontWeight:800, color: 'rgb(115, 119, 167)'}}>Main Category [SIC4]</h1>
+                        <h1 className="category-name" style={{fontWeight:800, color: '#fcbd17'}}>Sub Category [SIC8]</h1>
                         </div>
                         </div>
                     ):null}
@@ -159,7 +159,7 @@ class Categories extends Component {
             categories = (
                 <div className="col-12" style={{ marginTop: '10px' }}>
                     <div className="row" >
-                        <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories [sic4]</span>
+                        <span className="category-name" style={{fontWeight:'800', color:'rgb(115, 119, 167)'}}>Main Categories [SIC4]</span>
                     </div>
                    
                     {this.props.defaultCategories.map((category, index) => {

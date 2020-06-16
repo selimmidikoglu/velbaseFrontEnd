@@ -49,7 +49,7 @@ class SubCategories extends Component {
                 <div className="col-12" style={{ marginTop: '10px' }}>
                     <div className="category-name-box-container">
                         <div className="row" >
-                            <span className="category-name" style={{ fontWeight: '800', color: 'rgb(115, 119, 167)' }}>Sub Categories [sic8]</span>
+                            <span className="category-name" style={{ fontWeight: '800', color: 'rgb(115, 119, 167)' }}>Sub Categories [SIC8]</span>
                         </div>
                     </div>
                     {this.props.matchedSubCategories.map((category, index) => {
@@ -82,7 +82,7 @@ class SubCategories extends Component {
                 <div className="col-12" style={{ marginTop: '10px' }}>
                     <div className="category-name-box-container">
                         <div className="row" >
-                            <span className="category-name" style={{ fontWeight: '800', color: 'rgb(115, 119, 167)' }}>Sub Categories [sic8]</span>
+                            <span className="category-name" style={{ fontWeight: '800', color: 'rgb(115, 119, 167)' }}>Sub Categories [SIC8]</span>
                         </div>
                         <div className="row" >
                             <span className="category-name" style={{ color: 'red' }}>Select main category</span></div>

@@ -25,9 +25,9 @@ class CategoriesFilter extends Component {
                             <div className="category-filter-con">
                                 <div className="filter-info-container" >
                                     {this.props.totalFilters.categories[category].sic_code.toString().substring(4,8) == '0000'?(
-                                       <span className="category-text-span" style={{fontWeight:'700',color:'rgb(115, 119, 167)'}}> [sic4] </span>
+                                       <span className="category-text-span" style={{fontWeight:'700',color:'rgb(115, 119, 167)'}}> [SIC4] </span>
                                    ):(
-                                    <span className="category-text-span" style={{fontWeight:'700',color:'#fcbd17'}}> [sic8] </span>
+                                    <span className="category-text-span" style={{fontWeight:'700',color:'#fcbd17'}}> [SIC8] </span>
                                    )
                                    }
                                    <span className="category-text-span">{category}</span>
