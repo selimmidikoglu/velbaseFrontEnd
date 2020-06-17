@@ -256,9 +256,32 @@ class ContactUsComponent extends Component {
                                                 {/*Cities*/}
                                                 {Object.keys(this.props.totalFilters.cities).length !== 0 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Cities</h1></div>) : null}
                                                 {cities}
-                                                {this.props.totalFilters.hasPhone1 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Phone</h1></div>) : null}
-                                                {this.props.totalFilters.hasEmail1? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Email</h1></div>) : null}
-                                                {this.props.totalFilters.hasWebsite? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}><h1 className="header-filters">Has Website</h1></div>) : null}
+                                                {this.props.totalFilters.hasPhone1 || this.props.totalFilters.hasEmail1 || this.props.totalFilters.hasWebsite ?
+                                                    (<div className="col-12" style={{ width: '100%', marginTop: '3px' }}><h1 className="header-filters">Other Filters</h1></div>) : null}
+                                                {this.props.totalFilters.hasPhone1 ? (<div className="col-12" style={{ width: '100%', marginTop: '5px' }}>
+                                                    <div className="row">
+                                                        <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: 'auto', margin: 0 }}>
+                                                            <div style={{ listStyleType: '', height: '100%', display: 'flex', textAlign: 'left' }}><h1 style={{ display: 'list-item', listStyle: 'circle', color: 'gray', fontSize: '13px', fontFamily: 'Gilmer-Regular' }}>Has Phone</h1></div>
+                                                        </div>
+                                                    </div>
+                                                </div>) : null}
+                                                {this.props.totalFilters.hasEmail1 ? (
+                                                    <div className="col-12" style={{ width: '100%', marginTop: '5px' }}>
+                                                        <div className="row">
+                                                            <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: 'auto', margin: 0 }}>
+                                                                <div style={{ listStyleType: '', height: '100%', display: 'flex', textAlign: 'left' }}><h1 style={{ display: 'list-item', listStyle: 'circle', color: 'gray', fontSize: '13px', fontFamily: 'Gilmer-Regular' }}>Has Email</h1></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>) : null}
+                                                {this.props.totalFilters.hasWebsite ? (
+                                                    <div className="col-12" style={{ width: '100%', marginTop: '5px' }}>
+                                                        <div className="row">
+                                                            <div className="col-12" style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', height: 'auto', margin: 0 }}>
+                                                                <div style={{ listStyleType: '', height: '100%', display: 'flex', textAlign: 'left' }}><h1 style={{ display: 'list-item', listStyle: 'circle', color: 'gray', fontSize: '13px', fontFamily: 'Gilmer-Regular' }}>Has Website</h1></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ) : null}
 
                                             </div>
                                         </div>

@@ -28,7 +28,7 @@ class FieldFilters extends Component {
         return (
             <div className="row" style={{ width: '100%', height: '100%', backgroundColor: 'white', padding: '10px', borderRadius: '10px', backgroundColor: 'whitesmoke', borderColor: 'whitesmoke', borderStyle: 'solid', borderWidth: '2px', marginTop: '10px' }}>
                 <div className="col-12" style={{height: '25%',marginBottom:'10px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', verticalAlign: 'center' }}>
-                    <h1 className="ann-revenue-header-text">Field Filters</h1>
+                    <h1 className="ann-revenue-header-text">Other Filters</h1>
                 </div>
                 <div className="col-12" >
                     <div className="" style={{float:'left',display:'flex',alignItems:'center',justifyContent:'center'}}><input type="checkbox" key={'hasPhone'} className="option-input checkbox" checked={this.props.totalFilters.hasPhone1}
