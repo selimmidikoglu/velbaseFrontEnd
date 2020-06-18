@@ -76,17 +76,20 @@ class PaymentOrEmailPage extends Component {
                 this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample_data')
             }
         }*/
-        console.log(this.props.totalFilters)
-        if (this.props.totalFilters.name === '' || this.props.totalFilters.company_name === '' || this.props.totalFilters.email === '') {
+    
+        if (this.state.paymentNav && this.props.totalFilters.name === ''  || this.props.totalFilters.email === '' || this.props.totalFilters.state  === '' || this.props.totalFilters.street === '' || this.props.totalFilters.city === '' || this.props.totalFilters.zipCode === '') {
             alert('please fill required fields')
             return;
         }
         else {
 
-            if (this.state.templateNav) {
+            if (this.state.templateNav && this.props.totalFilters.name !== ''  || this.props.totalFilters.email !== '') {
                 console.log("AHAA GELDİ")
                 this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample_data')
                 return;
+            }
+            else if(this.state.templateNav && this.props.totalFilters.name === ''  || this.props.totalFilters.email === ''){
+                alert('please fill required fields')
             }
             const { stripe, elements } = this.props;
 
@@ -232,30 +235,32 @@ class PaymentOrEmailPage extends Component {
                                     <input className="input_text_style" type="email" placeholder="Email*" required value={this.props.totalFilters.email} onChange={(event) => this.props.set_customer_info(event.target.value, 'email')}>
                                     </input>
                                 </div>
+                                {this.state.paymentNav ? (
                                 <div className="col-md-12 col-sm-12">
-                                    <input className="input_text_style" type="text" placeholder="Company Name*" required value={this.props.totalFilters.company_name} onChange={(event) => this.props.set_customer_info(event.target.value, 'company_name')}>
+                                    <input className="input_text_style" type="text" placeholder="Company Name"  value={this.props.totalFilters.company_name} onChange={(event) => this.props.set_customer_info(event.target.value, 'company_name')}>
                                     </input>
                                 </div>
-                                <div className="col-md-12 col-sm-12">
+                                ):null}
+                                {this.state.paymentNav ? (<div className="col-md-12 col-sm-12">
                                     <input className="input_text_style" type="tel" placeholder="Phone" value={this.props.totalFilters.phone} onChange={(event) => this.props.set_customer_info(event.target.value, 'phone')}>
                                     </input>
-                                </div>
-                                <div className="col-md-6 col-sm-12">
-                                    <input className="input_text_style" type="state" placeholder="State" value={this.props.totalFilters.state} onChange={(event) => this.props.set_customer_info(event.target.value, 'state')}>
+                                </div>):null}
+                                {this.state.paymentNav ? (<div className="col-md-6 col-sm-12">
+                                    <input className="input_text_style" type="street" placeholder="Street*" required value={this.props.totalFilters.street} onChange={(event) => this.props.set_customer_info(event.target.value, 'street')}>
                                     </input>
-                                </div>
-                                <div className="col-md-6 col-sm-12">
-                                    <input className="input_text_style" type="city" placeholder="City" value={this.props.totalFilters.city} onChange={(event) => this.props.set_customer_info(event.target.value, 'city')}>
+                                </div>):null}
+                                {this.state.paymentNav ? (<div className="col-md-6 col-sm-12">
+                                    <input className="input_text_style" type="city" placeholder="City*" required value={this.props.totalFilters.city} onChange={(event) => this.props.set_customer_info(event.target.value, 'city')}>
                                     </input>
-                                </div>
-                                <div className="col-md-6 col-sm-12">
-                                    <input className="input_text_style" type="street" placeholder="Street" value={this.props.totalFilters.street} onChange={(event) => this.props.set_customer_info(event.target.value, 'street')}>
+                                </div>):null}
+                                {this.state.paymentNav ? (<div className="col-md-6 col-sm-12">
+                                    <input className="input_text_style" type="state" placeholder="State*" required value={this.props.totalFilters.state} onChange={(event) => this.props.set_customer_info(event.target.value, 'state')}>
                                     </input>
-                                </div>
-                                <div className="col-md-6 col-sm-12">
-                                    <input className="input_text_style" type="Zip Code" placeholder="Zip Code" value={this.props.totalFilters.zipCode} onChange={(event) => this.props.set_customer_info(event.target.value, 'zipCode')}>
+                                </div>):null}
+                                {this.state.paymentNav ? (<div className="col-md-6 col-sm-12">
+                                    <input className="input_text_style" type="Zip Code" placeholder="Zip Code*" required value={this.props.totalFilters.zipCode} onChange={(event) => this.props.set_customer_info(event.target.value, 'zipCode')}>
                                     </input>
-                                </div>
+                                </div>):null}
                                 {/* <div className="col-md-12 col-sm-12">
                                 <input className="input_text_style" type="address" placeholder="Address Description" value={this.props.totalFilters.address} onChange={(event) => this.props.set_customer_info(event.target.value, 'address')}>
                                 </input>

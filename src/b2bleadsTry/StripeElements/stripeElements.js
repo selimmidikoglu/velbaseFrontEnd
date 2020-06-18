@@ -10,6 +10,10 @@ import { setSpinner, insertChoosenStates, getCitiesInState, getTotalData, update
 import { apiUrl } from '../../consts/consts'
 class CheckoutForm extends Component {
   handleSubmit = async (event) => {
+    if (this.props.totalFilters.name === ''  || this.props.totalFilters.email === '' || this.props.totalFilters.state  === '' || this.props.totalFilters.street === '' || this.props.totalFilters.city === '' || this.props.totalFilters.zipCode === '') {
+      alert('please fill required fields')
+      return;
+  }
     console.log("fonksiyona giriyor")
     // Block native form submission.
     event.preventDefault();
