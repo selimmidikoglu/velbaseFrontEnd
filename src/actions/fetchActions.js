@@ -30,6 +30,7 @@ export const BASIC_CONTACT = 'BASIC_CONTACT'
 export const CHANGE_ASKED_QUESTION = 'CHANGE_ASKED_QUESTION'
 export const SEND_CONTACT_EMAIL = 'SEND_CONTACT_EMAIL'
 export const CONTACT_DONE = 'CONTACT_DONE'
+export const SET_TYPE_OF_DATA = 'SET_TYPE_OF_DATA'
 //conditional action for UI like run spinner
 export const SET_SPINNER = 'SET_SPINNER'
 // GETTING RANDOM CATEGORY AND  ALL STATES maybe later cities and zip
@@ -728,5 +729,13 @@ export const contact_done = (value) => {
     return {
         type: CONTACT_DONE,
         payload : value
+    }
+}
+
+export const set_type_of_data = (data) => {
+    console.log(data)
+    return {
+        type: SET_TYPE_OF_DATA,
+        payload: data
     }
 }

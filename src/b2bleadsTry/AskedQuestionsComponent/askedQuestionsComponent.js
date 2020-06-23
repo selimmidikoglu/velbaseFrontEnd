@@ -142,7 +142,7 @@ class AskedQuestionsComponent extends Component {
                             </label>
                             </div>
                             <div className="col-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                                <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
+                                <Link style={{ textDecoration: 'none' }} to={{ pathname: "/contactUs", state: { section: 'full_data' } }} >
                                     <button type="button" className="btn btn-primary contact-us-button"
                                         style={{
                                             display: 'block',

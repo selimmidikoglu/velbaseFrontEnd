@@ -44,12 +44,16 @@ console.log(stripePromise)
 class PaymentOrEmailPage extends Component {
 
     constructor(props) {
+        
         super(props);
+        console.log(this.props)
         this.state = {
             card_number: '',
             expiration: '',
-            paymentNav: this.props.location.state.section == 'full_data' ? true : false,
-            templateNav: this.props.location.state.section == 'sample' ? true : false,
+            // paymentNav: this.props.location.state.section == 'full_data' ? true : false,
+            // templateNav: this.props.location.state.section == 'sample' ? true : false,
+            paymentNav: this.props.typeOfData == 'full_data' ? true : false,
+            templateNav: this.props.typeOfData == 'sample' ? true : false,
             sample_or_data: 'sample'
         }
 
@@ -76,19 +80,20 @@ class PaymentOrEmailPage extends Component {
                 this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample_data')
             }
         }*/
-    
-        if (this.state.paymentNav && this.props.totalFilters.name === ''  || this.props.totalFilters.email === '' || this.props.totalFilters.state  === '' || this.props.totalFilters.street === '' || this.props.totalFilters.city === '' || this.props.totalFilters.zipCode === '') {
+        console.log("Bakalım hangisi",this.state.templateNav,this.state.paymentNav)
+        if (this.state.paymentNav == true && (this.props.totalFilters.name === ''  || this.props.totalFilters.email === '' || this.props.totalFilters.state  === '' || this.props.totalFilters.street === '' || this.props.totalFilters.city === '' || this.props.totalFilters.zipCode === '')) {
+            console.log("buraya girdi")
             alert('please fill required fields')
             return;
         }
         else {
-
-            if (this.state.templateNav && this.props.totalFilters.name !== ''  || this.props.totalFilters.email !== '') {
+            
+            if (this.state.templateNav && (this.props.totalFilters.name !== ''  || this.props.totalFilters.email !== '')) {
                 console.log("AHAA GELDİ")
                 this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample_data')
                 return;
             }
-            else if(this.state.templateNav && this.props.totalFilters.name === ''  || this.props.totalFilters.email === ''){
+            else if(this.state.templateNav && (this.props.totalFilters.name === ''  || this.props.totalFilters.email === '')){
                 alert('please fill required fields')
             }
             const { stripe, elements } = this.props;

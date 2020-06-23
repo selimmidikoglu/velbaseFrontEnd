@@ -31,6 +31,7 @@ import { BASIC_CONTACT } from '../actions/fetchActions'
 import { CHANGE_ASKED_QUESTION } from '../actions/fetchActions'
 import { SEND_CONTACT_EMAIL } from '../actions/fetchActions'
 import { CONTACT_DONE } from '../actions/fetchActions'
+import { SET_TYPE_OF_DATA } from '../actions/fetchActions'
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -87,6 +88,7 @@ let initialState = {
     basicContact: true,
     askedQuestion : '',
     contactDone : false,
+    typeOfData : 'full_data',
     totalFilters: {
         address: '',
         state: '',
@@ -559,6 +561,12 @@ export const fetchReducer = (state = initialState, action) => {
             return {
                 ...state,
                 contactDone: action.payload.value
+            }
+        case SET_TYPE_OF_DATA:
+            console.log(action.payload)
+            return {
+                ...state,
+                typeOfData : action.payload
             }
         default:
             return state;

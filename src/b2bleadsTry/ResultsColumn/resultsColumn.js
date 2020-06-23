@@ -15,7 +15,7 @@ import EmpFilter from '../EmpFilter/empFilter'
 //redux connect
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { setSpinner, getTotalData, alert_top_limit } from '../../actions/fetchActions'
+import { setSpinner, getTotalData, alert_top_limit , set_type_of_data} from '../../actions/fetchActions'
 
 import { Link } from 'react-router-dom'
 import './resultsColumn.css'
@@ -40,6 +40,9 @@ class ResultsColumn extends Component {
                         onClick={() => {
                             if (this.props.totalCount < 6 || this.props.totalCount > 111111)
                                 this.props.alert_top_limit()
+                            else {
+                                this.props.set_type_of_data('full_data')
+                            }
                         }}
                     >
                         <div className="col-12" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} hidden={this.props.totalCount !== 0 ? false : true}>
@@ -47,7 +50,14 @@ class ResultsColumn extends Component {
                             </div>
                         </div>
                     </Link>
-                    <Link style={{ textDecoration: 'none' }} to={{ pathname: "/second", state: { section: 'sample' } }}>
+                    <Link style={{ textDecoration: 'none' }} to={{ pathname: "/second", state: { section: 'sample' } }}
+                        onClick={() => {
+                            if (this.props.totalCount < 6 || this.props.totalCount > 111111)
+                                this.props.alert_top_limit()
+                            else {
+                                this.props.set_type_of_data('sample')
+                            }
+                        }}>
                         <div className="col-12" hidden={this.props.totalCount !== 0 ? false : true}>
 
                             <div className=""><h1 className="data-button-text get-sample-button" style={{ fontSize: '14px', textDecoration: 'underline', fontFamily: 'Gilmer-Regular' }}>Get sample</h1></div>
@@ -123,7 +133,8 @@ function mapDispatchToProps(dispatch) {
     return {
         setSpinner: bindActionCreators(setSpinner, dispatch),
         getTotalData: bindActionCreators(getTotalData, dispatch),
-        alert_top_limit: bindActionCreators(alert_top_limit, dispatch)
+        alert_top_limit: bindActionCreators(alert_top_limit, dispatch),
+        set_type_of_data: bindActionCreators(set_type_of_data, dispatch)
     }
 
 }
