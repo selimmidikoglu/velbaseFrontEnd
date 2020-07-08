@@ -52,11 +52,12 @@ class ResultsColumn extends Component {
                     </Link>
                     <Link style={{ textDecoration: 'none' }} to={{ pathname: "/second", state: { section: 'sample' } }}
                         onClick={() => {
-                            if (this.props.totalCount < 6 || this.props.totalCount > 111111)
-                                this.props.alert_top_limit()
-                            else {
-                                this.props.set_type_of_data('sample')
-                            }
+                            // if (this.props.totalCount < 6 || this.props.totalCount > 111111)
+                            //     this.props.alert_top_limit()
+                            // else {
+                            //     this.props.set_type_of_data('sample')
+                            // }
+                            this.props.set_type_of_data('sample')
                         }}>
                         <div className="col-12" hidden={this.props.totalCount !== 0 ? false : true}>
 
