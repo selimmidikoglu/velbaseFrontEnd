@@ -151,8 +151,8 @@ export default class HomeComponent extends Component {
                                 Ready to get started?
                         </label>
                         </div>
-                        <div className="col-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                            <Link style={{ textDecoration: 'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
+                        <div className="col-6" style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', outline:'none' ,border:'none' }}>
+                            <Link style={{ textDecoration: 'none', outline:'none',border:'none' }} to={{ pathname: "/leads", state: { section: 'full_data' } }} >
                                 <button className="discover-leads-button" style={{ margin: 'auto' }}>
 
                                     Start Now
