@@ -22,6 +22,8 @@ import { apiUrl } from '../consts/consts'
 import './yolo.css'
 import NavigationComponent from './NavigationComponent/navigationComponent'
 import TopLimitAlert from './TopLimitAlert/topLimitAlert'
+import ReactGA from 'react-ga';
+import { initGA, GApageView} from '../index'
 class YoloTry extends Component {
   constructor() {
     super();
@@ -49,6 +51,8 @@ class YoloTry extends Component {
   }
 
   componentDidMount() {
+    
+    GApageView('Data Page')
     if (this.props.fetchReducer.defaultCategories.length === 0) {
       this.props.getDefaultCategoriesAndStates(apiUrl + "getLessCategories")
     }

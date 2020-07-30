@@ -22,14 +22,40 @@ import CardForm from '../src/b2bleadsTry/StripeElements/stripeElements'
 //redux provider
 import { Provider } from 'react-redux'
 //store
-import {store} from './store/store'
+import { store } from './store/store'
+import ReactGA from 'react-ga';
+
+
+export const initGA = () => {
+    ReactGA.initialize('UA-173933754-1',
+        {
+            titleCase: false,
+            gaOptions: {
+                //siteSpeedSampleRate: 100
+            }
+        });
+    
+}
+export const GApageView = (page) => {   
+    ReactGA.pageview(page);   
+}
+export const GAevent = (categoryName, eventName, value) => {
+    ReactGA.event({       
+        category: categoryName,  // Required
+        action: eventName,       // Required
+        label: 'PaymentEvents',       
+        value: value,       
+        nonInteraction: false     
+    });   
+}
+
 if (process.env.NODE_ENV !== 'development') {
-    console.log = () => {}
+    console.log = () => { }
 }
 ReactDOM.render(<Provider store={store}><MainRoute></MainRoute>,</Provider>, document.getElementById('root'));
 
 
-  
+
 //ReactDOM.render(<App1/>, document.getElementById('root'));*/
 
 // If you want your app to work offline and load faster, you can change

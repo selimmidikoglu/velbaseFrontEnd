@@ -19,7 +19,8 @@ import { bindActionCreators } from 'redux'
 //actions
 import { getDefaultCategoriesAndStates, setSearchKeyCategories, getMatchedCategories, changeStateColumn, searchCitiesInList, setCitySearchKey, setZipCodeSearchKey, searchZipCodesInList } from './actions/fetchActions'
 
-const apiUrl = "http://139.99.68.189:3000/"
+
+
 class App extends Component {
   constructor(props) {
     super(props);

@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 import './PaymentOrEmailPage.css'
 //url
 import { apiUrl } from '../consts/consts'
+import {GAevent, GApageView} from '../index'
 import NavigationComponent from './NavigationComponent/navigationComponent';
 let valueArray = [
     "0",
@@ -58,6 +59,9 @@ class PaymentOrEmailPage extends Component {
         }
 
     }
+    componentDidMount(){
+        GApageView(' Payment/Sample Page')
+    }
     checkBeforeSubmit = async () => {
         /*if (this.state.paymentNav) {
             if (this.props.totalFilters.name === '' || this.props.totalFilters.surname === '' || this.props.totalFilters.email === '' || this.props.totalFilters.card_number === '' || this.props.totalFilters.exp_month === ''
@@ -90,6 +94,7 @@ class PaymentOrEmailPage extends Component {
             
             if (this.state.templateNav && (this.props.totalFilters.name !== ''  || this.props.totalFilters.email !== '')) {
                 console.log("AHAA GELDİ")
+                GAevent('Data Retrieving Events', 'Sample and Retrieve', this.props.totalFilters.categories)
                 this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'sample_data')
                 return;
             }
@@ -119,12 +124,14 @@ class PaymentOrEmailPage extends Component {
             if (error) {
                 console.log('[error]', error);
             } else {
+                GAevent('Data Retrieving Events', 'Payment and Retrieve', this.props.totalCount * 0.09)
                 console.log('[PaymentMethod]', token);
                 console.log(token.id)
                 this.props.set_customer_info(token.id, 'payment_token')
                 console.log(this.props)
                 this.props.setSpinner()
                 this.props.send_temp_email(this.props.totalFilters, apiUrl, this.props.totalCount, 'data')
+                
             }
 
         }

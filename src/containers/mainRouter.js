@@ -6,8 +6,11 @@ import HomeComponent from '../b2bleadsTry/HomeComponent/homeComponent'
 import Aboutuscomponent from '../b2bleadsTry/AboutUsComponent/aboutuscomponent'
 import AskedQuestionsComponent from '../b2bleadsTry/AskedQuestionsComponent/askedQuestionsComponent'
 import ContactUsComponent from '../b2bleadsTry/ContactUsComponent/contactUsComponent'
+import { initGA } from '../index'
 class MainRoute extends Component {
-
+    componentDidMount(){
+        initGA()
+    }
     render() {
         return (
             <HashRouter >

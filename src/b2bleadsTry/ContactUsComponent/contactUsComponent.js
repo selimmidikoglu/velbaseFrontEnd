@@ -11,7 +11,7 @@ import IconComponentColored from '../DumbComponents/IconComponent/iconComponentC
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { set_customer_info, change_asked_question, send_contact_email, contact_done } from '../../actions/fetchActions'
-
+import { GAevent } from '../../index'
 import { apiUrl } from '../../consts/consts'
 class ContactUsComponent extends Component {
     constructor(props) {
@@ -25,7 +25,10 @@ class ContactUsComponent extends Component {
             alert('please fill required fields')
             return;
         }
+
         this.props.send_contact_email(this.props.totalFilters, apiUrl, this.props.totalCount, this.props.askedQuestion)
+        GAevent('Contact Us Events', 'Contact Us', this.props.askedQuestions)
+
         this.props.contact_done(false)
     }
     render() {
